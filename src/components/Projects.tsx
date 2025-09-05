@@ -24,7 +24,7 @@ const Projects = () => {
       tags: ["Next.js", "AI/ML", "Gamification", "Global Youth"],
       gradient: "from-purple-500 to-pink-500",
       links: {
-        demo: "https://your-hanu-youth-link.com",   // 🔗 Replace with real link
+        demo: "https://68b572cc01f02e00082d1c34--hanuyouthapp.netlify.app/",   // 🔗 Hanu Youth App
         github: "https://github.com/sarthaksinghaniya/hanu-youth" // 🔗 Replace with repo
       },
       status: "Development"

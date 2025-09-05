@@ -46,9 +46,9 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             className="flex items-center space-x-3"
           >
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-md">
+            <div className="w-10 h-10 overflow-hidden">
               <img 
-                src="/hanubell-logo.jpg" 
+                src="/hanubell-logo1.png" 
                 alt="HANUBELL Logo" 
                 className="w-full h-full object-cover"
               />
