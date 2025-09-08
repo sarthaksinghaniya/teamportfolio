@@ -88,6 +88,20 @@ const Team = () => {
         portfolio: "#" 
       },
       gradient: "from-orange-500 to-red-500"
+    },
+    {
+      name: "Yashraj Srivastava",
+      role: "Research & Backend Developer",
+      bio: "Specializes in backend development and research, bringing innovative solutions to complex problems.",
+      strengths: ["Backend Development", "Research", "API Design"],
+      image: "/Screenshot 2025-09-08 221906.png",
+      links: { 
+        github: "https://github.com/Yashraj047", 
+        linkedin: "https://www.linkedin.com/in/yashraj-srivastava-0523b8370", 
+        email: "yashraj04769@gmail.com", 
+        portfolio: "#" 
+      },
+      gradient: "from-amber-500 to-yellow-500"
     }
   ];
 

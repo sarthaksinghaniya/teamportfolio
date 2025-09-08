@@ -30,16 +30,16 @@ const Projects = () => {
       status: "Development"
     },
     {
-      title: "CodeCollab",
-      description: "Real-time collaborative coding platform with integrated video chat, code review, and project management features.",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
-      tags: ["Vue.js", "WebRTC", "Socket.io", "Docker"],
+      title: "Hanu-Planner",
+      description: "An intuitive project management tool designed to help teams plan, track, and deliver projects efficiently with real-time collaboration features.",
+      image: "/ChatGPT Image Sep 7, 2025, 10_41_17 AM.png",
+      tags: ["Next.js", "TypeScript", "Real-time", "Productivity"],
       gradient: "from-blue-500 to-cyan-500",
       links: {
-        demo: "#",
+        demo: "https://hanu-planner.netlify.app",
         github: "#"
       },
-      status: "Development"
+      status: "Live"
     },
     {
       title: "SmartHome Hub",
