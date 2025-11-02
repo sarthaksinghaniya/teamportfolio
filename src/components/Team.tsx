@@ -80,11 +80,11 @@ const Team = () => {
       role: "Chief Finance Officer, Visionary",
       bio: "Strategic financial architect and visionary leader driving sustainable growth.",
       strengths: ["Marketing Ideas", "Visionary Thinking", " Finance Management"],
-      image: "/WhatsApp%20Image%202025-08-27%20at%2017.49.01_2affbb4d.jpg",
+      image: "/tanisq.jpg",
       links: { 
-        github: "https://github.com/Yashashvi-Mishra", 
+        github: "https://github.com/tanishqshukla007", 
         linkedin: "https://www.linkedin.com/in/yashashvi-mishra-b1a4702a1", 
-        email: "yashashvi02112004@gmail.com", 
+        email: "tanishqshukla835@gmail.com", 
         portfolio: "#" 
       },
       gradient: "from-orange-500 to-red-500"
