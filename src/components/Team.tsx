@@ -21,7 +21,7 @@ const Team = () => {
     },
     {
       name: "Sarthak Singhaniya",
-      role: "Chairman, HR, , Architect ,AI/ML Engineer",
+      role: "Chairman, HR, Architect ,AI/ML Engineer",
       bio: "Oversees system design, team dynamics, and AI/ML strategy. Ensures technical excellence and team growth.",
       strengths: ["System Architecture", "Team Building", "AI/ML Strategy"],
       image: "/IMG20241204110307[1].jpg",
