@@ -7,7 +7,7 @@ const Team = () => {
   const teamMembers = [
     {
       name: "Dev Tiwari",
-      role: "Team Lead, AI/ML Engineer",
+      role: "Founder, AI/ML Engineer",
       bio: "Leads with clarity and vision. Builds scalable ML systems and mentors the team to deliver reliably.",
       strengths: ["Leadership", "Machine Learning", "AI", "Team Management"],
       image: "/1731466259882[1].jpg",
@@ -21,7 +21,7 @@ const Team = () => {
     },
     {
       name: "Sarthak Singhaniya",
-      role: "Architect, HR, AI/ML Engineer",
+      role: "Chairman, HR, , Architect ,AI/ML Engineer",
       bio: "Oversees system design, team dynamics, and AI/ML strategy. Ensures technical excellence and team growth.",
       strengths: ["System Architecture", "Team Building", "AI/ML Strategy"],
       image: "/IMG20241204110307[1].jpg",
@@ -35,7 +35,7 @@ const Team = () => {
     },
     {
       name: "Shubhang Mishra",
-      role: "Full Stack Developer",
+      role: "CTO, Full Stack Developer",
       bio: "Connects backend and frontend with clean, maintainable code and a problem‑solving mindset.",
       strengths: ["Backend + Frontend", "Problem Solving", "Clean Code"],
       image: "/WhatsApp Image 2025-08-27 at 15.25.53_1706f5b1.jpg",
@@ -76,10 +76,10 @@ const Team = () => {
       gradient: "from-green-500 to-teal-500"
     },
     {
-      name: "Yashashvi Mishra",
-      role: "Frontend Developer, Visionary",
-      bio: "Adds creative direction and ensures ideas translate into intuitive UI experiences.",
-      strengths: ["Creative Ideas", "Visionary Thinking", "UI Development", "Innovation"],
+      name: "Tanishq Shukla",
+      role: "Chief Finance Officer, Visionary",
+      bio: "Strategic financial architect and visionary leader driving sustainable growth.",
+      strengths: ["Marketing Ideas", "Visionary Thinking", " Finance Management"],
       image: "/WhatsApp%20Image%202025-08-27%20at%2017.49.01_2affbb4d.jpg",
       links: { 
         github: "https://github.com/Yashashvi-Mishra", 
@@ -91,7 +91,7 @@ const Team = () => {
     },
     {
       name: "Yashraj Srivastava",
-      role: "Research & Backend Developer",
+      role: "Data Analyst & Backend Developer",
       bio: "Specializes in backend development and research, bringing innovative solutions to complex problems.",
       strengths: ["Backend Development", "Research", "API Design"],
       image: "/Screenshot 2025-09-08 221906.png",

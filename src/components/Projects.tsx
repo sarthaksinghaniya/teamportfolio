@@ -15,7 +15,7 @@ const Projects = () => {
         demo: "https://reviber.netlify.app",
         github: "https://github.com/sarthaksinghaniya/reviber"
       },
-      status: "Live"
+      status: "Beta"
     },
     {
       title: "HANU-YOUTH",
@@ -39,44 +39,8 @@ const Projects = () => {
         demo: "https://hanu-planner.netlify.app",
         github: "#"
       },
-      status: "Live"
+      status: "Devlopement"
     },
-    {
-      title: "SmartHome Hub",
-      description: "IoT dashboard for managing smart home devices with voice control, automation rules, and energy monitoring.",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-      tags: ["React", "Python", "IoT", "Machine Learning"],
-      gradient: "from-orange-500 to-red-500",
-      links: {
-        demo: "#",
-        github: "#"
-      },
-      status: "Live"
-    },
-    {
-      title: "LearnPath",
-      description: "Personalized learning platform that adapts to individual learning styles using AI-driven content recommendations.",
-      image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=400&fit=crop",
-      tags: ["Angular", "Python", "TensorFlow", "PostgreSQL"],
-      gradient: "from-indigo-500 to-purple-500",
-      links: {
-        demo: "#",
-        github: "#"
-      },
-      status: "Beta"
-    },
-    {
-      title: "CryptoTracker Pro",
-      description: "Advanced cryptocurrency portfolio tracker with real-time analytics, alerts, and DeFi integration.",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-      tags: ["React", "Web3", "GraphQL", "Redis"],
-      gradient: "from-yellow-500 to-orange-500",
-      links: {
-        demo: "#",
-        github: "#"
-      },
-      status: "Live"
-    }
   ];
 
   const getStatusColor = (status: string) => {

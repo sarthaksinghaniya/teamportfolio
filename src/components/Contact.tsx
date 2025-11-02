@@ -61,13 +61,13 @@ const Contact = () => {
     {
       icon: Github,
       name: "GitHub",
-      link: "#",
+      link: "https://github.com/teamhanubell",
       gradient: "from-gray-700 to-gray-900"
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      link: "#",
+      link: "https://www.linkedin.com/in/hanu-bell-b97647381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       gradient: "from-blue-600 to-blue-800"
     }
   ];
@@ -164,7 +164,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
             viewport={{ once: true }}
             className="space-y-8"
           >
