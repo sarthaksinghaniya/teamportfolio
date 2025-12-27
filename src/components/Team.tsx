@@ -28,7 +28,7 @@ const Team = () => {
       links: { 
         github: "https://github.com/Shubhang1022", 
         linkedin: "https://www.linkedin.com/in/shubhang-mishra-8a1996328", 
-        email: "mishrashanu233@gmail.com", 
+        email: "seemayadav97950@gmail.com", 
         portfolio: "#" 
       },
       gradient: "from-purple-500 to-indigo-500"
