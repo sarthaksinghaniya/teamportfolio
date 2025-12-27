@@ -31,8 +31,8 @@ const Contact = () => {
     {
       icon: FaWhatsapp,
       title: "WhatsApp",
-      content: "+91 63063 12540",
-      link: "https://wa.me/916306312540",
+      content: "+91 6387860126",
+      link: "https://wa.me/916387860126",
       gradient: "from-green-400 to-green-600"
     },
     {
@@ -55,19 +55,19 @@ const Contact = () => {
     {
       icon: FaWhatsapp,
       name: "WhatsApp",
-      link: "https://wa.me/916306312540",
+      link: "https://wa.me/916387860126",
       gradient: "from-green-500 to-green-700"
     },
     {
       icon: Github,
       name: "GitHub",
-      link: "https://github.com/teamhanubell",
+      link: "https://github.com/sarthaksinghaniya",
       gradient: "from-gray-700 to-gray-900"
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      link: "https://www.linkedin.com/in/hanu-bell-b97647381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      link: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323",
       gradient: "from-blue-600 to-blue-800"
     }
   ];

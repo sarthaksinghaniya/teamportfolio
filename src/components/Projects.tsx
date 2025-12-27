@@ -5,10 +5,10 @@ import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
-      {
+    {
       title: "Reviber",
       description: "An AI-powered idea generation and innovation assistant that suggests creative, resource-based solutions in a simple popup-style interface.",
-      image: "/WhatsApp Image 2025-08-29 at 15.17.59_fd2e4063.jpg",
+      image: "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png",
       tags: ["React", "AI", "Innovation", "Productivity"],
       gradient: "from-green-500 to-teal-500",
       links: {
@@ -30,6 +30,18 @@ const Projects = () => {
       status: "Development"
     },
     {
+      title: "Path Sarthi",
+      description: "A comprehensive roadmap and performance reviewer platform integrated with LinkedIn and Unstop, helping users track their career progress and skills development.",
+      image: "/d4009897-c04d-4fe5-859d-f145042c645a.png",
+      tags: ["React", "LinkedIn API", "Unstop API", "Career Development"],
+      gradient: "from-indigo-500 to-purple-600",
+      links: {
+        demo: "https://path-sarthi--sarthakshubh.replit.app",
+        github: "https://github.com/sarthaksinghaniya/Path-Sarthi"
+      },
+      status: "Beta"
+    },
+    {
       title: "Hanu-Planner",
       description: "An intuitive project management tool designed to help teams plan, track, and deliver projects efficiently with real-time collaboration features.",
       image: "/ChatGPT Image Sep 7, 2025, 10_41_17 AM.png",
@@ -37,7 +49,7 @@ const Projects = () => {
       gradient: "from-blue-500 to-cyan-500",
       links: {
         demo: "https://hanu-planner.netlify.app",
-        github: "#"
+        github: "https://github.com/sarthaksinghaniya/Hanu-Planner"
       },
       status: "Devlopement"
     },

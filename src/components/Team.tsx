@@ -5,23 +5,9 @@ import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 
 const Team = () => {
   const teamMembers = [
-    {
-      name: "Dev Tiwari",
-      role: "Founder, AI/ML Engineer",
-      bio: "Leads with clarity and vision. Builds scalable ML systems and mentors the team to deliver reliably.",
-      strengths: ["Leadership", "Machine Learning", "AI", "Team Management"],
-      image: "/1731466259882[1].jpg",
-      links: { 
-        github: "https://github.com/devtiwari9943", 
-        linkedin: "https://linkedin.com/in/dev-tiwari-a0872031a", 
-        email: "devtiwari9943@gmail.com", 
-        portfolio: "#" 
-      },
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
+   {
       name: "Sarthak Singhaniya",
-      role: "Chairman, HR, Architect ,AI/ML Engineer",
+      role: "CO-FOUNDER, CIO, System Architect, AI/ML Engineer",
       bio: "Oversees system design, team dynamics, and AI/ML strategy. Ensures technical excellence and team growth.",
       strengths: ["System Architecture", "Team Building", "AI/ML Strategy"],
       image: "/IMG20241204110307[1].jpg",
@@ -34,10 +20,10 @@ const Team = () => {
       gradient: "from-blue-500 to-cyan-500"
     },
     {
-      name: "Shubhang Mishra",
-      role: "CTO, Full Stack Developer",
+      name: "Nikhil Yadav",
+      role: "CCO, Design Lead, UIUX Specialist",
       bio: "Connects backend and frontend with clean, maintainable code and a problem‑solving mindset.",
-      strengths: ["Backend + Frontend", "Problem Solving", "Clean Code"],
+      strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
       image: "/WhatsApp Image 2025-08-27 at 15.25.53_1706f5b1.jpg",
       links: { 
         github: "https://github.com/Shubhang1022", 

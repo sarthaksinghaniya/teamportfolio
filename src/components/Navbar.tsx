@@ -48,7 +48,7 @@ const Navbar = () => {
           >
             <div className="w-10 h-10 overflow-hidden">
               <img 
-                src="/hanubell-logo1.png" 
+                src="/file_0000000067647206a22ff5daad754190.png" 
                 alt="HANUBELL Logo" 
                 className="w-full h-full object-cover"
               />
