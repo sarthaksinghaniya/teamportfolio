@@ -24,7 +24,7 @@ const Team = () => {
       role: "CCO, Design Lead, UIUX Specialist",
       bio: "Connects backend and frontend with clean, maintainable code and a problem‑solving mindset.",
       strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
-      image: "/WhatsApp Image 2025-08-27 at 15.25.53_1706f5b1.jpg",
+      image: "/image.png",
       links: { 
         github: "https://github.com/Shubhang1022", 
         linkedin: "https://www.linkedin.com/in/shubhang-mishra-8a1996328", 
