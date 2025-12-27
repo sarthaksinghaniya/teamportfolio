@@ -10,7 +10,7 @@ const Team = () => {
       role: "CO-FOUNDER, CIO, System Architect, AI/ML Engineer",
       bio: "Oversees system design, team dynamics, and AI/ML strategy. Ensures technical excellence and team growth.",
       strengths: ["System Architecture", "Team Building", "AI/ML Strategy"],
-      image: "/IMG20241204110307[1].jpg",
+      image: "/WhatsApp Image 2025-12-24 at 1.46.07 PM.jpeg",
       links: { 
         github: "https://github.com/sarthaksinghaniya", 
         linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323", 
