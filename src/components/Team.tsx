@@ -34,34 +34,6 @@ const Team = () => {
       gradient: "from-purple-500 to-indigo-500"
     },
     {
-      name: "Vishal Verma",
-      role: "Frontend Developer",
-      bio: "Crafts responsive, user‑friendly interfaces with attention to detail and usability.",
-      strengths: ["UI/UX", "Responsive Design", "Frontend Frameworks"],
-      image: "/WhatsApp Image 2025-08-27 at 16.14.25_42c3464f.jpg",
-      links: { 
-        github: "https://github.com/vishal122333", 
-        linkedin: "https://www.linkedin.com/in/vishal-verma-730056305", 
-        email: "vishalofficial700@gmail.com", 
-        portfolio: "#" 
-      },
-      gradient: "from-indigo-500 to-blue-500"
-    },
-    {
-      name: "Vaishnavi Choudhary",
-      role: "Backend Developer",
-      bio: "Builds reliable server‑side logic with clean APIs and solid database foundations.",
-      strengths: ["Database Management", "APIs", "Server‑side Logic"],
-      image: "/WhatsApp Image 2025-08-27 at 16.11.49_bbb1b54f.jpg",
-      links: { 
-        github: "https://github.com/vaishnavi933", 
-        linkedin: "https://www.linkedin.com/in/vaishnavi-choudhary-2a1a40340", 
-        email: "vaishnavichoudhary0212@gmail.com", 
-        portfolio: "#" 
-      },
-      gradient: "from-green-500 to-teal-500"
-    },
-    {
       name: "Tanishq Shukla",
       role: "Chief Finance Officer, Visionary",
       bio: "Strategic financial architect and visionary leader driving sustainable growth.",
@@ -74,20 +46,6 @@ const Team = () => {
         portfolio: "#" 
       },
       gradient: "from-orange-500 to-red-500"
-    },
-    {
-      name: "Yashraj Srivastava",
-      role: "Data Analyst & Backend Developer",
-      bio: "Specializes in backend development and research, bringing innovative solutions to complex problems.",
-      strengths: ["Backend Development", "Research", "API Design"],
-      image: "/Screenshot 2025-09-08 221906.png",
-      links: { 
-        github: "https://github.com/Yashraj047", 
-        linkedin: "https://www.linkedin.com/in/yashraj-srivastava-0523b8370", 
-        email: "yashraj04769@gmail.com", 
-        portfolio: "#" 
-      },
-      gradient: "from-amber-500 to-yellow-500"
     }
   ];
 
@@ -106,7 +64,7 @@ const Team = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-600 mx-auto mb-8 rounded-full"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The brilliant minds behind HANUBELL. Each member brings unique expertise and 
+            The brilliant minds behind TechNeekX. Each member brings unique expertise and 
             passion to create extraordinary digital experiences.
           </p>
         </motion.div>

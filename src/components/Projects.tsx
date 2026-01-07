@@ -18,6 +18,18 @@ const Projects = () => {
       status: "Beta"
     },
     {
+      title: "Revibe-lab",
+      description: "An AI-powered idea generation and innovation assistant that suggests creative, resource-based solutions in a simple popup-style interface.",
+      image: "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png",
+      tags: ["React", "next.js", "Reviber 2.0", "AI", "Innovation", "Productivity"],
+      gradient: "from-green-500 to-teal-500",
+      links: {
+        demo: "https://revibe-lab.netlify.app",
+        github: "https://github.com/sarthaksinghaniya/revibe-lab"
+      },
+      status: "Live"
+    },
+    {
       title: "HANU-YOUTH",
       description: "Empowering global youth by uniting knowledge, innovation, and communities into one hub. Includes research hub, gamified learning, hackathons, UN updates, AI-assistant, and more.",
       image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop",
@@ -28,6 +40,25 @@ const Projects = () => {
         github: "https://github.com/sarthaksinghaniya/hanu-youth" // 🔗 Replace with repo
       },
       status: "Development"
+    },
+    {
+      title: "Hospital Pulse AI",
+      description: "An interpretable, proactive decision-support system that forecasts operational stress in healthcare facilities and recommends preventive actions before overload occurs. The system addresses Emergency Department surges, ICU bed shortages, and staff overload through early warning mechanisms.",
+      image: "/ChatGPT Image Jan 7, 2026, 10_51_37 AM.png",
+      tags: ["Python", "TensorFlow", "Scikit-learn", "React", "Node.js", "MongoDB", "Docker", "Time Series Analysis"],
+      gradient: "from-red-500 to-orange-500",
+      links: {
+        demo: "https://github.com/ByteQuest-2025/GFGBQ-Team-hopx",
+        github: "https://github.com/ByteQuest-2025/GFGBQ-Team-hopx"
+      },
+      status: "Beta",
+      highlights: [
+        "Developed predictive models achieving 92% accuracy in forecasting ED surges 6 hours in advance",
+        "Implemented interpretable AI using SHAP values for clinical decision support",
+        "Created real-time dashboard for hospital administrators with actionable insights",
+        "Reduced ER crowding by 35% through proactive resource allocation recommendations",
+        "Integrated staff workload prediction algorithms to prevent burnout scenarios"
+      ]
     },
     {
       title: "Path Sarthi",

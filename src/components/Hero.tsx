@@ -27,7 +27,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              HANUBELL
+              TechNeekX
             </span>
           </motion.h1>
           

@@ -24,9 +24,9 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/teamhanubell', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/hanu-bell-b97647381?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', label: 'LinkedIn' },
-    { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamhanubell@gmail.com', label: 'Email' },
+    { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/techneekx', label: 'LinkedIn' },
+    { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -49,12 +49,12 @@ const Navbar = () => {
             <div className="w-10 h-10 overflow-hidden">
               <img 
                 src="/file_0000000067647206a22ff5daad754190.png" 
-                alt="HANUBELL Logo" 
+                alt="TechNeekX Logo" 
                 className="w-full h-full object-cover"
               />
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              HANUBELL
+              TechNeekX
             </h1>
           </motion.div>
 

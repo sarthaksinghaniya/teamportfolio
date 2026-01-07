@@ -30,80 +30,62 @@ interface Message {
   media?: Media;
 }
 
-// Knowledge base for HANUBELL
-const HANUBELL_KNOWLEDGE = {
+// Knowledge base for TechNeekX
+const TECHNEEKX_KNOWLEDGE = {
   greetings: [
-    "👋 Hello! I'm Hanu-Bai, your HANUBELL assistant. How can I help you today?",
-    "🌟 Hi there! I'm here to assist you with HANUBELL. What would you like to know?",
-    "💫 Greetings! I'm Hanu-Bai, ready to help with all things HANUBELL!"
+    "👋 Hello! I'm TechNeekX Assistant, your AI guide to TechNeekX's innovative solutions. How can I help you today?",
+    "🌟 Hi there! I'm here to assist you with TechNeekX's cutting-edge technology services. What would you like to explore?",
+    "💫 Welcome! I'm TechNeekX Assistant, ready to showcase our digital excellence and creative solutions!"
   ],
   about: [
-    "🚀 HANUBELL is a creative agency specializing in web development, design, and digital solutions. We help businesses establish a strong online presence.",
-    "💡 We're a team of passionate developers and designers dedicated to creating beautiful, functional websites and applications.",
-    "✨ At HANUBELL, we transform ideas into digital experiences that make an impact."
+    "🚀 TechNeekX is a forward-thinking technology company that transforms innovative ideas into powerful digital solutions. We specialize in AI/ML, web development, mobile apps, and digital transformation.",
+    "💡 We're a team of passionate technologists and creative minds dedicated to pushing the boundaries of what's possible in the digital landscape. From AI-powered solutions to stunning web experiences, we do it all.",
+    "✨ At TechNeekX, we don't just build technology – we craft experiences that inspire, engage, and deliver measurable results. Our expertise spans across cutting-edge tech stacks and innovative methodologies."
   ],
   services: [
-    "🛠️ We offer a range of services including: \n• Web Development \n• UI/UX Design \n• Mobile App Development \n• Digital Marketing",
-    "🎨 Our services include custom website development, e-commerce solutions, and brand identity design.",
-    "⚡ From concept to launch, we provide end-to-end digital solutions tailored to your needs."
+    "🛠️ Our comprehensive services include: \n• 🤖 AI/ML Development & Integration\n• 🌐 Custom Web & Mobile Applications\n• 🎨 UI/UX Design & Branding\n• ☁️ Cloud Solutions & DevOps\n• 📊 Data Analytics & Business Intelligence\n• 🚀 Digital Transformation Consulting",
+    "🎨 We deliver end-to-end digital solutions: from concept ideation and design to development, deployment, and ongoing optimization. Our tech stack includes React, Next.js, Python, TensorFlow, and more.",
+    "⚡ Whether you need a startup MVP, enterprise solution, or AI integration, we provide scalable, secure, and innovative technology solutions tailored to your specific needs."
   ],
   team: [
-    "👥 Our amazing team consists of 6 talented individuals:\n\n1. Alex Johnson - Full Stack Developer\n2. Sarah Chen - UI/UX Designer\n3. Michael Brown - Project Manager\n4. Emily Davis - Frontend Developer\n5. David Kim - Backend Developer\n6. Jessica Lee - Digital Marketer\n\nWould you like to know more about any team member? 😊",
-    "🌟 Meet our team of creative professionals passionate about building amazing digital experiences.",
-    "💻 The HANUBELL team is dedicated to delivering exceptional results with their diverse skills and expertise."
+    "👥 Meet our exceptional team of 3 tech innovators:\n\n1. Sarthak Singhaniya - CO-FOUNDER, CIO, System Architect, AI/ML Engineer\n2. Nikhil Yadav - CCO, Design Lead, UI/UX Specialist\n3. Tanishq Shukla - Chief Finance Officer, Visionary\n\nEach member brings unique expertise and passion! 🚀",
+    "🌟 Our compact but powerful team combines technical excellence with creative innovation, ensuring we deliver solutions that are both cutting-edge and user-centric.",
+    "💻 The TechNeekX team is committed to continuous learning, innovation, and delivering exceptional results that exceed client expectations."
   ],
   contact: [
-    "📧 You can reach us at: email@hanubell.com\n📞 Call us at: (123) 456-7890\n📍 Visit us at: 123 Tech Street, Silicon Valley",
-    "💌 Contact us through our website's contact form or email us directly at email@hanubell.com",
-    "📱 For inquiries, please email us at email@hanubell.com or visit our contact page."
+    "📧 Get in touch with us:\n📧 Email: teamtechneekx@gmail.com\n📱 WhatsApp: +91 6387860126\n📞 Call: +91 63878 60126\n🌐 Website: techneekx.com (coming soon!)",
+    "💌 Reach out through our contact form or email us directly at teamtechneekx@gmail.com. We typically respond within 24 hours!",
+    "📱 For project inquiries, collaborations, or just to say hello, contact us at teamtechneekx@gmail.com or message us on WhatsApp."
   ],
   projects: [
-    "💼 We've worked on various projects including:\n• E-commerce platforms\n• Web applications\n• Mobile apps\n• Digital marketing campaigns",
-    "🎯 Our portfolio includes projects in industries like healthcare, education, and e-commerce.",
-    "✨ Check out our projects section to see some of our recent work and case studies!"
+    "💼 Explore our innovative projects:\n\n🏥 Hospital Pulse AI - Healthcare predictive analytics with 92% accuracy\n🤖 Reviber - AI-powered idea generation assistant\n🌍 HANU-YOUTH - Global youth empowerment platform\n🗺️ Path Sarthi - Career development with LinkedIn integration\n📅 Hanu-Planner - Real-time project management tool",
+    "🎯 Our portfolio showcases cutting-edge solutions across healthcare AI, productivity tools, education platforms, and more. Each project demonstrates our commitment to innovation and excellence.",
+    "✨ From AI-powered healthcare systems to intuitive productivity tools, our projects solve real-world problems with elegant, scalable solutions."
   ],
   teamMembers: {
-    'alex': {
-      name: 'Alex Johnson',
-      role: 'Full Stack Developer',
-      bio: '💻 Full Stack Developer with 8+ years of experience in building scalable web applications. Specializes in React, Node.js, and cloud technologies.',
-      funFact: '⚡ Loves solving complex problems and contributing to open source projects.'
+    'sarthak': {
+      name: 'Sarthak Singhaniya',
+      role: 'CO-FOUNDER, CIO, System Architect, AI/ML Engineer',
+      bio: '🤖 Visionary leader overseeing system design, team dynamics, and AI/ML strategy. Ensures technical excellence and drives team growth with innovative solutions.',
+      funFact: '🚀 Passionate about AI research and building scalable systems that make a real impact.'
     },
-    'sarah': {
-      name: 'Sarah Chen',
-      role: 'UI/UX Designer',
-      bio: '🎨 Creative UI/UX Designer with a passion for creating intuitive and beautiful user experiences. Expert in Figma and user research.',
-      funFact: '🎨 Spends weekends painting and exploring new design trends.'
+    'nikhil': {
+      name: 'Nikhil Yadav',
+      role: 'CCO, Design Lead, UI/UX Specialist',
+      bio: '🎨 Creative genius connecting frontend and backend with clean, maintainable code and exceptional problem-solving mindset.',
+      funFact: '✨ Expert in creating stunning UI designs that users love and remember.'
     },
-    'michael': {
-      name: 'Michael Brown',
-      role: 'Project Manager',
-      bio: '📊 Seasoned Project Manager with 10+ years of experience in agile development and team leadership. Ensures projects are delivered on time and within scope.',
-      funFact: '🏆 Holds multiple certifications in Agile and Scrum methodologies.'
-    },
-    'emily': {
-      name: 'Emily Davis',
-      role: 'Frontend Developer',
-      bio: '✨ Frontend Developer specializing in React and modern JavaScript. Passionate about creating responsive and accessible web applications.',
-      funFact: '🌱 Enjoys mentoring junior developers and writing technical blogs.'
-    },
-    'david': {
-      name: 'David Kim',
-      role: 'Backend Developer',
-      bio: '🔧 Backend Developer with expertise in Node.js, Python, and database design. Focuses on building robust and scalable APIs.',
-      funFact: '🎮 When not coding, you can find him playing chess or video games.'
-    },
-    'jessica': {
-      name: 'Jessica Lee',
-      role: 'Digital Marketer',
-      bio: '📈 Digital Marketing Specialist with a focus on SEO, content strategy, and social media marketing. Helps businesses grow their online presence.',
-      funFact: '✈️ Loves traveling and exploring different cultures.'
+    'tanishq': {
+      name: 'Tanishq Shukla',
+      role: 'Chief Finance Officer, Visionary',
+      bio: '💰 Strategic financial architect and visionary leader driving sustainable growth and innovation.',
+      funFact: '📈 Combines financial expertise with tech innovation to drive business success.'
     }
   },
   default: [
     "🤔 I'm not sure I understand. Could you rephrase that?",
     "🧠 I'm still learning! Could you try asking something else?",
-    "💡 I'm not sure about that. Maybe I can help with something else related to HANUBELL?"
+    "💡 I'm not sure about that. Maybe I can help with something else related to TechNeekX?"
   ]
 };
 
@@ -124,7 +106,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: HANUBELL_KNOWLEDGE.greetings[0],
+      text: TECHNEEKX_KNOWLEDGE.greetings[0],
       isBot: true,
       timestamp: new Date(),
       status: 'read',
@@ -280,10 +262,10 @@ const Chatbot = () => {
       responses[Math.floor(Math.random() * responses.length)];
     
     // Check for team member queries
-    const teamMemberMatch = input.match(/(alex|sarah|michael|emily|david|jessica)/i);
+    const teamMemberMatch = input.match(/(sarthak|nikhil|tanishq)/i);
     if (teamMemberMatch) {
       const memberKey = teamMemberMatch[0].toLowerCase();
-      const member = HANUBELL_KNOWLEDGE.teamMembers[memberKey as keyof typeof HANUBELL_KNOWLEDGE.teamMembers];
+      const member = TECHNEEKX_KNOWLEDGE.teamMembers[memberKey as keyof typeof TECHNEEKX_KNOWLEDGE.teamMembers];
       if (member) {
         return {
           text: `👤 **${member.name}**\n💼 ${member.role}\n\n${member.bio}\n\n✨ Fun Fact: ${member.funFact}`,
@@ -294,21 +276,29 @@ const Chatbot = () => {
     
     // Check for greetings
     if (/^(hi|hello|hey|greetings?|yo)/i.test(input)) {
-      return { text: randomResponse(HANUBELL_KNOWLEDGE.greetings) };
+      return { text: randomResponse(TECHNEEKX_KNOWLEDGE.greetings) };
     }
     
     // Check for about queries
-    if (/(what.*hanubell|who.*hanubell|about.*hanubell|hanubell.*about)/i.test(input)) {
+    if (/(what.*techneekx|who.*techneekx|about.*techneekx|techneekx.*about)/i.test(input)) {
       return {
-        text: randomResponse(HANUBELL_KNOWLEDGE.about),
+        text: randomResponse(TECHNEEKX_KNOWLEDGE.about),
         action: () => scrollToSection('about')
+      };
+    }
+    
+    // Check for AI/ML specific queries
+    if (/(ai|ml|artificial intelligence|machine learning|tensorflow|python)/i.test(input)) {
+      return {
+        text: "🤖 TechNeekX specializes in cutting-edge AI/ML solutions! We offer:\n\n• Predictive Analytics & Forecasting\n• Natural Language Processing\n• Computer Vision Solutions\n• Custom Model Development\n• AI Integration & Deployment\n• Data Science & Analytics\n\nOur Hospital Pulse AI project demonstrates our expertise with 92% accuracy in healthcare predictions! 🏥\n\nWould you like to know more about our AI capabilities or specific projects?",
+        action: () => scrollToSection('projects')
       };
     }
     
     // Check for services queries
     if (/(service|what.*do|offer|provide|can you|help with)/i.test(input)) {
       return {
-        text: randomResponse(HANUBELL_KNOWLEDGE.services),
+        text: randomResponse(TECHNEEKX_KNOWLEDGE.services),
         action: () => scrollToSection('services')
       };
     }
@@ -319,7 +309,7 @@ const Chatbot = () => {
       const roleMatch = input.match(/(developer|designer|manager|marketer|frontend|backend|full stack)/i);
       if (roleMatch) {
         const role = roleMatch[0].toLowerCase();
-        const members = Object.values(HANUBELL_KNOWLEDGE.teamMembers).filter(member => 
+        const members = Object.values(TECHNEEKX_KNOWLEDGE.teamMembers).filter(member => 
           member.role.toLowerCase().includes(role)
         );
         
@@ -333,7 +323,7 @@ const Chatbot = () => {
       }
       
       return {
-        text: randomResponse(HANUBELL_KNOWLEDGE.team),
+        text: randomResponse(TECHNEEKX_KNOWLEDGE.team),
         action: () => scrollToSection('team')
       };
     }
@@ -341,23 +331,31 @@ const Chatbot = () => {
     // Check for contact queries
     if (/(contact|email|phone|number|reach|get in touch)/i.test(input)) {
       return {
-        text: randomResponse(HANUBELL_KNOWLEDGE.contact),
+        text: randomResponse(TECHNEEKX_KNOWLEDGE.contact),
         action: () => scrollToSection('contact')
+      };
+    }
+    
+    // Check for Hospital Pulse AI specific queries
+    if (/(hospital pulse|healthcare ai|medical ai|hospital management)/i.test(input)) {
+      return {
+        text: "🏥 **Hospital Pulse AI** is our flagship healthcare solution!\n\n🎯 **Key Features:**\n• Predicts Emergency Department surges 6 hours in advance\n• 92% accuracy in forecasting operational stress\n• Real-time dashboard for hospital administrators\n• Staff workload prediction to prevent burnout\n• Interpretable AI using SHAP values\n• Reduced ER crowding by 35% through proactive recommendations\n\n🛠️ **Tech Stack:** Python, TensorFlow, Scikit-learn, React, Node.js, MongoDB, Docker\n\nThis project demonstrates our expertise in building impactful AI solutions that save lives and improve healthcare efficiency! ⚕️",
+        action: () => scrollToSection('projects')
       };
     }
     
     // Check for projects/portfolio queries
     if (/(project|portfolio|work|showcase|example|case study)/i.test(input)) {
       return {
-        text: randomResponse(HANUBELL_KNOWLEDGE.projects),
+        text: randomResponse(TECHNEEKX_KNOWLEDGE.projects),
         action: () => scrollToSection('projects')
       };
     }
     
     // Default response
     return {
-      text: HANUBELL_KNOWLEDGE.default[
-        Math.floor(Math.random() * HANUBELL_KNOWLEDGE.default.length)
+      text: TECHNEEKX_KNOWLEDGE.default[
+        Math.floor(Math.random() * TECHNEEKX_KNOWLEDGE.default.length)
       ]
     };
   };
@@ -541,7 +539,7 @@ const Chatbot = () => {
             <div className="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-4 flex justify-between items-center">
               <div className="flex items-center space-x-2">
                 <Bot size={20} />
-                <h3 className="font-semibold">Hanu-Bai</h3>
+                <h3 className="font-semibold">TechNeekX Assistant</h3>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
@@ -744,11 +742,12 @@ const Chatbot = () => {
               {/* Quick Replies */}
               <div className="flex flex-wrap gap-2 mt-3">
                 {[
-                  { text: 'About Us', query: 'Tell me about HANUBELL', section: 'about' },
-                  { text: 'Services', query: 'What services do you offer?', section: 'services' },
-                  { text: 'Our Team', query: 'Who works at HANUBELL?', section: 'team' },
+                  { text: 'About Us', query: 'Tell me about TechNeekX', section: 'about' },
+                  { text: 'AI/ML Services', query: 'What AI services do you offer?', section: 'services' },
+                  { text: 'Our Team', query: 'Who works at TechNeekX?', section: 'team' },
+                  { text: 'Hospital Pulse AI', query: 'Tell me about Hospital Pulse AI', section: 'projects' },
                   { text: 'Contact', query: 'How can I contact you?', section: 'contact' },
-                  { text: 'Projects', query: 'Show me your projects', section: 'projects' }
+                  { text: 'All Projects', query: 'Show me your projects', section: 'projects' }
                 ].map((action) => (
                   <motion.button
                     key={action.text}

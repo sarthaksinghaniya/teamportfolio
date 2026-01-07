@@ -38,7 +38,7 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">HANUBELL</span>
+            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">TechNeekX</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8 rounded-full"></div>
         </motion.div>
@@ -54,7 +54,7 @@ const About = () => {
               Our Vision
             </h3>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              HANUBELL represents the perfect fusion of youthful energy and professional excellence. 
+              TechNeekX represents the perfect fusion of youthful energy and professional excellence. 
               We believe that innovation thrives when diverse perspectives come together with a shared 
               vision of creating something extraordinary.
             </p>

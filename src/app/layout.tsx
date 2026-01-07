@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HANUBELL - Youth, Innovation, Unity",
-  description: "Modern portfolio website for the HANUBELL team - balancing professionalism with youthful energy",
+  title: "TechNeekX - Youth, Innovation, Unity",
+  description: "Modern portfolio website for the TechNeekX team - balancing professionalism with youthful energy",
 };
 
 export default function RootLayout({

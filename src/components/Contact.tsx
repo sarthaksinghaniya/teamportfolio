@@ -38,8 +38,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "teamhanubell@gmail.com",
-      link: "mailto:teamhanubell@gmail.com",
+      content: "teamtechneekx@gmail.com",
+      link: "mailto:teamtechneekx@gmail.com",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
