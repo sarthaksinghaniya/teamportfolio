@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/techneekx', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
     { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx@gmail.com', label: 'Email' },
   ];
 

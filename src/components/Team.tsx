@@ -26,7 +26,7 @@ const Team = () => {
       strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
       image: "/image.png",
       links: { 
-        github: "https://github.com/Shubhang1022", 
+        github: "https://github.com/NIKHIL09790", 
         linkedin: "https://www.linkedin.com/in/shubhang-mishra-8a1996328", 
         email: "seemayadav97950@gmail.com", 
         portfolio: "#" 
@@ -41,7 +41,7 @@ const Team = () => {
       image: "/tanisq.jpg",
       links: { 
         github: "https://github.com/tanishqshukla007", 
-        linkedin: "https://www.linkedin.com/in/yashashvi-mishra-b1a4702a1", 
+        linkedin: "#", 
         email: "tanishqshukla835@gmail.com", 
         portfolio: "#" 
       },

@@ -7,7 +7,7 @@ A modern, professional portfolio website built with Next.js, TailwindCSS, and Fr
 - **Email**: [teamtechneekx@gmail.com](mailto:teamtechneekx@gmail.com)
 - **WhatsApp**: [+91 63063 12540](https://wa.me/916306312540)
 - **Call**: [+91 63878 60126](tel:+916387860126)
-- **LinkedIn**: [TechNeekX](https://www.linkedin.com/in/techneekx)
+- **LinkedIn**: [TechNeekX](https://www.linkedin.com/company/techneekx/)
 - **GitHub**: [@teamtechneekx](https://github.com/teamtechneekx)
 
 ## 🎨 Key Features
