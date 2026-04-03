@@ -37,7 +37,7 @@ const CoreTeam = () => {
       role: "Chief Design Officer (CDO)",
       description: "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand.",
       badge: "Core Team",
-      image: "/sarthak.jpeg",
+      image: "/nikhil.jpeg",
       gradient: "from-purple-500 to-pink-500"
     },
     {

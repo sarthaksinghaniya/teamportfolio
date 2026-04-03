@@ -26,7 +26,7 @@ const BuilderWall = () => {
     {
       name: "Nikhil Yadav",
       role: "CCO & UIUX Designer",
-      avatar: null,
+      avatar: "/nikhil.jpeg",
       joined: "1 Year ago",
       achievements: ["Canva Expert", "UI/UX", "Creative Mind"],
       status: "active",
