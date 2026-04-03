@@ -174,9 +174,9 @@ const Hero = () => {
           variants={itemVariants}
           className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight heading-premium"
         >
-          Building the Future of
+          India's Emerging AI
           <br />
-          <span className="text-gradient">Student Innovation</span>
+          <span className="text-gradient">Builder Ecosystem</span>
         </motion.h2>
         
         {/* Subheading */}
@@ -184,7 +184,8 @@ const Hero = () => {
           variants={itemVariants}
           className="text-xl sm:text-2xl text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed font-light subheading-premium"
         >
-          A next-generation tech community empowering builders, innovators, and AI creators.
+          We help developers, innovators, and creators build real-world tech, 
+          win hackathons, and launch impactful products.
         </motion.p>
 
         {/* Trust indicators */}
@@ -220,7 +221,7 @@ const Hero = () => {
             onClick={createRipple}
             className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
           >
-            Join the Community
+            Join the Core Team
           </motion.button>
           
           <motion.button
@@ -229,7 +230,7 @@ const Hero = () => {
             onClick={createRipple}
             className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
           >
-            Explore Projects
+            Apply to Build With Us
           </motion.button>
         </motion.div>
       </motion.div>

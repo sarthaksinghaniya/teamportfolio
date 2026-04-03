@@ -4,102 +4,160 @@ import { motion } from 'framer-motion';
 import { Rocket, ArrowRight, Sparkles } from 'lucide-react';
 
 const FinalCTA = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.12,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
     <section className="py-20 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="gradient-blob w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '0s' }}></div>
-        <div className="gradient-blob w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 top-1/3 right-1/4" style={{ animationDelay: '2s' }}></div>
-        <div className="gradient-blob w-64 h-64 bg-gradient-to-r from-pink-500/20 to-blue-500/20 bottom-1/3 left-1/4" style={{ animationDelay: '4s' }}></div>
+        <motion.div 
+          className="gradient-blob w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        ></motion.div>
+        <motion.div 
+          className="gradient-blob w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 bottom-1/3 right-1/3"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0]
+          }}
+          transition={{ 
+            duration: 25, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        ></motion.div>
+        <motion.div 
+          className="gradient-blob w-64 h-64 bg-gradient-to-r from-pink-500/20 to-blue-500/20 top-1/3 left-1/3"
+          animate={{ 
+            scale: [1, 1.5, 1],
+            rotate: [0, 270, 540]
+          }}
+          transition={{ 
+            duration: 30, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        ></motion.div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
           className="text-center"
         >
-          {/* Main CTA Content */}
-          <div className="glass rounded-3xl p-12 md:p-16">
-            {/* Icon */}
+          {/* Icon */}
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 mb-8 glow"
+          >
             <motion.div
               animate={{ 
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0]
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
               }}
               transition={{ 
                 duration: 4, 
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: [0.22, 1, 0.36, 1]
               }}
-              className="w-20 h-20 mx-auto mb-8 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center glow"
             >
               <Rocket className="w-10 h-10 text-white" />
             </motion.div>
-            
-            {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Ready to Build
-              <br />
-              <span className="text-gradient">With Us?</span>
-            </h2>
-            
-            {/* Description */}
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join our community of innovators, creators, and builders. 
-              Together, we're shaping the future of technology, one project at a time.
-            </p>
+          </motion.div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary flex items-center gap-2 text-lg px-8 py-4 glow"
-              >
-                <Sparkles className="w-5 h-5" />
-                Join TechNeekX
-                <ArrowRight size={20} />
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-secondary text-lg px-8 py-4"
-              >
-                Schedule a Call
-              </motion.button>
-            </div>
-
-            {/* Additional Info */}
-            <div className="flex flex-wrap justify-center items-center gap-8 text-white/60 text-sm">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                <span>No commitment required</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                <span>Join 500+ members</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-purple-400"></div>
-                <span>Start building today</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom text */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-white/50 mt-8 text-sm"
+          {/* Main Headline */}
+          <motion.h2 
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 heading-premium"
           >
-            © 2024 TechNeekX. Building the future, together.
+            Don't Just Learn Tech.
+            <br />
+            <span className="text-gradient">Build It.</span>
+          </motion.h2>
+          
+          {/* Subheading */}
+          <motion.p
+            variants={itemVariants}
+            className="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed subheading-premium"
+          >
+            Join a community that actually creates.
           </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
+            >
+              <Sparkles className="w-5 h-5 mr-2" />
+              Join Now
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
+            >
+              Apply for Core Team
+              <ArrowRight size={20} />
+            </motion.button>
+          </motion.div>
+
+          {/* Trust indicators */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center items-center gap-8 text-white/60 mt-8"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-400"></div>
+              <span className="text-sm font-medium">Real impact</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+              <span className="text-sm font-medium">High ownership</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+              <span className="text-sm font-medium">Growth opportunity</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

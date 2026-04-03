@@ -3,8 +3,11 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
-import WhatWeDo from '@/components/WhatWeDo';
+import WhyJoin from '@/components/WhyJoin';
+import CoreTeamHiring from '@/components/CoreTeamHiring';
+import Partnership from '@/components/Partnership';
 import Projects from '@/components/Projects';
+import TrustElements from '@/components/TrustElements';
 import Community from '@/components/Community';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
@@ -17,8 +20,11 @@ export default function Home() {
       <Navbar />
       <Hero />
       <SocialProof />
-      <WhatWeDo />
+      <WhyJoin />
+      <CoreTeamHiring />
+      <Partnership />
       <Projects />
+      <TrustElements />
       <Community />
       <FinalCTA />
       <Footer />

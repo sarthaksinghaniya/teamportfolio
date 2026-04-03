@@ -2,37 +2,113 @@
 
 import { motion } from 'framer-motion';
 import { Trophy, Users, Code, Globe, TrendingUp, Award } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SocialProof = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [counters, setCounters] = useState({
+    hackathons: 0,
+    ranking: 0,
+    products: 0,
+    recognition: 0
+  });
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  // Animated counter effect
+  useEffect(() => {
+    const targetValues = {
+      hackathons: 12,
+      ranking: 2,
+      products: 4,
+      recognition: 1
+    };
+
+    const animateCounters = () => {
+      const duration = 2000; // 2 seconds
+      const steps = 60; // 60 steps for smooth animation
+      const stepDuration = duration / steps;
+
+      let currentStep = 0;
+      const interval = setInterval(() => {
+        currentStep++;
+        const progress = currentStep / steps;
+        
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        
+        setCounters({
+          hackathons: Math.floor(targetValues.hackathons * easeOutQuart),
+          ranking: Math.floor(targetValues.ranking * easeOutQuart),
+          products: Math.floor(targetValues.products * easeOutQuart),
+          recognition: Math.floor(targetValues.recognition * easeOutQuart)
+        });
+
+        if (currentStep >= steps) {
+          clearInterval(interval);
+          setCounters(targetValues);
+        }
+      }, stepDuration);
+    };
+
+    // Trigger animation when component comes into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            animateCounters();
+            setHasAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const element = document.getElementById('social-proof');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, [hasAnimated]);
 
   const stats = [
     {
       icon: Trophy,
-      value: "12+",
-      label: "Hackathons Participated",
+      value: counters.hackathons,
+      suffix: "+",
+      label: "Hackathons",
+      description: "National & International",
       color: "from-yellow-400 to-orange-500",
       delay: 0.1
     },
     {
       icon: Award,
-      value: "Top 2",
-      label: "National Rankings",
+      value: counters.ranking,
+      suffix: "",
+      label: "National Ranking",
+      description: "Top 2 in India",
       color: "from-purple-400 to-pink-500",
       delay: 0.2
     },
     {
       icon: Code,
-      value: "4+",
-      label: "AI Products Built",
+      value: counters.products,
+      suffix: "+",
+      label: "AI Products",
+      description: "Built & Launched",
       color: "from-blue-400 to-cyan-500",
       delay: 0.3
     },
     {
       icon: Globe,
-      value: "Global",
-      label: "Recognition",
+      value: counters.recognition,
+      suffix: "",
+      label: "International",
+      description: "Recognition",
       color: "from-green-400 to-teal-500",
       delay: 0.4
     }
@@ -104,8 +180,8 @@ const SocialProof = () => {
             variants={itemVariants}
             className="text-4xl sm:text-5xl font-bold text-white mb-6 heading-premium"
           >
-            Trusted by the
-            <span className="text-gradient"> Community</span>
+            Proven
+            <span className="text-gradient"> Excellence</span>
           </motion.h2>
           <motion.div 
             variants={itemVariants}
@@ -115,8 +191,8 @@ const SocialProof = () => {
             variants={itemVariants}
             className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium"
           >
-            Our achievements speak for themselves. We've built a reputation for excellence 
-            in innovation and community building.
+            Our track record speaks for itself. We consistently deliver results and build 
+            solutions that make a real impact in the tech ecosystem.
           </motion.p>
         </motion.div>
 
@@ -161,7 +237,7 @@ const SocialProof = () => {
                 <stat.icon className="w-8 h-8 text-white" />
               </motion.div>
               
-              {/* Value */}
+              {/* Animated Value */}
               <motion.div 
                 className={`text-3xl sm:text-4xl font-bold text-gradient mb-2 relative z-10`}
                 animate={{ 
@@ -169,12 +245,14 @@ const SocialProof = () => {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                {stat.value}
+                <span className="inline-block min-w-[3ch]">
+                  {stat.value}{stat.suffix}
+                </span>
               </motion.div>
               
               {/* Label */}
               <motion.div 
-                className="text-white/70 text-sm sm:text-base font-medium relative z-10"
+                className="text-white/90 text-sm sm:text-base font-bold mb-1 relative z-10"
                 animate={{ 
                   y: hoveredCard === index ? -2 : 0 
                 }}
@@ -182,6 +260,17 @@ const SocialProof = () => {
               >
                 {stat.label}
               </motion.div>
+
+              {/* Description */}
+              <motion.p 
+                className="text-white/60 text-xs relative z-10"
+                animate={{ 
+                  y: hoveredCard === index ? -2 : 0 
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {stat.description}
+              </motion.p>
 
               {/* Hover effect decoration */}
               <motion.div 
@@ -223,8 +312,8 @@ const SocialProof = () => {
             <div className="flex flex-wrap justify-center items-center gap-8 text-white/80">
               {[
                 { icon: TrendingUp, text: "35% Growth Rate", color: "text-green-400" },
-                { icon: Users, text: "500+ Community Members", color: "text-blue-400" },
-                { icon: Code, text: "50+ Open Source Projects", color: "text-purple-400" }
+                { icon: Users, text: "500+ Builders", color: "text-blue-400" },
+                { icon: Code, text: "50+ Projects", color: "text-purple-400" }
               ].map((item, index) => (
                 <motion.div
                   key={item.text}
