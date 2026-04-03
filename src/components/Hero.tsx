@@ -1,81 +1,238 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { ChevronDown, Sparkles, TrendingUp, Award, Globe } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  
+  // Parallax effects
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 50]));
+  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.5], [1, 0]));
+  
+  // Cursor parallax
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      
+      const rect = heroRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      
+      setMousePosition({ x: (x - 0.5) * 20, y: (y - 0.5) * 20 });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const createRipple = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.12,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <div className="absolute inset-0 bg-hero-gradient opacity-20 animate-gradient-x"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-aqua-green opacity-10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-coral-pink opacity-10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
+      <motion.div 
+        className="absolute inset-0"
+        style={{ y }}
+      >
+        {/* Main gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
+        
+        {/* Floating gradient blobs with parallax */}
+        <motion.div 
+          className="gradient-blob w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 top-1/4 left-1/4"
+          style={{ 
+            x: useSpring(mousePosition.x * 0.5),
+            y: useSpring(mousePosition.y * 0.5)
+          }}
+          animate={{ 
+            scale: [1, 1.1, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="gradient-blob w-80 h-80 bg-gradient-to-r from-purple-500 to-pink-500 bottom-1/4 right-1/4"
+          style={{ 
+            x: useSpring(mousePosition.x * -0.3),
+            y: useSpring(mousePosition.y * -0.3)
+          }}
+          animate={{ 
+            scale: [1.1, 1, 1.1],
+            rotate: [360, 180, 0]
+          }}
+          transition={{ 
+            duration: 25, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        ></motion.div>
+        
+        <motion.div 
+          className="gradient-blob w-64 h-64 bg-gradient-to-r from-pink-500 to-blue-500 top-1/2 right-1/3"
+          style={{ 
+            x: useSpring(mousePosition.x * 0.4),
+            y: useSpring(mousePosition.y * 0.4)
+          }}
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 270, 540]
+          }}
+          transition={{ 
+            duration: 30, 
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        ></motion.div>
+      </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+      <motion.div 
+        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto stagger-children"
+        style={{ opacity }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Brand name with icon */}
+        <motion.div 
+          className="flex items-center justify-center mb-6"
+          variants={itemVariants}
         >
-          <motion.h1 
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <motion.div
+            animate={{ 
+              rotate: [0, 10, -10, 0],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: [0.22, 1, 0.36, 1]
+            }}
           >
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <Sparkles className="w-8 h-8 text-yellow-400 mr-3" />
+          </motion.div>
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold heading-premium">
+            <span className="text-gradient">
               TechNeekX
             </span>
-          </motion.h1>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-xl sm:text-2xl lg:text-3xl font-light text-gray-700 mb-4"
-          >
-            Youth, Innovation, Unity
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg sm:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
-            Where youthful energy meets professional excellence. We're a dynamic team 
-            crafting innovative solutions that bridge creativity and technology.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <motion.a
-              href="#about"
-              whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
-            >
-              Discover Our Story
-            </motion.a>
-            
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-gray-700 rounded-full font-semibold text-lg border-2 border-gray-200 hover:border-purple-300 hover:text-purple-600 transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              View Our Work
-            </motion.a>
-          </motion.div>
+          </h1>
         </motion.div>
-      </div>
+        
+        {/* Main headline */}
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight heading-premium"
+        >
+          Building the Future of
+          <br />
+          <span className="text-gradient">Student Innovation</span>
+        </motion.h2>
+        
+        {/* Subheading */}
+        <motion.p
+          variants={itemVariants}
+          className="text-xl sm:text-2xl text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed font-light subheading-premium"
+        >
+          A next-generation tech community empowering builders, innovators, and AI creators.
+        </motion.p>
+
+        {/* Trust indicators */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-wrap justify-center items-center gap-8 mb-12 text-white/90"
+        >
+          {[
+            { icon: TrendingUp, text: "12+ Hackathons", color: "text-green-400" },
+            { icon: Award, text: "Top National Rankings", color: "text-yellow-400" },
+            { icon: Sparkles, text: "AI Products Built", color: "text-purple-400" },
+            { icon: Globe, text: "International Recognition", color: "text-blue-400" }
+          ].map((item, index) => (
+            <motion.div
+              key={item.text}
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2"
+            >
+              <item.icon className={`w-5 h-5 ${item.color}`} />
+              <span className="font-semibold">{item.text}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+        >
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={createRipple}
+            className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
+          >
+            Join the Community
+          </motion.button>
+          
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={createRipple}
+            className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
+          >
+            Explore Projects
+          </motion.button>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div
@@ -85,10 +242,10 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.a
-          href="#about"
+          href="#social-proof"
           animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center text-gray-500 hover:text-purple-600 transition-colors duration-300"
+          transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center text-white/60 hover:text-white transition-colors duration-300"
         >
           <span className="text-sm mb-2 font-medium">Scroll to explore</span>
           <ChevronDown size={24} />

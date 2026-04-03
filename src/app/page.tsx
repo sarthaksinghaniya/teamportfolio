@@ -2,22 +2,26 @@
 
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Team from '@/components/Team';
+import SocialProof from '@/components/SocialProof';
+import WhatWeDo from '@/components/WhatWeDo';
 import Projects from '@/components/Projects';
-import Contact from '@/components/Contact';
-import Chatbot from '@/components/Chatbot';
+import Community from '@/components/Community';
+import FinalCTA from '@/components/FinalCTA';
+import Footer from '@/components/Footer';
+import Loader from '@/components/Loader';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen">
+      <Loader />
       <Navbar />
       <Hero />
-      <About />
-      <Team />
+      <SocialProof />
+      <WhatWeDo />
       <Projects />
-      <Contact />
-      <Chatbot />
+      <Community />
+      <FinalCTA />
+      <Footer />
     </main>
   );
 }
