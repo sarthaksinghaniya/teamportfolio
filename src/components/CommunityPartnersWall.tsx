@@ -47,10 +47,10 @@ const CommunityPartnersWall = () => {
       gradient: "from-blue-500 to-purple-500"
     },
     {
-      name: "Saksham Prajapati",
-      role: "Backend Systems",
-      avatar: null,
-      expertise: ["Node.js", "MongoDB", "API Design"],
+      name: "Team ByteQuest",
+      role: "Hackathon Team",
+      avatar: "/byte quest hack.png",
+      expertise: ["Hospital AI", "National Finalists", "Innovation Award"],
       gradient: "from-yellow-500 to-orange-500"
     },
     {
