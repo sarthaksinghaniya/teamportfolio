@@ -3,6 +3,8 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ChevronDown, Sparkles, TrendingUp, Award, Globe } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { stats } from '@/constants/stats';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -194,13 +196,13 @@ const Hero = () => {
           className="flex flex-wrap justify-center items-center gap-8 mb-12 text-white/90"
         >
           {[
-            { icon: TrendingUp, text: "12+ Hackathons", color: "text-green-400" },
+            { icon: TrendingUp, text: <AnimatedCounter from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />, color: "text-green-400" },
             { icon: Award, text: "Top National Rankings", color: "text-yellow-400" },
-            { icon: Sparkles, text: "AI Products Built", color: "text-purple-400" },
+            { icon: Sparkles, text: <AnimatedCounter from={0} to={stats.aiProductsNumber} suffix="+ AI Products" />, color: "text-purple-400" },
             { icon: Globe, text: "International Recognition", color: "text-blue-400" }
           ].map((item, index) => (
             <motion.div
-              key={item.text}
+              key={index}
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-2"
             >

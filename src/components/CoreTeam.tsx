@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { Users, Briefcase, Palette, Code, ExternalLink, Award, Target, ArrowRight, UserPlus } from 'lucide-react';
 import Image from 'next/image';
+import { stats } from '@/constants/stats';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const CoreTeam = () => {
   const containerVariants = {
@@ -146,7 +148,9 @@ const CoreTeam = () => {
                   "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem."
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">40+ Hackathons</span>
+                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">
+                    <AnimatedCounter from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />
+                  </span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI/ML Engineer</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Product Builder</span>
                 </div>

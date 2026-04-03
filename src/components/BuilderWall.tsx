@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { Users, Star, TrendingUp, Award, Code, Rocket } from 'lucide-react';
 import { useState } from 'react';
+import { stats } from '@/constants/stats';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const BuilderWall = () => {
   const [hoveredBuilder, setHoveredBuilder] = useState<number | null>(null);
@@ -13,7 +15,11 @@ const BuilderWall = () => {
       role: "Founder & CEO",
       avatar: "/file_0000000067647206a22ff5daad754190.png",
       joined: "Started TechNeekX",
-      achievements: ["12+ Hackathons", "AI Products", "Tech Leadership"],
+      achievements: [
+        <AnimatedCounter key="hackathons" from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />, 
+        "AI Products", 
+        "Tech Leadership"
+      ],
       status: "active",
       gradient: "from-purple-500 to-pink-500"
     },

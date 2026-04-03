@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Trophy, Users, Code, Globe, TrendingUp, Award } from 'lucide-react';
+import { Trophy, Code, Award, Globe, TrendingUp, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { stats as globalStats } from '@/constants/stats';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const SocialProof = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -17,9 +19,9 @@ const SocialProof = () => {
   // Animated counter effect
   useEffect(() => {
     const targetValues = {
-      hackathons: 12,
+      hackathons: globalStats.hackathonsNumber,
       ranking: 2,
-      products: 4,
+      products: globalStats.aiProductsNumber,
       recognition: 1
     };
 
