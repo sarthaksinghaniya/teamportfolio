@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Clock, Users, Trophy, Brain, Handshake } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -135,7 +136,7 @@ const LiveActivityFeed = () => {
         >
           <div className="flex items-start gap-3">
             <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${getActivityColor(activities[currentActivity].type)} flex items-center justify-center flex-shrink-0`}>
-              <activities[currentActivity].icon className="w-4 h-4 text-white" />
+              {React.createElement(activities[currentActivity].icon, { className: "w-4 h-4 text-white" })}
             </div>
             <div className="flex-1">
               <p className="text-white text-sm font-medium">

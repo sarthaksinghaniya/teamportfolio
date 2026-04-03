@@ -128,11 +128,11 @@ const TrustElements = () => {
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Tech Leader</span>
                 </div>
                 <div className="flex items-center justify-center gap-1">
-                  <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
-                  <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
-                  <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
-                  <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
-                  <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
+                  <Star className="w-4 h-4 text-yellow-400" style={{ fill: 'currentColor' }} />
+                  <Star className="w-4 h-4 text-yellow-400" style={{ fill: 'currentColor' }} />
+                  <Star className="w-4 h-4 text-yellow-400" style={{ fill: 'currentColor' }} />
+                  <Star className="w-4 h-4 text-yellow-400" style={{ fill: 'currentColor' }} />
+                  <Star className="w-4 h-4 text-yellow-400" style={{ fill: 'currentColor' }} />
                 </div>
               </motion.div>
             </motion.div>
