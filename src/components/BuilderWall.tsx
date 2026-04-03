@@ -35,7 +35,7 @@ const BuilderWall = () => {
     {
       name: "Anshuman Soni",
       role: "CMO & Media Lead",
-      avatar: null,
+      avatar: "/image.png",
       joined: "4 Months ago",
       achievements: [],
       status: "active",
