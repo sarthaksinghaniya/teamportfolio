@@ -13,7 +13,7 @@ const BuilderWall = () => {
     {
       name: "Sarthak Singhaniya",
       role: "Founder & CEO",
-      avatar: "/file_0000000067647206a22ff5daad754190.png",
+      avatar: "/sarthak.jpeg",
       joined: "Started TechNeekX",
       achievements: [
         <AnimatedCounter key="hackathons" from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />, 

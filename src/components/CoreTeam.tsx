@@ -37,7 +37,7 @@ const CoreTeam = () => {
       role: "Chief Design Officer (CDO)",
       description: "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand.",
       badge: "Core Team",
-      image: "/file_0000000067647206a22ff5daad754190.png",
+      image: "/sarthak.jpeg",
       gradient: "from-purple-500 to-pink-500"
     },
     {
@@ -45,7 +45,7 @@ const CoreTeam = () => {
       role: "Chief Marketing Officer (CMO)",
       description: "Driving growth, reach, and strategic partnerships to scale TechNeekX globally.",
       badge: "Core Team",
-      image: "/file_0000000067647206a22ff5daad754190.png",
+      image: "/sarthak.jpeg",
       gradient: "from-green-500 to-teal-500"
     },
     {
@@ -53,7 +53,7 @@ const CoreTeam = () => {
       role: "Chief Business Officer (CBO)",
       description: "Building business strategy, sponsorships, and high-value collaborations.",
       badge: "Core Team",
-      image: "/file_0000000067647206a22ff5daad754190.png",
+      image: "/sarthak.jpeg",
       gradient: "from-blue-500 to-cyan-500"
     }
   ];
@@ -132,7 +132,7 @@ const CoreTeam = () => {
                     className="w-full h-full rounded-2xl overflow-hidden glow"
                   >
                     <Image
-                      src="/file_0000000067647206a22ff5daad754190.png"
+                      src="/sarthak.jpeg"
                       alt="Sarthak Singhaniya"
                       fill
                       className="object-cover"

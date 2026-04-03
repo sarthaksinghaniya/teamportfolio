@@ -108,7 +108,7 @@ const TrustElements = () => {
                 className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-white/20"
               >
                 <img
-                  src="/file_0000000067647206a22ff5daad754190.png"
+                  src="/sarthak.jpeg"
                   alt="Founder"
                   className="w-full h-full object-cover"
                 />
