@@ -8,13 +8,17 @@ import FOMOLayer from '@/components/FOMOLayer';
 import CoreTeamHiring from '@/components/CoreTeamHiring';
 import Partnership from '@/components/Partnership';
 import Projects from '@/components/Projects';
+import CurrentProjects from '@/components/CurrentProjects';
 import EliteClub from '@/components/EliteClub';
 import ViralLoop from '@/components/ViralLoop';
+import BuilderWall from '@/components/BuilderWall';
+import RealJourney from '@/components/RealJourney';
 import TrustElements from '@/components/TrustElements';
 import Community from '@/components/Community';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
+import LiveActivityFeed from '@/components/LiveActivityFeed';
 
 export default function Home() {
   return (
@@ -25,15 +29,19 @@ export default function Home() {
       <SocialProof />
       <MovementPositioning />
       <FOMOLayer />
+      <CurrentProjects />
       <CoreTeamHiring />
       <Partnership />
       <Projects />
       <EliteClub />
       <ViralLoop />
+      <BuilderWall />
+      <RealJourney />
       <TrustElements />
       <Community />
       <FinalCTA />
       <Footer />
+      <LiveActivityFeed />
     </main>
   );
 }

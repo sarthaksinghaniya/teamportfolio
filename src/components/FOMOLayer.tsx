@@ -211,16 +211,32 @@ const FOMOLayer = () => {
           </motion.div>
 
           {/* CTA */}
-          <motion.button
+          <motion.div
             variants={itemVariants}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="btn-primary flex items-center gap-2 mx-auto mt-8"
+            className="mt-12"
           >
-            Apply Now
-            <ArrowRight size={20} />
-          </motion.button>
-        </motion.div>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-primary flex items-center gap-2 mx-auto"
+            >
+              Apply Now
+              <ArrowRight size={20} />
+            </motion.button>
+            
+            <motion.div
+              variants={itemVariants}
+              className="mt-4 text-center"
+            >
+              <div className="flex items-center justify-center gap-2 text-white/60 text-sm">
+                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                <span>Applications reviewed weekly</span>
+                <span className="text-white/40">•</span>
+                <span>Active onboarding in progress</span>
+                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+              </div>
+            </motion.div>
+          </motion.div>
       </div>
     </section>
   );
