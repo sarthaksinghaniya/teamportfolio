@@ -69,6 +69,33 @@ const BuilderWall = () => {
       gradient: "from-yellow-500 to-orange-500"
     },
     {
+      name: "Rahul Sharma",
+      role: "Full Stack Developer",
+      avatar: null,
+      joined: "3 weeks ago",
+      achievements: ["React Expert", "Node.js Pro", "Problem Solver"],
+      status: "active",
+      gradient: "from-purple-500 to-indigo-500"
+    },
+    {
+      name: "Kavya Reddy",
+      role: "ML Engineer",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["Python Pro", "TensorFlow", "AI Research"],
+      status: "active",
+      gradient: "from-pink-500 to-rose-500"
+    },
+    {
+      name: "Arjun Verma",
+      role: "DevOps Engineer",
+      avatar: null,
+      joined: "2 weeks ago",
+      achievements: ["Docker Expert", "CI/CD", "Cloud Architecture"],
+      status: "active",
+      gradient: "from-cyan-500 to-blue-500"
+    },
+    {
       name: "You?",
       role: "Next Builder",
       avatar: null,
