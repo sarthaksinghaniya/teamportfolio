@@ -1,13 +1,31 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TrendingUp, Palette, Cpu, ArrowRight, Crown } from 'lucide-react';
+import { TrendingUp, Palette, Cpu, ArrowRight, Crown, Users, Rocket } from 'lucide-react';
 import { useState } from 'react';
 
 const CoreTeamHiring = () => {
   const [hoveredRole, setHoveredRole] = useState<number | null>(null);
 
+  
   const roles = [
+    {
+      icon: Crown,
+      title: "Co-Founder & CEO",
+      subtitle: "Vision & Execution",
+      description: "Scale TechNeekX into India's premier AI builder ecosystem. Lead strategy, drive growth, and build the future of tech talent.",
+      requirements: [
+        "5+ years in tech/startup leadership",
+        "Proven track record scaling products",
+        "Deep understanding of AI/tech landscape",
+        "Strong network in VC/investor ecosystem",
+        "Previous founder or senior leadership experience"
+      ],
+      gradient: "from-orange-500 to-red-500",
+      delay: 0.1,
+      badge: "CO-FOUNDER OPPORTUNITY",
+      highlighted: true
+    },
     {
       icon: TrendingUp,
       title: "Chief Marketing Officer",
@@ -166,13 +184,22 @@ const CoreTeamHiring = () => {
               }}
               onHoverStart={() => setHoveredRole(index)}
               onHoverEnd={() => setHoveredRole(null)}
-              className="card-hover card-tilt rounded-2xl p-6 group relative"
+              className={`card-hover card-tilt rounded-2xl p-6 group relative ${
+                role.highlighted ? 'border-2 border-orange-500/30' : ''
+              }`}
             >
+              {/* Badge for highlighted roles */}
+              {role.badge && (
+                <div className="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold rounded-full z-20">
+                  {role.badge}
+                </div>
+              )}
+              
               {/* Animated gradient background on hover */}
               <motion.div 
                 className={`absolute inset-0 bg-gradient-to-br ${role.gradient} opacity-0`}
                 animate={{ 
-                  opacity: hoveredRole === index ? 0.1 : 0 
+                  opacity: hoveredRole === index ? 0.15 : 0 
                 }}
                 transition={{ duration: 0.3 }}
               ></motion.div>

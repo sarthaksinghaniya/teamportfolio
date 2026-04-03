@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Briefcase, Palette, Code, ExternalLink, Award, Target, ArrowRight } from 'lucide-react';
+import { Users, Briefcase, Palette, Code, ExternalLink, Award, Target, ArrowRight, UserPlus } from 'lucide-react';
+import Image from 'next/image';
 
 const CoreTeam = () => {
   const containerVariants = {
@@ -27,6 +28,33 @@ const CoreTeam = () => {
       }
     }
   };
+
+  const teamMembers = [
+    {
+      name: "Nikhil Yadav",
+      role: "Chief Design Officer (CDO)",
+      description: "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand.",
+      badge: "Core Team",
+      image: "/file_0000000067647206a22ff5daad754190.png",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      name: "Anshuman Soni",
+      role: "Chief Marketing Officer (CMO)",
+      description: "Driving growth, reach, and strategic partnerships to scale TechNeekX globally.",
+      badge: "Core Team",
+      image: "/file_0000000067647206a22ff5daad754190.png",
+      gradient: "from-green-500 to-teal-500"
+    },
+    {
+      name: "Hardik Talwar",
+      role: "Chief Business Officer (CBO)",
+      description: "Building business strategy, sponsorships, and high-value collaborations.",
+      badge: "Core Team",
+      image: "/file_0000000067647206a22ff5daad754190.png",
+      gradient: "from-blue-500 to-cyan-500"
+    }
+  ];
 
   return (
     <section className="py-20 relative">
@@ -83,27 +111,44 @@ const CoreTeam = () => {
         </motion.div>
 
         <div className="space-y-8">
-          {/* Founder Card */}
+          {/* Founder Spotlight */}
           <motion.div
             variants={itemVariants}
-            whileHover={{ y: -12, scale: 1.02 }}
-            className="glass rounded-3xl p-8 border-2 border-purple-500/30 relative overflow-hidden card-hover"
+            whileHover={{ y: -8, scale: 1.01 }}
+            className="glass rounded-3xl p-8 border-2 border-orange-500/30 relative overflow-hidden card-hover"
           >
-            <div className="absolute top-0 right-0 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold rounded-bl-2xl">
+            <div className="absolute top-0 right-0 px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-sm font-semibold rounded-bl-2xl">
               FOUNDER
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mb-6 glow">
-                  <Users className="w-12 h-12 text-white" />
+              <div className="relative">
+                <div className="relative w-48 h-48 mx-auto">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full h-full rounded-2xl overflow-hidden glow"
+                  >
+                    <Image
+                      src="/file_0000000067647206a22ff5daad754190.png"
+                      alt="Sarthak Singhaniya"
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
                 </div>
+              </div>
+              
+              <div>
                 <h3 className="text-3xl font-bold text-white mb-2">Sarthak Singhaniya</h3>
                 <p className="text-white/70 text-lg mb-4">Founder & AI Engineer</p>
+                <p className="text-white/80 text-lg mb-6 italic">
+                  "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem."
+                </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">12+ Hackathons</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI/ML Engineer</span>
-                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Real Products</span>
+                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Product Builder</span>
                 </div>
                 <div className="flex gap-4">
                   <motion.button
@@ -124,18 +169,10 @@ const CoreTeam = () => {
                   </motion.button>
                 </div>
               </div>
-              <div className="text-center">
-                <div className="w-32 h-32 mx-auto rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mb-4 glow">
-                  <Award className="w-16 h-16 text-white" />
-                </div>
-                <p className="text-white/80 italic">
-                  "Building real-world AI solutions that make a difference."
-                </p>
-              </div>
             </div>
           </motion.div>
 
-          {/* Open Roles */}
+          {/* Core Team Grid */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -143,84 +180,80 @@ const CoreTeam = () => {
             viewport={{ once: true }}
             className="grid md:grid-cols-3 gap-6"
           >
-            {[
-              {
-                title: "Chief Technology Officer",
-                icon: Code,
-                gradient: "from-blue-500 to-cyan-500"
-              },
-              {
-                title: "Chief Marketing Officer", 
-                icon: Briefcase,
-                gradient: "from-green-500 to-teal-500"
-              },
-              {
-                title: "Chief Design Officer",
-                icon: Palette,
-                gradient: "from-purple-500 to-pink-500"
-              }
-            ].map((role, index) => (
+            {teamMembers.map((member, index) => (
               <motion.div
-                key={role.title}
+                key={member.name}
                 variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={{ y: -6, scale: 1.02 }}
                 className="glass rounded-2xl p-6 text-center card-hover relative"
               >
-                <div className="absolute top-3 right-3 px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-semibold rounded-full border border-orange-500/30">
-                  Open Position
+                <div className="absolute top-3 right-3 px-2 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full border border-purple-500/30">
+                  {member.badge}
                 </div>
                 
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.8 }}
-                  className={`w-16 h-16 mx-auto rounded-xl bg-gradient-to-r ${role.gradient} flex items-center justify-center mb-4 glow`}
-                >
-                  <role.icon className="w-8 h-8 text-white" />
-                </motion.div>
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full h-full rounded-2xl overflow-hidden glow"
+                  >
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </div>
                 
-                <h3 className="text-xl font-bold text-white mb-3">{role.title}</h3>
-                <p className="text-white/70 text-sm mb-6">
-                  We're looking for builders who can take ownership and execute.
+                <h3 className="text-xl font-bold text-white mb-2">{member.name}</h3>
+                <p className="text-white/60 text-sm mb-3">{member.role}</p>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {member.description}
                 </p>
-                
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary w-full"
-                >
-                  Apply Now
-                </motion.button>
               </motion.div>
             ))}
-          </motion.div>
 
-          {/* Elite Filter */}
-          <motion.div
-            variants={itemVariants}
-            className="glass rounded-2xl p-8 text-center"
-          >
-            <h3 className="text-2xl font-bold text-white mb-6">Not Everyone Gets In</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              {[
-                "Builders",
-                "Hackathon participants", 
-                "AI/Tech creators",
-                "Execution-focused individuals"
-              ].map((item, index) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                    <span className="text-white text-xs">✓</span>
-                  </div>
-                  <span className="text-white/80">{item}</span>
-                </div>
-              ))}
-            </div>
+            {/* Open Slot Card */}
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className="glass rounded-2xl p-6 text-center card-hover relative border-2 border-orange-500/30"
+            >
+              <div className="absolute top-3 right-3 px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-semibold rounded-full border border-orange-500/30">
+                Limited Spot
+              </div>
+              
+              <div className="relative w-24 h-24 mx-auto mb-4">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full h-full rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center glow"
+                >
+                  <UserPlus className="w-12 h-12 text-white" />
+                </motion.div>
+              </div>
+              
+              <h3 className="text-xl font-bold text-white mb-2">You?</h3>
+              <p className="text-white/60 text-sm mb-3">Core Team Position</p>
+              <p className="text-white/70 text-sm leading-relaxed mb-6">
+                We're looking for one more high-impact builder ready to take ownership and execute.
+              </p>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary w-full"
+              >
+                Apply Now
+              </motion.button>
+            </motion.div>
           </motion.div>
 
           {/* Final CTA */}
           <motion.div
             variants={itemVariants}
-            className="text-center"
+            className="text-center mt-12"
           >
             <h3 className="text-3xl font-bold text-white mb-4">Join the Core Team</h3>
             <p className="text-white/70 mb-8">Limited positions • High ownership • Real impact</p>
