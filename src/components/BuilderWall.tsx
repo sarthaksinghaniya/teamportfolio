@@ -51,15 +51,6 @@ const BuilderWall = () => {
       gradient: "from-orange-500 to-red-500"
     },
     {
-      name: "Priya Nair",
-      role: "Data Scientist",
-      avatar: null,
-      joined: "1 month ago",
-      achievements: ["Analytics Pro", "R Expert", "Research Mind"],
-      status: "active",
-      gradient: "from-indigo-500 to-purple-600"
-    },
-    {
       name: "Team ByteQuest",
       role: "Hackathon Team",
       avatar: null,
@@ -69,24 +60,6 @@ const BuilderWall = () => {
       gradient: "from-yellow-500 to-orange-500"
     },
     {
-      name: "Rahul Sharma",
-      role: "Full Stack Developer",
-      avatar: null,
-      joined: "3 weeks ago",
-      achievements: ["React Expert", "Node.js Pro", "Problem Solver"],
-      status: "active",
-      gradient: "from-purple-500 to-indigo-500"
-    },
-    {
-      name: "Kavya Reddy",
-      role: "ML Engineer",
-      avatar: null,
-      joined: "1 month ago",
-      achievements: ["Python Pro", "TensorFlow", "AI Research"],
-      status: "active",
-      gradient: "from-pink-500 to-rose-500"
-    },
-    {
       name: "Arjun Verma",
       role: "DevOps Engineer",
       avatar: null,
@@ -94,6 +67,141 @@ const BuilderWall = () => {
       achievements: ["Docker Expert", "CI/CD", "Cloud Architecture"],
       status: "active",
       gradient: "from-cyan-500 to-blue-500"
+    },
+    {
+      name: "Palak Mishra",
+      role: "AIML Engineer",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["Machine Learning", "NLP Expert", "AI Research"],
+      status: "active",
+      gradient: "from-purple-500 to-indigo-600"
+    },
+    {
+      name: "Arpita Sharma",
+      role: "AIML Specialist",
+      avatar: null,
+      joined: "2 weeks ago",
+      achievements: ["Deep Learning", "Computer Vision", "AI Models"],
+      status: "active",
+      gradient: "from-pink-500 to-rose-500"
+    },
+    {
+      name: "Shivam Singh",
+      role: "Frontend Developer",
+      avatar: null,
+      joined: "3 weeks ago",
+      achievements: ["React Expert", "TypeScript Pro", "UI/UX Design"],
+      status: "active",
+      gradient: "from-blue-500 to-purple-500"
+    },
+    {
+      name: "Arnav Tripathi",
+      role: "Robotics Engineer",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["ROS Expert", "Embedded Systems", "AI Robotics"],
+      status: "active",
+      gradient: "from-green-500 to-teal-500"
+    },
+    {
+      name: "Tanishq Shukla",
+      role: "DNA Researcher",
+      avatar: null,
+      joined: "2 weeks ago",
+      achievements: ["Genomics", "Bioinformatics", "DNA Analysis"],
+      status: "active",
+      gradient: "from-orange-500 to-red-500"
+    },
+    {
+      name: "Anand Kumar Singh",
+      role: "Frontend Developer",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["React Native", "Mobile Dev", "JavaScript Pro"],
+      status: "active",
+      gradient: "from-indigo-500 to-purple-600"
+    },
+    {
+      name: "Saksham Prajapati",
+      role: "Backend Developer",
+      avatar: null,
+      joined: "3 weeks ago",
+      achievements: ["Node.js", "MongoDB", "API Design"],
+      status: "active",
+      gradient: "from-yellow-500 to-orange-500"
+    },
+    {
+      name: "Aman Singh",
+      role: "Frontend Developer",
+      avatar: null,
+      joined: "2 months ago",
+      achievements: ["Vue.js", "CSS Expert", "Web Design"],
+      status: "active",
+      gradient: "from-teal-500 to-green-500"
+    },
+    {
+      name: "Aishwarya Pandey",
+      role: "AIML Engineer",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["TensorFlow", "PyTorch", "ML Research"],
+      status: "active",
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      name: "Anoop Tripathi",
+      role: "Full Stack Developer",
+      avatar: null,
+      joined: "3 weeks ago",
+      achievements: ["MERN Stack", "GraphQL", "Cloud Dev"],
+      status: "active",
+      gradient: "from-red-500 to-orange-500"
+    },
+    {
+      name: "Harshita",
+      role: "Backend Developer",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["Python", "Django", "PostgreSQL"],
+      status: "active",
+      gradient: "from-cyan-500 to-blue-500"
+    },
+    {
+      name: "Sandeep Gupta",
+      role: "DNA Researcher",
+      avatar: null,
+      joined: "2 weeks ago",
+      achievements: ["Genomics", "Bioinformatics", "DNA Sequencing"],
+      status: "active",
+      gradient: "from-indigo-500 to-purple-600"
+    },
+    {
+      name: "Pranshu Dutta Shukla",
+      role: "AIML Specialist",
+      avatar: null,
+      joined: "1 month ago",
+      achievements: ["Computer Vision", "NLP", "Deep Learning"],
+      status: "active",
+      gradient: "from-pink-500 to-rose-500"
+    },
+    {
+      name: "Ananya Shukla",
+      role: "Frontend Developer",
+      avatar: null,
+      joined: "3 weeks ago",
+      achievements: ["React", "Next.js", "UI/UX"],
+      status: "active",
+      gradient: "from-green-500 to-teal-500"
+    },
+    {
+      name: "Ankit Kumar",
+      role: "Backend Developer",
+      avatar: null,
+      joined: "2 months ago",
+      achievements: ["Java", "Spring Boot", "Microservices"],
+      status: "active",
+      gradient: "from-orange-500 to-red-500"
     },
     {
       name: "You?",
