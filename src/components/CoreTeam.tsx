@@ -45,7 +45,7 @@ const CoreTeam = () => {
       role: "Chief Marketing Officer (CMO)",
       description: "Driving growth, reach, and strategic partnerships to scale TechNeekX globally.",
       badge: "Core Team",
-      image: "/sarthak.jpeg",
+      image: "/ansuman.HEIC",
       gradient: "from-green-500 to-teal-500"
     },
     {
