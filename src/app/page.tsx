@@ -12,7 +12,7 @@ import Projects from '@/components/Projects';
 import CurrentProjects from '@/components/CurrentProjects';
 import EliteClub from '@/components/EliteClub';
 import ViralLoop from '@/components/ViralLoop';
-import BuilderWall from '@/components/BuilderWall';
+import CommunityPartnersWall from '@/components/CommunityPartnersWall';
 import RealJourney from '@/components/RealJourney';
 import TrustElements from '@/components/TrustElements';
 import Community from '@/components/Community';
@@ -37,7 +37,7 @@ export default function Home() {
       <Projects />
       <EliteClub />
       <ViralLoop />
-      <BuilderWall />
+      <CommunityPartnersWall />
       <RealJourney />
       <TrustElements />
       <Community />
