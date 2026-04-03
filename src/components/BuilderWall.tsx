@@ -24,29 +24,29 @@ const BuilderWall = () => {
       gradient: "from-purple-500 to-pink-500"
     },
     {
-      name: "Alex Kumar",
-      role: "AI Engineer",
+      name: "Nikhil Yadav",
+      role: "CCO & UIUX Designer",
       avatar: null,
-      joined: "2 weeks ago",
-      achievements: ["ML Expert", "Python Pro", "Fast Learner"],
+      joined: "1 Year ago",
+      achievements: ["Canva Expert", "UI/UX", "Creative Mind"],
       status: "active",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
-      name: "Maya Patel",
-      role: "Frontend Developer",
+      name: "Anshuman Soni",
+      role: "CMO & Media Lead",
       avatar: null,
-      joined: "3 weeks ago",
-      achievements: ["React Expert", "UI/UX", "Creative Mind"],
+      joined: "4 Months ago",
+      achievements: [],
       status: "active",
       gradient: "from-green-500 to-teal-500"
     },
     {
-      name: "Raj Mehta",
-      role: "Backend Developer",
-      avatar: null,
-      joined: "1 month ago",
-      achievements: ["Node.js Pro", "Database Expert", "Problem Solver"],
+      name: "Hardik Talwar",
+      role: "CBO & Frontend Developer",
+      avatar: "/hardik.jpeg",
+      joined: "1 Year ago",
+      achievements: ["React Expert", "UI/UX", "Creative Mind"],
       status: "active",
       gradient: "from-orange-500 to-red-500"
     },
