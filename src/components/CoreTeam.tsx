@@ -146,7 +146,7 @@ const CoreTeam = () => {
                   "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem."
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">12+ Hackathons</span>
+                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">50+ Hackathons</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI/ML Engineer</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Product Builder</span>
                 </div>
