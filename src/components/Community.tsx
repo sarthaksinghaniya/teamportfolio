@@ -100,16 +100,24 @@ const Community = () => {
         >
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-gradient mb-2">500+</div>
+              <div className="text-3xl font-bold text-gradient mb-2">50+</div>
               <div className="text-white/70">Active Members</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gradient mb-2">50+</div>
+              <div className="text-3xl font-bold text-gradient mb-2">15+</div>
               <div className="text-white/70">Projects Completed</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gradient mb-2">12+</div>
-              <div className="text-white/70">Hackathon Wins</div>
+              <div className="text-3xl font-bold text-gradient mb-2">20+</div>
+              <div className="text-white/70">Hackathon Finalist</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gradient mb-2">50+</div>
+              <div className="text-white/70">Hackathon Experience</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gradient mb-2">5+</div>
+              <div className="text-white/70">Event Experience</div>
             </div>
           </div>
         </motion.div>

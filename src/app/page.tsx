@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
+import CoreTeam from '@/components/CoreTeam';
 import CoreTeamHiring from '@/components/CoreTeamHiring';
 import Partnership from '@/components/Partnership';
 import Projects from '@/components/Projects';
@@ -29,6 +30,7 @@ export default function Home() {
       <SocialProof />
       <MovementPositioning />
       <FOMOLayer />
+      <CoreTeam />
       <CurrentProjects />
       <CoreTeamHiring />
       <Partnership />
