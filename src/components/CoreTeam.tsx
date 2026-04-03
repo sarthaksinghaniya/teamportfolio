@@ -53,7 +53,7 @@ const CoreTeam = () => {
       role: "Chief Business Officer (CBO)",
       description: "Building business strategy, sponsorships, and high-value collaborations.",
       badge: "Core Team",
-      image: "/sarthak.jpeg",
+      image: "/hardik.jpeg",
       gradient: "from-blue-500 to-cyan-500"
     }
   ];
