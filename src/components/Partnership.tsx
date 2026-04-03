@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Handshake, Rocket, Users, Target, ArrowRight, Mail } from 'lucide-react';
+import { Handshake, Trophy, Users, Target, ArrowRight, Mail } from 'lucide-react';
 import { useState } from 'react';
 
 const Partnership = () => {
@@ -9,23 +9,23 @@ const Partnership = () => {
 
   const collaborationTypes = [
     {
-      icon: Rocket,
-      title: "Event Partnerships",
-      description: "Co-host hackathons, workshops, and tech meetups with our builder community.",
+      icon: Trophy,
+      title: "Sponsor Hackathons",
+      description: "Connect with elite builders through high-impact hackathon events and innovation challenges.",
       gradient: "from-blue-500 to-purple-500",
       delay: 0.1
     },
     {
       icon: Target,
-      title: "Innovation Projects",
-      description: "Collaborate on cutting-edge AI projects and bring ideas to life together.",
+      title: "Partner on AI Projects",
+      description: "Collaborate on cutting-edge AI solutions with our team of talented builders and innovators.",
       gradient: "from-purple-500 to-pink-500",
       delay: 0.2
     },
     {
       icon: Users,
-      title: "Community Growth",
-      description: "Partner to expand our ecosystem and reach more talented builders across India.",
+      title: "Collaborate with Talent",
+      description: "Access a curated network of high-potential builders and innovators for your projects.",
       gradient: "from-green-500 to-teal-500",
       delay: 0.3
     }
@@ -115,7 +115,7 @@ const Partnership = () => {
             variants={itemVariants}
             className="text-4xl sm:text-5xl font-bold text-white mb-6 heading-premium"
           >
-            Partner With
+            Work With
             <span className="text-gradient"> TechNeekX</span>
           </motion.h2>
           <motion.div 
@@ -124,10 +124,18 @@ const Partnership = () => {
           ></motion.div>
           <motion.p 
             variants={itemVariants}
-            className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium"
+            className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium mb-4"
           >
-            We collaborate with startups, brands, and communities for events, innovation, and growth.
+            Access a curated network of high-potential builders and innovators.
           </motion.p>
+          
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8"
+          >
+            <div className="w-2 h-2 rounded-full bg-green-400"></div>
+            <span className="text-green-400 font-semibold text-sm">Early partners get priority access and long-term collaboration benefits</span>
+          </motion.div>
         </motion.div>
 
         {/* Collaboration Types */}
@@ -264,7 +272,7 @@ const Partnership = () => {
                 className="btn-primary flex items-center gap-2"
               >
                 <Mail size={20} />
-                Contact for Collaboration
+                Partner With Us
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.03 }}

@@ -103,9 +103,9 @@ const FinalCTA = () => {
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 heading-premium"
           >
-            Don't Just Learn Tech.
+            Join Before
             <br />
-            <span className="text-gradient">Build It.</span>
+            <span className="text-gradient">Everyone Else Does</span>
           </motion.h2>
           
           {/* Subheading */}
@@ -113,7 +113,7 @@ const FinalCTA = () => {
             variants={itemVariants}
             className="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed subheading-premium"
           >
-            Join a community that actually creates.
+            Be part of the early builders shaping TechNeekX
           </motion.p>
 
           {/* CTA Buttons */}
@@ -126,8 +126,7 @@ const FinalCTA = () => {
               whileTap={{ scale: 0.97 }}
               className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
             >
-              <Sparkles className="w-5 h-5 mr-2" />
-              Join Now
+              Apply Now
             </motion.button>
             
             <motion.button
@@ -135,7 +134,7 @@ const FinalCTA = () => {
               whileTap={{ scale: 0.97 }}
               className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
             >
-              Apply for Core Team
+              Join the Core Team
               <ArrowRight size={20} />
             </motion.button>
           </motion.div>
@@ -146,16 +145,16 @@ const FinalCTA = () => {
             className="flex flex-wrap justify-center items-center gap-8 text-white/60 mt-8"
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400"></div>
-              <span className="text-sm font-medium">Real impact</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-              <span className="text-sm font-medium">High ownership</span>
+              <div className="w-2 h-2 rounded-full bg-orange-400"></div>
+              <span className="text-sm font-medium">Early mover advantage</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-purple-400"></div>
-              <span className="text-sm font-medium">Growth opportunity</span>
+              <span className="text-sm font-medium">Limited opportunity</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+              <span className="text-sm font-medium">First-mover benefits</span>
             </div>
           </motion.div>
         </motion.div>

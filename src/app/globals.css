@@ -406,3 +406,43 @@ a {
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+/* Real-time dynamic text animation */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end) infinite;
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); 
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.8); 
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Floating badge animation */
+@keyframes float-badge {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-5px) rotate(2deg); 
+  }
+}
+
+.float-badge {
+  animation: float-badge 4s ease-in-out infinite;
+}

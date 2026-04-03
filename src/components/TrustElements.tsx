@@ -120,6 +120,13 @@ const TrustElements = () => {
               >
                 <h3 className="text-2xl font-bold text-white mb-2">Sarthak Singhaniya</h3>
                 <p className="text-white/70 mb-2">Founder & CEO, TechNeekX</p>
+                
+                {/* Credibility Highlights */}
+                <div className="flex flex-wrap justify-center gap-2 mb-4">
+                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Hackathon Winner</span>
+                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI Builder</span>
+                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Tech Leader</span>
+                </div>
                 <div className="flex items-center justify-center gap-1">
                   <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
                   <Star className="w-4 h-4 text-yellow-400 fill="currentColor" />
@@ -132,11 +139,19 @@ const TrustElements = () => {
             
             <motion.p
               variants={itemVariants}
-              className="text-white/80 text-center max-w-2xl mx-auto"
+              className="text-white/80 text-center max-w-2xl mx-auto mb-6"
             >
               "We're not just another tech community. We're builders who understand the challenges 
               and opportunities in the AI ecosystem because we've lived them."
             </motion.p>
+            
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-4"
+            >
+              <div className="w-2 h-2 rounded-full bg-green-400"></div>
+              <span className="text-green-400 font-semibold text-sm">Built by a builder, for builders</span>
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -244,6 +259,14 @@ const TrustElements = () => {
                 className="btn-primary flex items-center gap-2"
               >
                 Join Our Mission
+                <ArrowRight size={20} />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="btn-secondary flex items-center gap-2"
+              >
+                Connect with Founder
                 <ArrowRight size={20} />
               </motion.button>
             </motion.div>
