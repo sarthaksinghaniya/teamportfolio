@@ -133,6 +133,7 @@ const CoreTeam = () => {
         <div className="space-y-8">
           {/* Founder Spotlight */}
           <motion.div
+            id="founder-details"
             variants={itemVariants}
             whileHover={{ y: -8, scale: 1.01 }}
             className="glass rounded-3xl p-8 border-2 border-orange-500/30 relative overflow-hidden card-hover"
@@ -378,6 +379,15 @@ const CoreTeam = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  const founderSection = document.getElementById('founder-details');
+                  if (founderSection) {
+                    founderSection.scrollIntoView({ 
+                      behavior: 'smooth', 
+                      block: 'center' 
+                    });
+                  }
+                }}
                 className="btn-secondary"
               >
                 Talk to Founder
