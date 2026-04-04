@@ -49,8 +49,13 @@ const ViralLoop = () => {
 
   // Email validation
   const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    if (!email || email.trim() === '') {
+      return false;
+    }
+    
+    // More strict email regex for better validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email.trim());
   };
 
   // Check for duplicate emails
@@ -58,6 +63,26 @@ const ViralLoop = () => {
     const filteredEmails = emails.filter(email => email.trim() !== '');
     const uniqueEmails = new Set(filteredEmails);
     return filteredEmails.length !== uniqueEmails.size;
+  };
+
+  // Get specific validation error message
+  const getValidationErrorMessage = () => {
+    const filteredEmails = emails.filter(email => email.trim() !== '');
+    
+    if (filteredEmails.length === 0) {
+      return 'Please enter at least one email address';
+    }
+    
+    const invalidEmails = filteredEmails.filter(email => !validateEmail(email));
+    if (invalidEmails.length > 0) {
+      return `Invalid email format: ${invalidEmails.join(', ')}`;
+    }
+    
+    if (hasDuplicates()) {
+      return 'Please remove duplicate email addresses';
+    }
+    
+    return 'Please enter valid email addresses';
   };
 
   // Validate all emails
@@ -79,8 +104,14 @@ const ViralLoop = () => {
 
   // Send individual invite
   const sendInvite = async (email: string) => {
+    // Validate email before sending
+    if (!validateEmail(email)) {
+      console.error('Invalid email address:', email);
+      return false;
+    }
+
     const templateParams = {
-      to_email: email,
+      to_email: email.trim(),
       from_name: getSenderName(),
       to_name: email.split('@')[0], // Extract name from email
       invite_link: typeof window !== 'undefined' ? window.location.href : 'https://techneekx.com',
@@ -88,14 +119,22 @@ const ViralLoop = () => {
     };
 
     try {
-      await emailjs.send(
+      const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams
       );
-      return true;
+      
+      // Check if EmailJS response indicates success
+      if (response.status === 200) {
+        console.log('Email sent successfully to:', email);
+        return true;
+      } else {
+        console.error('EmailJS error response:', response);
+        return false;
+      }
     } catch (error) {
-      console.error('Failed to send email:', error);
+      console.error('Failed to send email to', email, ':', error);
       return false;
     }
   };
@@ -121,13 +160,19 @@ const ViralLoop = () => {
       );
 
       const successCount = results.filter(Boolean).length;
+      const failureCount = filteredEmails.length - successCount;
 
       if (successCount === filteredEmails.length) {
         setShowSuccess(true);
         // Clear emails after successful send
         setEmails(['']);
         setTeamSize(1);
+      } else if (successCount > 0) {
+        // Partial success - show error with details
+        setShowError(true);
+        console.log(`Sent ${successCount} emails, ${failureCount} failed`);
       } else {
+        // All failed
         setShowError(true);
       }
     } catch (error) {
@@ -351,7 +396,7 @@ const ViralLoop = () => {
               >
                 <AlertCircle size={16} />
                 <span className="text-sm">
-                  {hasDuplicates() ? 'Please remove duplicate emails' : 'Please enter valid email addresses'}
+                  {getValidationErrorMessage()}
                 </span>
               </motion.div>
             )}
