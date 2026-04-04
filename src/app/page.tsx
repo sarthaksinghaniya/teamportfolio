@@ -12,8 +12,6 @@ import Gallery from '@/components/Gallery';
 import CoreTeam from '@/components/CoreTeam';
 import CoreTeamHiring from '@/components/CoreTeamHiring';
 import Partnership from '@/components/Partnership';
-import Projects from '@/components/Projects';
-import CurrentProjects from '@/components/CurrentProjects';
 import EliteClub from '@/components/EliteClub';
 import ViralLoop from '@/components/ViralLoop';
 import CommunityPartnersWall from '@/components/CommunityPartnersWall';
@@ -81,10 +79,6 @@ export default function Home() {
       </section>
       <section id="core-team" className="section-animate">
         <CoreTeam />
-      </section>
-      <section id="projects" className="section-animate">
-        <CurrentProjects />
-        <Projects />
       </section>
       <section id="hiring" className="section-animate">
         <CoreTeamHiring />
