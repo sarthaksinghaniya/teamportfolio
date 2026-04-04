@@ -172,6 +172,7 @@ const CoreTeam = () => {
                   </span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI/ML Engineer</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Product Builder</span>
+                  <span className="px-3 py-1 glass rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold">International Awardee</span>
                 </div>
                 
                 {/* Founder Contact Information */}
