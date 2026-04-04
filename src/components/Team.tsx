@@ -26,8 +26,8 @@ const Team = () => {
       strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
       image: "/image.png",
       links: { 
-        github: "https://github.com/sarthaksinghaniya", 
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
+        github: "https://github.com/nikhil09790", 
+        linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android", 
         email: "seemayadav97950@gmail.com", 
         portfolio: "#" 
       },

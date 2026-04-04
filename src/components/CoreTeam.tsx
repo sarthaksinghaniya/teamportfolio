@@ -42,8 +42,8 @@ const CoreTeam = () => {
       contact: {
         email: "seemayadav97950@gmail.com",
         phone: "7524884044",
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
-        github: "https://github.com/sarthaksinghaniya"
+        linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        github: "https://github.com/nikhil09790"
       }
     },
     {
