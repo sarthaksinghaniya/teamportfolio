@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Users, Share2, Rocket, ArrowRight, Plus, X, Trophy, Mail, CheckCircle, AlertCircle, Loader2, Copy } from 'lucide-react';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const ViralLoop = () => {
   const [teamSize, setTeamSize] = useState(1);
@@ -452,7 +453,7 @@ const ViralLoop = () => {
           {/* CTA */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <motion.button
               whileHover={{ scale: 1.03 }}
@@ -474,12 +475,35 @@ const ViralLoop = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => openTeamForm('member')}
+              className="btn-secondary flex items-center gap-2"
+            >
+              <Users className="w-5 h-5" />
+              Join as Member
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={copyInviteLink}
               className="btn-secondary flex items-center gap-2"
             >
               <Copy className="w-5 h-5" />
               {showCopySuccess ? 'Link Copied!' : 'Copy Invite Link'}
             </motion.button>
+          </motion.div>
+
+          {/* Trust indicators */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center mt-6"
+          >
+            <p className="text-white/60 text-sm">
+              {FORM_CONFIG.member.trustIndicator}
+            </p>
+            <p className="text-white/40 text-xs mt-1">
+              {FORM_CONFIG.member.timeEstimate}
+            </p>
           </motion.div>
 
           {/* Trust indicator */}

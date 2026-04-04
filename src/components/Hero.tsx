@@ -5,6 +5,7 @@ import { ChevronDown, Sparkles, TrendingUp, Award, Globe } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { stats } from '@/constants/stats';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -220,19 +221,19 @@ const Hero = () => {
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={createRipple}
+            onClick={() => openTeamForm('coreTeam')}
             className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
           >
-            Join the Core Team
+            Apply for Core Team
           </motion.button>
           
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={createRipple}
+            onClick={() => openTeamForm('member')}
             className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
           >
-            Apply to Build With Us
+            Join as Member
           </motion.button>
         </motion.div>
       </motion.div>

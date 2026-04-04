@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, UserPlus } from 'lucide-react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -187,11 +188,11 @@ const Navbar = () => {
                   transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
                 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={createRipple}
+                onClick={() => openTeamForm('member')}
                 className="btn-primary btn-ripple magnetic-button flex items-center gap-2 px-6 py-2 text-sm"
               >
                 <UserPlus size={16} />
-                Join
+                Join as Member
               </motion.button>
             </div>
 
@@ -264,11 +265,11 @@ const Navbar = () => {
                 <div className="px-2 py-3">
                   <motion.button
                     whileTap={{ scale: 0.95 }}
-                    onClick={createRipple}
+                    onClick={() => openTeamForm('member')}
                     className="btn-primary btn-ripple w-full flex items-center justify-center gap-2"
                   >
                     <UserPlus size={16} />
-                    Join TechNeekX
+                    Join as Member
                   </motion.button>
                 </div>
                 

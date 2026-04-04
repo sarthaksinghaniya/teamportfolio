@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Users, Activity, TrendingUp, Clock, ArrowRight, Lock } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const FOMOLayer = () => {
   const [activeTicker, setActiveTicker] = useState(0);
@@ -218,11 +219,20 @@ const FOMOLayer = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => openTeamForm('member')}
               className="btn-primary flex items-center gap-2 mx-auto"
             >
-              Apply Now
+              Join as Member
               <ArrowRight size={20} />
             </motion.button>
+            <div className="text-center mt-4">
+              <p className="text-white/60 text-sm">
+                {FORM_CONFIG.member.trustIndicator}
+              </p>
+              <p className="text-white/40 text-xs mt-1">
+                {FORM_CONFIG.member.timeEstimate}
+              </p>
+            </div>
             
             <motion.div
               variants={itemVariants}

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Rocket, ArrowRight, Sparkles } from 'lucide-react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const FinalCTA = () => {
   const containerVariants = {
@@ -124,17 +125,19 @@ const FinalCTA = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => openTeamForm('member')}
               className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
             >
-              Apply Now
+              Join as Member
             </motion.button>
             
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => openTeamForm('coreTeam')}
               className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
             >
-              Join the Core Team
+              Apply for Core Team
               <ArrowRight size={20} />
             </motion.button>
           </motion.div>

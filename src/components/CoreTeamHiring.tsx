@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, Palette, Cpu, ArrowRight, Crown, Users, Rocket } from 'lucide-react';
 import { useState } from 'react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const CoreTeamHiring = () => {
   const [hoveredRole, setHoveredRole] = useState<number | null>(null);
@@ -296,11 +297,20 @@ const CoreTeamHiring = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => openTeamForm('coreTeam')}
               className="btn-primary flex items-center gap-2 mx-auto"
             >
-              Apply Now
+              Apply for Core Team
               <ArrowRight size={20} />
             </motion.button>
+            <div className="text-center mt-4">
+              <p className="text-white/60 text-sm">
+                {FORM_CONFIG.coreTeam.trustIndicator}
+              </p>
+              <p className="text-white/40 text-xs mt-1">
+                {FORM_CONFIG.coreTeam.timeEstimate}
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>

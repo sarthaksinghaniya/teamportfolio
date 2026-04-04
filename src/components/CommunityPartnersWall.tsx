@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Users, Star, TrendingUp, Award, Code, Rocket, Plus } from 'lucide-react';
 import { useState } from 'react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const CommunityPartnersWall = () => {
   const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);
@@ -219,10 +220,19 @@ const CommunityPartnersWall = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => openTeamForm('partner')}
                     className="btn-primary w-full"
                   >
-                    Join Community
+                    Become a Partner
                   </motion.button>
+                  <div className="text-center mt-3">
+                    <p className="text-white/60 text-sm">
+                      {FORM_CONFIG.partner.trustIndicator}
+                    </p>
+                    <p className="text-white/40 text-xs mt-1">
+                      {FORM_CONFIG.partner.timeEstimate}
+                    </p>
+                  </div>
                 </motion.div>
               )}
             </motion.div>
