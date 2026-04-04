@@ -265,6 +265,15 @@ const TrustElements = () => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => {
+                  const founderSection = document.getElementById('founder-details');
+                  if (founderSection) {
+                    founderSection.scrollIntoView({ 
+                      behavior: 'smooth', 
+                      block: 'center' 
+                    });
+                  }
+                }}
                 className="btn-secondary flex items-center gap-2"
               >
                 Connect with Founder
