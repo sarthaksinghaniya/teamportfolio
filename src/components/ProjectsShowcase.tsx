@@ -171,24 +171,6 @@ const ProjectsShowcase = () => {
       github: 'https://github.com/teamtechneekx',
       impact: 'AI Innovation'
     },
-    {
-      id: 'techneekx-platform',
-      title: 'TECHNEEKX PLATFORM',
-      status: 'Live',
-      category: 'Community Platform',
-      icon: Globe,
-      color: 'from-indigo-500 to-purple-500',
-      description: 'Built a unified youth ecosystem for mentorship, hackathons, and career growth',
-      features: [
-        'Handles community onboarding and team building',
-        'Focused on scaling student collaboration',
-        'Mentorship and career growth platform'
-      ],
-      techStack: ['Next.js', 'React', 'Community Systems', 'Product Design'],
-      link: 'https://teamtechneekx.netlify.app',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Community Building'
-    }
   ];
 
   const categories = [
