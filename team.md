@@ -2,7 +2,7 @@ Company info :
 email - teamtechneekx.netlify.app
 contact - 6387860126
 linkedin - https://www.linkedin.com/company/techneekx/
-
+github - https://github.com/teamtechneekx
 ---
 
 Founder - Sarthak Singhaniya info :

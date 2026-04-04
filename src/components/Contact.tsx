@@ -38,8 +38,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "teamtechneekx@gmail.com",
-      link: "mailto:teamtechneekx@gmail.com",
+      content: "teamtechneekx.netlify.app",
+      link: "mailto:teamtechneekx.netlify.app",
       gradient: "from-blue-500 to-cyan-500"
     },
     {

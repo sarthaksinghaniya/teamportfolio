@@ -53,9 +53,9 @@ const TECHNEEKX_KNOWLEDGE = {
     "💻 The TechNeekX team is committed to continuous learning, innovation, and delivering exceptional results that exceed client expectations."
   ],
   contact: [
-    "📧 Get in touch with us:\n📧 Email: teamtechneekx@gmail.com\n📱 WhatsApp: +91 6387860126\n📞 Call: +91 63878 60126\n🌐 Website: techneekx.com (coming soon!)",
-    "💌 Reach out through our contact form or email us directly at teamtechneekx@gmail.com. We typically respond within 24 hours!",
-    "📱 For project inquiries, collaborations, or just to say hello, contact us at teamtechneekx@gmail.com or message us on WhatsApp."
+    "📧 Get in touch with us:\n📧 Email: teamtechneekx.netlify.app\n📱 WhatsApp: +91 6387860126\n📞 Call: +91 63878 60126\n🌐 Website: techneekx.com (coming soon!)",
+    "💌 Reach out through our contact form or email us directly at teamtechneekx.netlify.app. We typically respond within 24 hours!",
+    "📱 For project inquiries, collaborations, or just to say hello, contact us at teamtechneekx.netlify.app or message us on WhatsApp."
   ],
   projects: [
     "💼 Explore our innovative projects:\n\n🏥 Hospital Pulse AI - Healthcare predictive analytics with 92% accuracy\n🤖 Reviber - AI-powered idea generation assistant\n🌍 HANU-YOUTH - Global youth empowerment platform\n🗺️ Path Sarthi - Career development with LinkedIn integration\n📅 Hanu-Planner - Real-time project management tool",
