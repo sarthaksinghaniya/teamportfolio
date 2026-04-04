@@ -171,3 +171,10 @@ Built with ❤️ by the TechNeekX team
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+## 📸 Managing the Gallery
+
+- All gallery assets live in `public/gallery/`.
+- Add or replace images directly in that folder (keep web-friendly file sizes).
+- Update captions/featured flags in `src/components/Gallery.tsx` inside the `galleryImages` array.
+- Prefer descriptive filenames so future swaps stay readable.
