@@ -22,9 +22,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files - SECURITY: Never commit environment files
 .env*.local
 .env
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
@@ -47,21 +50,62 @@ logs
 *.log
 npm-debug.log*
 
-# Local development
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
 # Cache
 .cache/
 .temp/
 .tmp/
+.parcel-cache/
+.eslintcache
+.npm
 
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Security and sensitive files
+*.key
+*.pem
+*.p12
+*.crt
+*.cert
+*.pfx
+private/
+secrets/
+credentials/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Package manager files
+package-lock.json.backup
+yarn.lock.backup
+*.tgz
+.yarn-integrity
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
 
 # Optional npm cache directory
 .npm
@@ -92,24 +136,18 @@ out
 # production
 /build
 
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
 # Local Netlify folder
 .netlify
+
+# Vite
+dist-ssr
+*.local
+
+# Additional security - EmailJS and API keys
+emailjs-config.json
+api-keys.json
+secrets.json
+config/local.json
+
+# Team joining documentation with sensitive info
+teamjoining.md
