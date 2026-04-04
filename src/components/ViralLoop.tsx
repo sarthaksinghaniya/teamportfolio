@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Users, Share2, Rocket, ArrowRight, Plus, X, Trophy, Mail, CheckCircle, AlertCircle, Loader2, Copy } from 'lucide-react';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { openTeamForm, FORM_CONFIG, TEAM_FORMS } from '@/config/teamForms';
 
 const ViralLoop = () => {
   const [teamSize, setTeamSize] = useState(1);
@@ -115,8 +115,8 @@ const ViralLoop = () => {
       to_email: email.trim(),
       from_name: getSenderName(),
       to_name: email.split('@')[0], // Extract name from email
-      invite_link: typeof window !== 'undefined' ? window.location.href : 'https://techneekx.com',
-      message: `You've been invited to build and collaborate on TechNeekX. Collaborate on projects, compete in hackathons, and grow together.`
+      invite_link: TEAM_FORMS.member, // Send member form link
+      message: `You've been invited to join TechNeekX as a team member! Apply now to become part of our innovative builder ecosystem.`
     };
 
     try {
@@ -190,18 +190,16 @@ const ViralLoop = () => {
 
   // Generate invite link
   const generateInviteLink = () => {
-    const link = `${typeof window !== 'undefined' ? window.location.origin : 'https://techneekx.com'}?ref=team-invite`;
+    const link = TEAM_FORMS.member; // Use member form link
     setInviteLink(link);
   };
 
   // Copy invite link
   const copyInviteLink = async () => {
-    if (!inviteLink) {
-      generateInviteLink();
-    }
+    const memberFormLink = TEAM_FORMS.member;
     
     try {
-      await navigator.clipboard.writeText(inviteLink);
+      await navigator.clipboard.writeText(memberFormLink);
       setShowCopySuccess(true);
       setTimeout(() => setShowCopySuccess(false), 2000);
     } catch (error) {
@@ -489,7 +487,7 @@ const ViralLoop = () => {
               className="btn-secondary flex items-center gap-2"
             >
               <Copy className="w-5 h-5" />
-              {showCopySuccess ? 'Link Copied!' : 'Copy Invite Link'}
+              {showCopySuccess ? 'Member Form Link Copied!' : 'Copy Member Form Link'}
             </motion.button>
           </motion.div>
 
