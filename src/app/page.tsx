@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
@@ -20,28 +21,84 @@ import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
 import LiveActivityFeed from '@/components/LiveActivityFeed';
+import useSectionAnimation from '@/hooks/useSectionAnimation';
+
+// Scroll Progress Component
+const ScrollProgress = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', updateScrollProgress);
+    return () => window.removeEventListener('scroll', updateScrollProgress);
+  }, []);
+
+  return (
+    <div 
+      className="scroll-progress" 
+      style={{ width: `${scrollProgress}%` }}
+    />
+  );
+};
 
 export default function Home() {
+  useSectionAnimation(); // Initialize section animations
+  
   return (
     <main className="min-h-screen">
+      <ScrollProgress />
       <Loader />
       <Navbar />
-      <Hero />
-      <SocialProof />
-      <MovementPositioning />
-      <FOMOLayer />
-      <CoreTeam />
-      <CurrentProjects />
-      <CoreTeamHiring />
-      <Partnership />
-      <Projects />
-      <EliteClub />
-      <ViralLoop />
-      <CommunityPartnersWall />
-      <RealJourney />
-      <TrustElements />
-      <Community />
-      <FinalCTA />
+      <section id="hero" className="section-animate">
+        <Hero />
+      </section>
+      <section id="social-proof" className="section-animate">
+        <SocialProof />
+      </section>
+      <section id="about" className="section-animate">
+        <MovementPositioning />
+      </section>
+      <section id="what-we-do" className="section-animate">
+        <FOMOLayer />
+      </section>
+      <section id="team" className="section-animate">
+        <CoreTeam />
+      </section>
+      <section id="projects" className="section-animate">
+        <CurrentProjects />
+        <Projects />
+      </section>
+      <section id="hiring" className="section-animate">
+        <CoreTeamHiring />
+      </section>
+      <section id="partners" className="section-animate">
+        <Partnership />
+      </section>
+      <section id="elite" className="section-animate">
+        <EliteClub />
+      </section>
+      <section id="invite" className="section-animate">
+        <ViralLoop />
+      </section>
+      <section id="community" className="section-animate">
+        <CommunityPartnersWall />
+        <Community />
+      </section>
+      <section id="journey" className="section-animate">
+        <RealJourney />
+      </section>
+      <section id="trust" className="section-animate">
+        <TrustElements />
+      </section>
+      <section id="contact" className="section-animate">
+        <FinalCTA />
+      </section>
       <Footer />
       <LiveActivityFeed />
     </main>

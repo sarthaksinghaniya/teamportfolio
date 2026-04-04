@@ -48,6 +48,30 @@ const Navbar = () => {
     { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx.netlify.app', label: 'Email' },
   ];
 
+  // Smooth scroll handler
+  const handleNavClick = (href: string) => {
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Close mobile menu if open
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    }
+  };
+
+  // Check if link is active
+  const isActiveLink = (href: string) => {
+    const targetId = href.replace('#', '');
+    return activeSection === targetId;
+  };
+
   const createRipple = (e: React.MouseEvent<HTMLButtonElement>) => {
     const button = e.currentTarget;
     const rect = button.getBoundingClientRect();
@@ -110,13 +134,13 @@ const Navbar = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
                 {navItems.map((item) => (
-                  <motion.a
+                  <motion.button
                     key={item.name}
-                    href={item.href}
+                    onClick={() => handleNavClick(item.href)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className={`relative text-white/80 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                      activeSection === item.href.slice(1) ? 'nav-link-active' : ''
+                      isActiveLink(item.href) ? 'nav-link-active' : ''
                     }`}
                   >
                     {item.name}
@@ -125,11 +149,11 @@ const Navbar = () => {
                       className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ 
-                        scaleX: activeSection === item.href.slice(1) ? 1 : 0 
+                        scaleX: isActiveLink(item.href) ? 1 : 0 
                       }}
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     />
-                  </motion.a>
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -217,10 +241,9 @@ const Navbar = () => {
               >
                 <div className="px-2 pt-2 pb-3 space-y-1">
                   {navItems.map((item, index) => (
-                    <motion.a
+                    <motion.button
                       key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => handleNavClick(item.href)}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ 
@@ -228,12 +251,12 @@ const Navbar = () => {
                         delay: index * 0.05,
                         ease: [0.22, 1, 0.36, 1]
                       }}
-                      className={`text-white/80 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${
-                        activeSection === item.href.slice(1) ? 'nav-link-active' : ''
+                      className={`text-white/80 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 text-left ${
+                        isActiveLink(item.href) ? 'nav-link-active' : ''
                       }`}
                     >
                       {item.name}
-                    </motion.a>
+                    </motion.button>
                   ))}
                 </div>
                 
