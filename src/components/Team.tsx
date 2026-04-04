@@ -46,6 +46,34 @@ const Team = () => {
         portfolio: "#" 
       },
       gradient: "from-orange-500 to-red-500"
+    },
+    {
+      name: "Anshuman Soni",
+      role: "Chief Marketing Officer, Media Lead",
+      bio: "Strategic marketing visionary driving brand growth and media partnerships.",
+      strengths: ["Marketing Strategy", "Media Relations", "Brand Development"],
+      image: "/image.png",
+      links: { 
+        github: "https://github.com/sarthaksinghaniya", 
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
+        email: "anshuman70k@gmail.com", 
+        portfolio: "#" 
+      },
+      gradient: "from-green-500 to-teal-500"
+    },
+    {
+      name: "Hardik Talwar",
+      role: "Chief Business Officer, Frontend Developer",
+      bio: "Business strategy expert and frontend developer bridging technical and commercial success.",
+      strengths: ["Business Strategy", "Frontend Development", "Client Relations"],
+      image: "/hardik.jpeg",
+      links: { 
+        github: "https://github.com/sarthaksinghaniya", 
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
+        email: "hardiktalwar2006@gmail.com", 
+        portfolio: "#" 
+      },
+      gradient: "from-blue-500 to-cyan-500"
     }
   ];
 

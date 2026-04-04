@@ -5,7 +5,7 @@ import { Github, Linkedin, Mail, Twitter, ArrowUp, Heart } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/sarthaksinghaniya', label: 'GitHub' },
+    { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://twitter.com/techneekx', label: 'Twitter' },
     { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx.netlify.app', label: 'Email' },
