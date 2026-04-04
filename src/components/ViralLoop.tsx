@@ -19,6 +19,13 @@ const ViralLoop = () => {
   const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'your_template_id';
   const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'your_public_key';
 
+  // Professional sender name with fallback safety
+  const getSenderName = () => {
+    const primarySender = "Sarthak (TechNeekX Founder)";
+    const fallbackSender = "TechNeekX Team";
+    return primarySender || fallbackSender;
+  };
+
   // Initialize EmailJS
   if (typeof window !== 'undefined') {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -74,7 +81,7 @@ const ViralLoop = () => {
   const sendInvite = async (email: string) => {
     const templateParams = {
       to_email: email,
-      from_name: 'TechNeekX Team',
+      from_name: getSenderName(),
       to_name: email.split('@')[0], // Extract name from email
       invite_link: typeof window !== 'undefined' ? window.location.href : 'https://techneekx.com',
       message: `You've been invited to build and collaborate on TechNeekX. Collaborate on projects, compete in hackathons, and grow together.`

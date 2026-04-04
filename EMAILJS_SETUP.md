@@ -83,7 +83,7 @@
 
 **Template Variables:**
 - `{{to_email}}` - Recipient's email address
-- `{{from_name}}` - "TechNeekX Team"
+- `{{from_name}}` - "Sarthak (TechNeekX Founder)" (Professional sender identity)
 - `{{to_name}}` - Recipient's name (extracted from email)
 - `{{invite_link}}` - Invitation link to your website
 - `{{message}}` - Custom invitation message
@@ -119,6 +119,13 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_actual_public_key
 - **Loading States**: Visual feedback during sending
 - **Success/Error Messages**: Clear user feedback
 - **Copy Invite Link**: Alternative sharing method
+
+### ✅ Professional Sender Identity
+- **Sender Name**: "Sarthak (TechNeekX Founder)" for trust and branding
+- **Fallback Safety**: Defaults to "TechNeekX Team" if primary unavailable
+- **Consistent Branding**: Professional identity across all emails
+- **High Conversion**: Personalized sender improves open rates
+- **Trust Building**: Founder identity increases credibility
 
 ### ✅ Security Features
 - **Spam Prevention**: Button disabled during sending
