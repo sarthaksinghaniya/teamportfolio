@@ -38,8 +38,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'What We Do', href: '#what-we-do' },
-    { name: 'AI Projects', href: '#projects-showcase' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Projects', href: '#projects-showcase' },
     { name: 'Community', href: '#community' },
     { name: 'Contact', href: '#contact' },
   ];
