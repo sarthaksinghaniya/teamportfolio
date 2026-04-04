@@ -7,6 +7,8 @@ import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
 import ProjectsShowcase from '@/components/ProjectsShowcase';
+import EventsOrganized from '@/components/EventsOrganized';
+import Gallery from '@/components/Gallery';
 import CoreTeam from '@/components/CoreTeam';
 import CoreTeamHiring from '@/components/CoreTeamHiring';
 import Partnership from '@/components/Partnership';
@@ -70,6 +72,12 @@ export default function Home() {
       </section>
       <section id="projects-showcase" className="section-animate">
         <ProjectsShowcase />
+      </section>
+      <section id="events" className="section-animate">
+        <EventsOrganized />
+      </section>
+      <section id="gallery" className="section-animate">
+        <Gallery />
       </section>
       <section id="core-team" className="section-animate">
         <CoreTeam />
