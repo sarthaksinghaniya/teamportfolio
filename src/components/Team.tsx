@@ -13,9 +13,9 @@ const Team = () => {
       image: "/WhatsApp Image 2025-12-24 at 1.46.07 PM.jpeg",
       links: { 
         github: "https://github.com/sarthaksinghaniya", 
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323", 
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
         email: "sarthaksinghaniya789@gmail.com",
-        portfolio: "https://sarthaksinghaniya.netlify.app" 
+        portfolio: "sarthaksinghaniya.netlify.app" 
       },
       gradient: "from-blue-500 to-cyan-500"
     },
@@ -26,8 +26,8 @@ const Team = () => {
       strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
       image: "/image.png",
       links: { 
-        github: "https://github.com/NIKHIL09790", 
-        linkedin: "https://www.linkedin.com/in/shubhang-mishra-8a1996328", 
+        github: "https://github.com/sarthaksinghaniya", 
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
         email: "seemayadav97950@gmail.com", 
         portfolio: "#" 
       },
@@ -40,8 +40,8 @@ const Team = () => {
       strengths: ["Marketing Ideas", "Visionary Thinking", " Finance Management"],
       image: "/tanisq.jpg",
       links: { 
-        github: "https://github.com/tanishqshukla007", 
-        linkedin: "#", 
+        github: "https://github.com/sarthaksinghaniya", 
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
         email: "tanishqshukla835@gmail.com", 
         portfolio: "#" 
       },

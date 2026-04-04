@@ -33,81 +33,11 @@ const CommunityPartnersWall = () => {
 
   const partners = [
     {
-      name: "Tanishq Shukla",
-      role: "Innovation & Research",
-      avatar: null,
-      expertise: ["Genomics", "Bioinformatics", "DNA Analysis"],
-      gradient: "from-purple-500 to-indigo-600"
-    },
-    {
-      name: "Anand Kumar Singh",
-      role: "Frontend Development",
-      avatar: null,
-      expertise: ["React Native", "Mobile Dev", "JavaScript Pro"],
-      gradient: "from-blue-500 to-purple-500"
-    },
-    {
-      name: "Team ByteQuest",
-      role: "Hackathon Team",
+      name: "ByteQuest",
+      role: "Hackathon Organiser",
       avatar: "/byte quest hack.png",
-      expertise: ["Hospital AI", "National Finalists", "Innovation Award"],
+      expertise: ["Hospital AI", "National Hackathon", "Innovation"],
       gradient: "from-yellow-500 to-orange-500"
-    },
-    {
-      name: "Aman Singh",
-      role: "Frontend Development",
-      avatar: null,
-      expertise: ["Vue.js", "CSS Expert", "Web Design"],
-      gradient: "from-teal-500 to-green-500"
-    },
-    {
-      name: "Aishwarya Pandey",
-      role: "AI/ML Engineering",
-      avatar: null,
-      expertise: ["TensorFlow", "PyTorch", "ML Research"],
-      gradient: "from-pink-500 to-rose-500"
-    },
-    {
-      name: "Anoop Tripathi",
-      role: "Full Stack Development",
-      avatar: null,
-      expertise: ["MERN Stack", "GraphQL", "Cloud Dev"],
-      gradient: "from-red-500 to-orange-500"
-    },
-    {
-      name: "Harshita",
-      role: "Backend Systems",
-      avatar: null,
-      expertise: ["Python", "Django", "PostgreSQL"],
-      gradient: "from-cyan-500 to-blue-500"
-    },
-    {
-      name: "Sandeep Gupta",
-      role: "Innovation & Strategy",
-      avatar: null,
-      expertise: ["Business Strategy", "Product Innovation", "Market Research"],
-      gradient: "from-indigo-500 to-purple-600"
-    },
-    {
-      name: "Pranshu Dutta Shukla",
-      role: "AI/ML Engineering",
-      avatar: null,
-      expertise: ["Computer Vision", "NLP", "Deep Learning"],
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      name: "Ananya Shukla",
-      role: "Frontend Development",
-      avatar: null,
-      expertise: ["React", "Next.js", "UI/UX"],
-      gradient: "from-green-500 to-teal-500"
-    },
-    {
-      name: "Ankit Kumar",
-      role: "Backend Systems",
-      avatar: null,
-      expertise: ["Java", "Spring Boot", "Microservices"],
-      gradient: "from-orange-500 to-red-500"
     },
     {
       name: "Join as Partner",
