@@ -11,73 +11,73 @@ const Gallery = () => {
 
   const galleryImages = [
     { 
-      src: "/gallery/frame-by-frame-1.jpg", 
+      src: "/gal5.jpeg", 
       caption: "Late night building 🔥",
       featured: true,
       size: "large"
     },
     { 
-      src: "/gallery/innvedx-hackathon-1.jpg", 
+      src: "/main.png", 
       caption: "First hackathon energy",
       featured: false,
       size: "medium"
     },
     { 
-      src: "/gallery/vibe-designing-1.jpg", 
+      src: "/gal5.jpeg", 
       caption: "Real builders. Real work.",
       featured: false,
       size: "small"
     },
     { 
-      src: "/gallery/kalpathon-2.jpg", 
+      src: "/main.png", 
       caption: "Moments that matter",
       featured: true,
       size: "large"
     },
     { 
-      src: "/gallery/frame-by-frame-2.jpg", 
+      src: "/gal5.jpeg", 
       caption: "Creativity unleashed",
       featured: false,
       size: "medium"
     },
     { 
-      src: "/gallery/innvedx-hackathon-2.jpg", 
+      src: "/main.png", 
       caption: "Building the future",
       featured: false,
       size: "small"
     },
     { 
-      src: "/gallery/vibe-designing-2.jpg", 
+      src: "/gal5.jpeg", 
       caption: "Where ideas come alive",
       featured: true,
       size: "large"
     },
     { 
-      src: "/gallery/team-collaboration.jpg", 
+      src: "/main.png", 
       caption: "Together we rise",
       featured: false,
       size: "medium"
     },
     { 
-      src: "/gallery/presentation-1.jpg", 
+      src: "/gal5.jpeg", 
       caption: "Innovation in action",
       featured: false,
       size: "small"
     },
     { 
-      src: "/gallery/networking-1.jpg", 
+      src: "/main.png", 
       caption: "Community vibes only",
       featured: true,
       size: "large"
     },
     { 
-      src: "/gallery/award-ceremony.jpg", 
+      src: "/gal5.jpeg", 
       caption: "Celebrating wins together",
       featured: false,
       size: "medium"
     },
     { 
-      src: "/gallery/brainstorming-1.jpg", 
+      src: "/main.png", 
       caption: "Magic happens here",
       featured: false,
       size: "small"
