@@ -1,12 +1,28 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Share2, Rocket, ArrowRight, Plus, X, Trophy } from 'lucide-react';
+import { Users, Share2, Rocket, ArrowRight, Plus, X, Trophy, Mail, CheckCircle, AlertCircle, Loader2, Copy } from 'lucide-react';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ViralLoop = () => {
   const [teamSize, setTeamSize] = useState(1);
   const [emails, setEmails] = useState(['']);
+  const [isSending, setIsSending] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [inviteLink, setInviteLink] = useState('');
+  const [showCopySuccess, setShowCopySuccess] = useState(false);
+
+  // EmailJS Configuration
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'your_service_id';
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'your_template_id';
+  const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'your_public_key';
+
+  // Initialize EmailJS
+  if (typeof window !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
 
   const addEmail = () => {
     if (emails.length < 5) {
@@ -22,6 +38,122 @@ const ViralLoop = () => {
     const newEmails = [...emails];
     newEmails[index] = value;
     setEmails(newEmails);
+  };
+
+  // Email validation
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Check for duplicate emails
+  const hasDuplicates = () => {
+    const filteredEmails = emails.filter(email => email.trim() !== '');
+    const uniqueEmails = new Set(filteredEmails);
+    return filteredEmails.length !== uniqueEmails.size;
+  };
+
+  // Validate all emails
+  const validateEmails = () => {
+    const filteredEmails = emails.filter(email => email.trim() !== '');
+    
+    if (filteredEmails.length === 0) {
+      return false;
+    }
+
+    // Check if all emails are valid
+    const allValid = filteredEmails.every(email => validateEmail(email));
+    
+    // Check for duplicates
+    const noDuplicates = !hasDuplicates();
+    
+    return allValid && noDuplicates;
+  };
+
+  // Send individual invite
+  const sendInvite = async (email: string) => {
+    const templateParams = {
+      to_email: email,
+      from_name: 'TechNeekX Team',
+      to_name: email.split('@')[0], // Extract name from email
+      invite_link: typeof window !== 'undefined' ? window.location.href : 'https://techneekx.com',
+      message: `You've been invited to build and collaborate on TechNeekX. Collaborate on projects, compete in hackathons, and grow together.`
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+      return true;
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      return false;
+    }
+  };
+
+  // Handle team invitation
+  const handleInviteTeam = async () => {
+    if (!validateEmails()) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
+
+    setIsSending(true);
+    setShowError(false);
+    setShowSuccess(false);
+
+    const filteredEmails = emails.filter(email => email.trim() !== '');
+
+    try {
+      // Send all invites concurrently
+      const results = await Promise.all(
+        filteredEmails.map(email => sendInvite(email))
+      );
+
+      const successCount = results.filter(Boolean).length;
+
+      if (successCount === filteredEmails.length) {
+        setShowSuccess(true);
+        // Clear emails after successful send
+        setEmails(['']);
+        setTeamSize(1);
+      } else {
+        setShowError(true);
+      }
+    } catch (error) {
+      console.error('Error sending invites:', error);
+      setShowError(true);
+    } finally {
+      setIsSending(false);
+      setTimeout(() => {
+        setShowSuccess(false);
+        setShowError(false);
+      }, 5000);
+    }
+  };
+
+  // Generate invite link
+  const generateInviteLink = () => {
+    const link = `${typeof window !== 'undefined' ? window.location.origin : 'https://techneekx.com'}?ref=team-invite`;
+    setInviteLink(link);
+  };
+
+  // Copy invite link
+  const copyInviteLink = async () => {
+    if (!inviteLink) {
+      generateInviteLink();
+    }
+    
+    try {
+      await navigator.clipboard.writeText(inviteLink);
+      setShowCopySuccess(true);
+      setTimeout(() => setShowCopySuccess(false), 2000);
+    } catch (error) {
+      console.error('Failed to copy link:', error);
+    }
   };
 
   const containerVariants = {
@@ -142,28 +274,44 @@ const ViralLoop = () => {
             </div>
 
             {/* Email Inputs */}
-            <div className="space-y-3 mb-6">
-              {emails.map((email, index) => (
+            <div className="space-y-3">
+              {emails.slice(0, teamSize).map((email, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  exit={{ opacity: 0, x: 20 }}
                   className="flex items-center gap-3"
                 >
-                  <input
-                    type="email"
-                    placeholder={`Team member ${index + 1} email`}
-                    value={email}
-                    onChange={(e) => updateEmail(index, e.target.value)}
-                    className="flex-1 px-4 py-3 glass rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  />
+                  <div className="relative flex-1">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/40" />
+                    <input
+                      type="email"
+                      placeholder={`Team member ${index + 1} email`}
+                      value={email}
+                      onChange={(e) => updateEmail(index, e.target.value)}
+                      className={`w-full pl-10 pr-4 py-3 glass rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                        validateEmail(email) && email.trim() !== ''
+                          ? 'focus:ring-green-500 border-green-500/30'
+                          : 'focus:ring-blue-500 border-blue-500/30'
+                      } border border-white/10`}
+                    />
+                    {email.trim() !== '' && (
+                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        {validateEmail(email) ? (
+                          <CheckCircle className="w-4 h-4 text-green-400" />
+                        ) : (
+                          <AlertCircle className="w-4 h-4 text-red-400" />
+                        )}
+                      </div>
+                    )}
+                  </div>
                   {emails.length > 1 && (
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => removeEmail(index)}
-                      className="w-8 h-8 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all duration-300"
+                      className="p-2 glass rounded-lg text-white/60 hover:text-red-400 transition-colors"
                     >
                       <X size={16} />
                     </motion.button>
@@ -172,17 +320,44 @@ const ViralLoop = () => {
               ))}
             </div>
 
-            {/* Add Member Button */}
+            {/* Add Team Member Button */}
             {emails.length < 5 && (
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={addEmail}
-                className="w-full py-3 glass rounded-xl text-white/60 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+              <motion.div className="flex justify-center mt-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={addEmail}
+                  className="w-full py-3 glass rounded-xl text-white/60 hover:text-white transition-all duration-300 flex items-center justify-center gap-2 border border-white/10 hover:border-white/20"
+                >
+                  <Plus size={16} />
+                  Add Team Member
+                </motion.button>
+              </motion.div>
+            )}
+
+            {/* Error/Success Messages */}
+            {showError && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 p-3 glass rounded-xl border border-red-500/30 text-red-400"
               >
-                <Plus size={16} />
-                Add Team Member
-              </motion.button>
+                <AlertCircle size={16} />
+                <span className="text-sm">
+                  {hasDuplicates() ? 'Please remove duplicate emails' : 'Please enter valid email addresses'}
+                </span>
+              </motion.div>
+            )}
+
+            {showSuccess && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-2 p-3 glass rounded-xl border border-green-500/30 text-green-400"
+              >
+                <CheckCircle size={16} />
+                <span className="text-sm">Invites sent successfully 🚀</span>
+              </motion.div>
             )}
           </motion.div>
 
@@ -230,19 +405,28 @@ const ViralLoop = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="btn-primary flex items-center gap-2"
+              onClick={handleInviteTeam}
+              disabled={isSending}
+              className={`btn-primary flex items-center gap-2 ${
+                isSending ? 'opacity-75 cursor-not-allowed' : ''
+              }`}
             >
-              <Rocket className="w-5 h-5" />
-              Invite Your Team
+              {isSending ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <Rocket className="w-5 h-5" />
+              )}
+              {isSending ? 'Sending Invites...' : 'Invite Your Team'}
             </motion.button>
             
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={copyInviteLink}
               className="btn-secondary flex items-center gap-2"
             >
-              <ArrowRight size={20} />
-              Learn More
+              <Copy className="w-5 h-5" />
+              {showCopySuccess ? 'Link Copied!' : 'Copy Invite Link'}
             </motion.button>
           </motion.div>
 
