@@ -54,8 +54,8 @@ const Team = () => {
       strengths: ["Marketing Strategy", "Media Relations", "Brand Development"],
       image: "/image.png",
       links: { 
-        github: "https://github.com/sarthaksinghaniya", 
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
+        github: "https://github.com/hardik112006", 
+        linkedin: "https://www.linkedin.com/in/hardik-talwar-66b362335?utm_source=share_via&utm_content=profile&utm_medium=member_android", 
         email: "anshuman70k@gmail.com", 
         portfolio: "#" 
       },

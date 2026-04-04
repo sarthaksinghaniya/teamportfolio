@@ -9,7 +9,7 @@ const FOMOLayer = () => {
 
   const activityMessages = [
     "🚀 3 new builders joined this week",
-    "🏆 Won 2 national hackathons this month",
+    "🏆 Won 1 national hackathons this month",
     "🤝 New collaboration with AI startup",
     "📈 40% growth in active projects",
     "🌟 Featured in tech community spotlight"

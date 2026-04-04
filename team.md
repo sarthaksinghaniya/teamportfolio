@@ -24,8 +24,8 @@ email - seemayadav97950@gmail.com
 ---
 
 CMO - Anshuman Soni info :
-linkedin - https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/
-github - https://github.com/sarthaksinghaniya
+linkedIn - https://www.linkedin.com/in/hardik-talwar-66b362335?utm_source=share_via&utm_content=profile&utm_medium=member_android
+github - https://github.com/hardik112006
 portfolio - #
 contact - 7007659042
 email - anshuman70k@gmail.com
