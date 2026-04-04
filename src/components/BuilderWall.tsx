@@ -18,7 +18,8 @@ const BuilderWall = () => {
       achievements: [
         <AnimatedCounter key="hackathons" from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />, 
         "AI Products", 
-        "Tech Leadership"
+        "Tech Leadership",
+        "International Awardee"
       ],
       status: "active",
       gradient: "from-purple-500 to-pink-500"

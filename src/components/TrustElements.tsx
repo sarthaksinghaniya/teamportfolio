@@ -126,6 +126,7 @@ const TrustElements = () => {
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Hackathon Winner</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI Builder</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Tech Leader</span>
+                  <span className="px-3 py-1 glass rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold">International Awardee</span>
                 </div>
                 <div className="flex items-center justify-center gap-1">
                   <Star className="w-4 h-4 text-yellow-400" style={{ fill: 'currentColor' }} />
