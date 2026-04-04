@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
+import ProjectsShowcase from '@/components/ProjectsShowcase';
 import CoreTeam from '@/components/CoreTeam';
 import CoreTeamHiring from '@/components/CoreTeamHiring';
 import Partnership from '@/components/Partnership';
@@ -64,10 +65,13 @@ export default function Home() {
       <section id="about" className="section-animate">
         <MovementPositioning />
       </section>
-      <section id="what-we-do" className="section-animate">
+      <section id="fomo" className="section-animate">
         <FOMOLayer />
       </section>
-      <section id="team" className="section-animate">
+      <section id="projects-showcase" className="section-animate">
+        <ProjectsShowcase />
+      </section>
+      <section id="core-team" className="section-animate">
         <CoreTeam />
       </section>
       <section id="projects" className="section-animate">
