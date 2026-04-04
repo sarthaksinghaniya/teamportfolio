@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Camera, ChevronLeft, ChevronRight, X } from 'lucide-react';
@@ -54,6 +55,7 @@ const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [loaded, setLoaded] = useState<Set<number>>(new Set());
   const [hovered, setHovered] = useState<number | null>(null);
+  const [mountFallbackShown, setMountFallbackShown] = useState(false);
 
   const orderedImages = useMemo(() => galleryImages, []);
 
@@ -94,6 +96,12 @@ const Gallery = () => {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [selectedIndex]);
+
+  // Fallback to show images even if onLoad is slow (e.g., heavy files or throttled dev server)
+  useEffect(() => {
+    const timer = window.setTimeout(() => setMountFallbackShown(true), 1200);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -164,13 +172,19 @@ const Gallery = () => {
                 >
                   <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg">
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm" />
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.caption}
-                      className={`w-full h-full object-cover transition-all duration-500 ${
-                        loaded.has(index) ? 'opacity-100' : 'opacity-0'
+                      fill
+                      sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
+                      priority={index < 2}
+                      loading={index < 4 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      className={`object-cover transition-all duration-400 ${
+                        loaded.has(index) || mountFallbackShown ? 'opacity-100' : 'opacity-0'
                       } ${hovered === index ? 'scale-110' : 'scale-100'}`}
                       onLoad={() => handleLoad(index)}
+                      placeholder="empty"
                     />
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
