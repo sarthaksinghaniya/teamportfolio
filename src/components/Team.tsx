@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const Team = () => {
   const teamMembers = [
@@ -212,15 +213,23 @@ const Team = () => {
               We're always looking for talented individuals who share our passion for innovation 
               and excellence. Let's build something amazing together.
             </p>
-            <motion.a
-              href="#contact"
+            <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => openTeamForm('member')}
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
             >
-              Get In Touch
+              Join as Member
               <ExternalLink size={18} className="ml-2" />
-            </motion.a>
+            </motion.button>
+            <div className="text-center mt-4">
+              <p className="text-gray-600 text-sm">
+                {FORM_CONFIG.member.trustIndicator}
+              </p>
+              <p className="text-gray-500 text-xs mt-1">
+                {FORM_CONFIG.member.timeEstimate}
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

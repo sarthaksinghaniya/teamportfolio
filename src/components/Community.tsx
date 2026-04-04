@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Rocket, Users, Lightbulb, Target, ArrowRight } from 'lucide-react';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const Community = () => {
   const values = [
@@ -133,14 +134,20 @@ const Community = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => openTeamForm('member')}
             className="btn-primary flex items-center gap-2 mx-auto text-lg px-8 py-4"
           >
-            Join TechNeekX Community
+            Join as Member
             <ArrowRight size={20} />
           </motion.button>
-          <p className="text-white/60 mt-4">
-            Be part of something extraordinary
-          </p>
+          <div className="text-center mt-4">
+            <p className="text-white/60 text-sm">
+              {FORM_CONFIG.member.trustIndicator}
+            </p>
+            <p className="text-white/40 text-xs mt-1">
+              {FORM_CONFIG.member.timeEstimate}
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

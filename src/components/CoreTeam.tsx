@@ -5,6 +5,7 @@ import { Users, Briefcase, Palette, Code, ExternalLink, Award, Target, ArrowRigh
 import Image from 'next/image';
 import { stats } from '@/constants/stats';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const CoreTeam = () => {
   const containerVariants = {
@@ -355,9 +356,10 @@ const CoreTeam = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => openTeamForm('coreTeam')}
                 className="btn-primary w-full"
               >
-                Apply Now
+                Apply for Core Team
               </motion.button>
             </motion.div>
           </motion.div>
@@ -373,9 +375,10 @@ const CoreTeam = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => openTeamForm('coreTeam')}
                 className="btn-primary"
               >
-                Apply Now
+                Apply for Core Team
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
