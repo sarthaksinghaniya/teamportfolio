@@ -109,19 +109,19 @@ const Navbar = () => {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'glass shadow-lg'
+            ? 'glass shadow-lg backdrop-blur-xl'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+        <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-4"
             >
-              <div className="w-10 h-10 overflow-hidden rounded-lg">
+              <div className="w-12 h-12 overflow-hidden rounded-xl shadow-lg">
                 <img 
                   src="/file_0000000067647206a22ff5daad754190.png" 
                   alt="TechNeekX Logo" 
@@ -134,22 +134,24 @@ const Navbar = () => {
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
+            <div className="hidden lg:block">
+              <div className="ml-16 flex items-center space-x-12">
                 {navItems.map((item) => (
                   <motion.button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`relative text-white/80 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-                      isActiveLink(item.href) ? 'nav-link-active' : ''
+                    className={`relative text-white/70 hover:text-white px-5 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      isActiveLink(item.href) 
+                        ? 'text-white bg-white/10 backdrop-blur-sm' 
+                        : 'hover:bg-white/5'
                     }`}
                   >
                     {item.name}
                     {/* Animated underline */}
                     <motion.div
-                      className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ 
                         scaleX: isActiveLink(item.href) ? 1 : 0 
@@ -162,9 +164,9 @@ const Navbar = () => {
             </div>
 
             {/* Right side actions */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-6">
               {/* Social Icons */}
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-4">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
@@ -175,10 +177,10 @@ const Navbar = () => {
                       transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
                     }}
                     whileTap={{ scale: 0.9 }}
-                    className="text-white/60 hover:text-white transition-colors duration-300"
+                    className="text-white/60 hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-white/10"
                     aria-label={social.label}
                   >
-                    <social.icon size={18} />
+                    <social.icon size={20} />
                   </motion.a>
                 ))}
               </div>
@@ -191,7 +193,7 @@ const Navbar = () => {
                 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => openTeamForm('member')}
-                className="btn-primary btn-ripple magnetic-button flex items-center gap-2 px-6 py-2 text-sm"
+                className="btn-primary btn-ripple magnetic-button flex items-center gap-2 px-8 py-3 text-sm font-medium shadow-lg"
               >
                 <UserPlus size={16} />
                 Join as Member
@@ -240,9 +242,9 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0, height: 'auto' }}
                 exit={{ opacity: 0, y: -20, height: 0 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden glass rounded-2xl mt-2 shadow-xl overflow-hidden"
+                className="md:hidden glass rounded-2xl mt-4 shadow-2xl backdrop-blur-xl overflow-hidden border border-white/10"
               >
-                <div className="px-2 pt-2 pb-3 space-y-1">
+                <div className="px-4 pt-4 pb-3 space-y-2">
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.name}
@@ -254,8 +256,10 @@ const Navbar = () => {
                         delay: index * 0.05,
                         ease: [0.22, 1, 0.36, 1]
                       }}
-                      className={`text-white/80 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 text-left ${
-                        isActiveLink(item.href) ? 'nav-link-active' : ''
+                      className={`text-white/70 hover:text-white block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 text-left ${
+                        isActiveLink(item.href) 
+                          ? 'text-white bg-white/10 backdrop-blur-sm' 
+                          : 'hover:bg-white/5'
                       }`}
                     >
                       {item.name}
@@ -263,14 +267,36 @@ const Navbar = () => {
                   ))}
                 </div>
                 
+                {/* Mobile Social Icons */}
+                <div className="px-4 py-3 border-t border-white/10">
+                  <div className="flex items-center justify-center space-x-4 mb-4">
+                    {socialLinks.map((social) => (
+                      <motion.a
+                        key={social.label}
+                        href={social.href}
+                        whileHover={{ 
+                          scale: 1.1, 
+                          rotate: 5,
+                          transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        className="text-white/60 hover:text-white transition-colors duration-300 p-3 rounded-xl hover:bg-white/10"
+                        aria-label={social.label}
+                      >
+                        <social.icon size={20} />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+                
                 {/* Mobile Join Button */}
-                <div className="px-2 py-3">
+                <div className="px-4 pb-4">
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() => openTeamForm('member')}
-                    className="btn-primary btn-ripple w-full flex items-center justify-center gap-2"
+                    className="btn-primary btn-ripple w-full flex items-center justify-center gap-2 py-4 text-base font-medium shadow-lg"
                   >
-                    <UserPlus size={16} />
+                    <UserPlus size={18} />
                     Join as Member
                   </motion.button>
                 </div>
