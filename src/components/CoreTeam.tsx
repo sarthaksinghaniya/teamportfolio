@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Briefcase, Palette, Code, ExternalLink, Award, Target, ArrowRight, UserPlus } from 'lucide-react';
+import { Users, Briefcase, Palette, Code, ExternalLink, Award, Target, ArrowRight, UserPlus, Mail, Phone, Linkedin, Github } from 'lucide-react';
 import Image from 'next/image';
 import { stats } from '@/constants/stats';
 import AnimatedCounter from '@/components/AnimatedCounter';
@@ -38,7 +38,13 @@ const CoreTeam = () => {
       description: "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand.",
       badge: "Core Team",
       image: "/nikhil.jpeg",
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-purple-500 to-pink-500",
+      contact: {
+        email: "seemayadav97950@gmail.com",
+        phone: "7524884044",
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
+        github: "https://github.com/sarthaksinghaniya"
+      }
     },
     {
       name: "Anshuman Soni",
@@ -46,7 +52,13 @@ const CoreTeam = () => {
       description: "Driving growth, reach, and strategic partnerships to scale TechNeekX globally.",
       badge: "Core Team",
       image: "/image.png",
-      gradient: "from-green-500 to-teal-500"
+      gradient: "from-green-500 to-teal-500",
+      contact: {
+        email: "anshuman70k@gmail.com",
+        phone: "7007659042",
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
+        github: "https://github.com/sarthaksinghaniya"
+      }
     },
     {
       name: "Hardik Talwar",
@@ -54,7 +66,13 @@ const CoreTeam = () => {
       description: "Building business strategy, sponsorships, and high-value collaborations.",
       badge: "Core Team",
       image: "/hardik.jpeg",
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      contact: {
+        email: "hardiktalwar2006@gmail.com",
+        phone: "7706859594",
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
+        github: "https://github.com/sarthaksinghaniya"
+      }
     }
   ];
 
@@ -154,6 +172,48 @@ const CoreTeam = () => {
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI/ML Engineer</span>
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Product Builder</span>
                 </div>
+                
+                {/* Founder Contact Information */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4 text-white/60" />
+                    <a href="mailto:sarthaksinghaniya789@gmail.com" className="text-white/60 hover:text-white text-sm transition-colors">
+                      sarthaksinghaniya789@gmail.com
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-white/60" />
+                    <a href="tel:6387860126" className="text-white/60 hover:text-white text-sm transition-colors">
+                      6387860126
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                    <a
+                      href="https://github.com/sarthaksinghaniya"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white transition-colors"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                    <a
+                      href="https://sarthaksinghaniya.netlify.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white text-sm transition-colors"
+                    >
+                      Portfolio
+                    </a>
+                  </div>
+                </div>
                 <div className="flex gap-4">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -212,9 +272,49 @@ const CoreTeam = () => {
                 
                 <h3 className="text-xl font-bold text-white mb-2">{member.name}</h3>
                 <p className="text-white/60 text-sm mb-3">{member.role}</p>
-                <p className="text-white/70 text-sm leading-relaxed">
+                <p className="text-white/70 text-sm leading-relaxed mb-4">
                   {member.description}
                 </p>
+                
+                {/* Contact Information */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-center gap-2">
+                    <a
+                      href={`mailto:${member.contact.email}`}
+                      className="text-white/60 hover:text-white text-xs flex items-center gap-1 transition-colors"
+                    >
+                      <Mail className="w-3 h-3" />
+                      {member.contact.email}
+                    </a>
+                  </div>
+                  <div className="flex items-center justify-center gap-2">
+                    <a
+                      href={`tel:${member.contact.phone}`}
+                      className="text-white/60 hover:text-white text-xs flex items-center gap-1 transition-colors"
+                    >
+                      <Phone className="w-3 h-3" />
+                      {member.contact.phone}
+                    </a>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <a
+                      href={member.contact.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white transition-colors"
+                    >
+                      <Linkedin className="w-3 h-3" />
+                    </a>
+                    <a
+                      href={member.contact.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white/60 hover:text-white transition-colors"
+                    >
+                      <Github className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
               </motion.div>
             ))}
 
