@@ -215,22 +215,28 @@ const CoreTeam = () => {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <motion.button
+                  <motion.a
+                    href="https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="btn-primary flex items-center gap-2"
                   >
                     Connect on LinkedIn
                     <ExternalLink size={16} />
-                  </motion.button>
-                  <motion.button
+                  </motion.a>
+                  <motion.a
+                    href="https://sarthaksinghaniya.netlify.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="btn-secondary flex items-center gap-2"
                   >
                     View Portfolio
                     <ArrowRight size={16} />
-                  </motion.button>
+                  </motion.a>
                 </div>
               </div>
             </div>
