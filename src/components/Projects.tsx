@@ -412,7 +412,10 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <motion.button
+          <motion.a
+            href="https://github.com/teamtechneekx"
+            target="_blank"
+            rel="noopener noreferrer"
             variants={itemVariants}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -420,7 +423,7 @@ const Projects = () => {
           >
             View All Projects
             <ArrowRight size={20} />
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
