@@ -7,79 +7,80 @@ import { useState, useEffect } from 'react';
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 
   const galleryImages = [
     { 
       src: "/gallery/frame-by-frame-1.jpg", 
-      title: "Frame by Frame Event",
-      category: "Media",
-      height: "h-64"
+      caption: "Late night building 🔥",
+      featured: true,
+      size: "large"
     },
     { 
       src: "/gallery/innvedx-hackathon-1.jpg", 
-      title: "InnVedX Hackathon",
-      category: "Hackathon",
-      height: "h-80"
+      caption: "First hackathon energy",
+      featured: false,
+      size: "medium"
     },
     { 
       src: "/gallery/vibe-designing-1.jpg", 
-      title: "Vibe Designing Competition",
-      category: "Design",
-      height: "h-56"
+      caption: "Real builders. Real work.",
+      featured: false,
+      size: "small"
     },
     { 
       src: "/gallery/kalpathon-2.jpg", 
-      title: "Kalpathon 2.0 Hackathon",
-      category: "Hackathon",
-      height: "h-72"
+      caption: "Moments that matter",
+      featured: true,
+      size: "large"
     },
     { 
       src: "/gallery/frame-by-frame-2.jpg", 
-      title: "Photography Workshop",
-      category: "Media",
-      height: "h-60"
+      caption: "Creativity unleashed",
+      featured: false,
+      size: "medium"
     },
     { 
       src: "/gallery/innvedx-hackathon-2.jpg", 
-      title: "Hackathon Winners",
-      category: "Hackathon",
-      height: "h-64"
+      caption: "Building the future",
+      featured: false,
+      size: "small"
     },
     { 
       src: "/gallery/vibe-designing-2.jpg", 
-      title: "UI/UX Design Session",
-      category: "Design",
-      height: "h-80"
+      caption: "Where ideas come alive",
+      featured: true,
+      size: "large"
     },
     { 
       src: "/gallery/team-collaboration.jpg", 
-      title: "Team Collaboration",
-      category: "Community",
-      height: "h-56"
+      caption: "Together we rise",
+      featured: false,
+      size: "medium"
     },
     { 
       src: "/gallery/presentation-1.jpg", 
-      title: "Project Presentation",
-      category: "Hackathon",
-      height: "h-72"
+      caption: "Innovation in action",
+      featured: false,
+      size: "small"
     },
     { 
       src: "/gallery/networking-1.jpg", 
-      title: "Community Networking",
-      category: "Community",
-      height: "h-64"
+      caption: "Community vibes only",
+      featured: true,
+      size: "large"
     },
     { 
       src: "/gallery/award-ceremony.jpg", 
-      title: "Award Ceremony",
-      category: "Event",
-      height: "h-56"
+      caption: "Celebrating wins together",
+      featured: false,
+      size: "medium"
     },
     { 
       src: "/gallery/brainstorming-1.jpg", 
-      title: "Team Brainstorming",
-      category: "Community",
-      height: "h-80"
+      caption: "Magic happens here",
+      featured: false,
+      size: "small"
     }
   ];
 
@@ -126,16 +127,17 @@ const Gallery = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         ease: [0.22, 1, 0.36, 1]
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
     visible: {
       opacity: 1,
+      scale: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -144,28 +146,25 @@ const Gallery = () => {
     }
   };
 
+  const getImageSize = (size: string) => {
+    switch(size) {
+      case 'large': return 'col-span-2 row-span-2';
+      case 'medium': return 'col-span-1 row-span-2';
+      case 'small': return 'col-span-1 row-span-1';
+      default: return 'col-span-1 row-span-1';
+    }
+  };
+
   return (
     <>
-      <section className="py-20 relative">
-        {/* Background decoration */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Enhanced Background */}
         <div className="absolute inset-0">
           <motion.div 
-            className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/15 to-pink-500/15 top-10 right-10"
+            className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 top-10 right-10"
             animate={{ 
-              scale: [1, 1.2, 1],
+              scale: [1, 1.3, 1],
               rotate: [0, 180, 360]
-            }}
-            transition={{ 
-              duration: 20, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          ></motion.div>
-          <motion.div 
-            className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/15 to-purple-500/15 bottom-10 left-10"
-            animate={{ 
-              scale: [1.2, 1, 1.2],
-              rotate: [360, 180, 0]
             }}
             transition={{ 
               duration: 25, 
@@ -173,6 +172,20 @@ const Gallery = () => {
               ease: "linear"
             }}
           ></motion.div>
+          <motion.div 
+            className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 bottom-10 left-10"
+            animate={{ 
+              scale: [1.3, 1, 1.3],
+              rotate: [360, 180, 0]
+            }}
+            transition={{ 
+              duration: 30, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          ></motion.div>
+          {/* Noise texture overlay */}
+          <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')]"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -206,65 +219,85 @@ const Gallery = () => {
             </motion.p>
           </motion.div>
 
-          {/* Masonry Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6"
-          >
-            {galleryImages.map((image, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="break-inside-avoid mb-6 group cursor-pointer"
-                onClick={() => openLightbox(index)}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="relative overflow-hidden rounded-2xl glass border border-white/10 hover:border-white/20 transition-all duration-300">
-                  {/* Image */}
-                  <div className={`${image.height} relative`}>
+          {/* Dynamic Masonry + Floating Layout */}
+          <div className="relative">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[200px]"
+            >
+              {galleryImages.map((image, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className={`${getImageSize(image.size)} relative group cursor-pointer`}
+                  onClick={() => openLightbox(index)}
+                  onMouseEnter={() => setHoveredImage(index)}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotate: 1,
+                    zIndex: 10
+                  }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  style={{
+                    transform: `translateY(${Math.sin(index * 0.5) * 8}px)`
+                  }}
+                >
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-lg">
                     {/* Blur placeholder */}
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm"></div>
                     
                     {/* Actual image */}
                     <img
                       src={image.src}
-                      alt={image.title}
+                      alt={image.caption}
                       className={`w-full h-full object-cover transition-all duration-500 ${
                         loadedImages.has(index) ? 'opacity-100' : 'opacity-0'
-                      }`}
+                      } ${hoveredImage === index ? 'scale-110' : 'scale-100'}`}
                       onLoad={() => handleImageLoad(index)}
                     />
                     
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Maximize2 className="w-8 h-8 text-white" />
-                    </div>
+                    {/* Hover overlay with caption */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: hoveredImage === index ? 1 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <p className="text-white font-medium text-sm">
+                        {image.caption}
+                      </p>
+                    </motion.div>
+
+                    {/* Featured badge */}
+                    {image.featured && (
+                      <motion.div
+                        className="absolute top-3 right-3 px-2 py-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold rounded-full"
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        ✨
+                      </motion.div>
+                    )}
                   </div>
-                  
-                  {/* Image info */}
-                  <div className="p-4">
-                    <h3 className="text-white font-semibold mb-1">{image.title}</h3>
-                    <p className="text-white/60 text-sm">{image.category}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Enhanced Lightbox Modal */}
       {selectedImage !== null && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
           <motion.div
@@ -286,33 +319,33 @@ const Gallery = () => {
             {/* Navigation buttons */}
             <button
               onClick={() => navigateImage('prev')}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full p-3"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full p-3 backdrop-blur-sm"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             
             <button
               onClick={() => navigateImage('next')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full p-3"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full p-3 backdrop-blur-sm"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
 
             {/* Image */}
             <div className="relative">
-              <img
+              <motion.img
                 src={galleryImages[selectedImage].src}
-                alt={galleryImages[selectedImage].title}
-                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl"
+                alt={galleryImages[selectedImage].caption}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.3 }}
               />
               
-              {/* Image info */}
+              {/* Caption */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-2xl">
-                <h3 className="text-white text-xl font-semibold mb-1">
-                  {galleryImages[selectedImage].title}
-                </h3>
-                <p className="text-white/80">
-                  {galleryImages[selectedImage].category}
+                <p className="text-white text-lg font-medium">
+                  {galleryImages[selectedImage].caption}
                 </p>
               </div>
             </div>
