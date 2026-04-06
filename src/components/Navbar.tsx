@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, UserPlus } from 'lucide-react';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,8 +114,8 @@ const Navbar = () => {
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="flex justify-between items-center h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -238,87 +239,89 @@ const Navbar = () => {
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -20, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: 'auto' }}
-                exit={{ opacity: 0, y: -20, height: 0 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden glass rounded-2xl mt-4 shadow-2xl backdrop-blur-xl overflow-hidden border border-white/10"
+                className="fixed inset-0 z-40 md:hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                <div className="px-4 pt-4 pb-3 space-y-2">
-                  {navItems.map((item, index) => (
-                    <motion.button
-                      key={item.name}
-                      onClick={() => handleNavClick(item.href)}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        duration: 0.3, 
-                        delay: index * 0.05,
-                        ease: [0.22, 1, 0.36, 1]
-                      }}
-                      className={`text-white/70 hover:text-white block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 text-left ${
-                        isActiveLink(item.href) 
-                          ? 'text-white bg-white/10 backdrop-blur-sm' 
-                          : 'hover:bg-white/5'
-                      }`}
-                    >
-                      {item.name}
-                    </motion.button>
-                  ))}
-                </div>
-                
-                {/* Mobile Social Icons */}
-                <div className="px-4 py-3 border-t border-white/10">
-                  <div className="flex items-center justify-center space-x-4 mb-4">
-                    {socialLinks.map((social) => (
-                      <motion.a
-                        key={social.label}
-                        href={social.href}
-                        whileHover={{ 
-                          scale: 1.1, 
-                          rotate: 5,
-                          transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
-                        }}
-                        whileTap={{ scale: 0.9 }}
-                        className="text-white/60 hover:text-white transition-colors duration-300 p-3 rounded-xl hover:bg-white/10"
-                        aria-label={social.label}
-                      >
-                        <social.icon size={20} />
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Mobile Join Button */}
-                <div className="px-4 pb-4">
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => openTeamForm('member')}
-                    className="btn-primary btn-ripple w-full flex items-center justify-center gap-2 py-4 text-base font-medium shadow-lg"
-                  >
-                    <UserPlus size={18} />
-                    Join as Member
-                  </motion.button>
-                </div>
-                
-                <motion.div 
-                  className="flex justify-center space-x-6 pt-4 border-t border-white/20"
+                <motion.div
+                  className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                />
+
+                <motion.div
+                  ref={mobileMenuRef}
+                  initial={{ x: '100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '100%' }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 28 }}
+                  className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-gradient-to-b from-gray-900/95 to-gray-900/80 border-l border-white/10 shadow-2xl px-6 py-8 flex flex-col space-y-6"
                 >
-                  {socialLinks.map((social) => (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="text-white/60 hover:text-white transition-colors duration-300"
-                      aria-label={social.label}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 overflow-hidden rounded-lg">
+                        <img
+                          src="/file_0000000067647206a22ff5daad754190.png"
+                          alt="TechNeekX Logo"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <span className="text-lg font-semibold text-white">TechNeekX</span>
+                    </div>
+                    <motion.button
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-white/70 hover:text-white"
                     >
-                      <social.icon size={20} />
-                    </motion.a>
-                  ))}
+                      <X size={24} />
+                    </motion.button>
+                  </div>
+
+                  <div className="flex-1 flex flex-col justify-center space-y-3">
+                    {navItems.map((item, index) => (
+                      <motion.button
+                        key={item.name}
+                        onClick={() => handleNavClick(item.href)}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.25, delay: index * 0.05 }}
+                        className={`w-full text-left px-4 py-3 rounded-2xl text-base font-semibold ${
+                          isActiveLink(item.href)
+                            ? 'bg-white/10 text-white'
+                            : 'text-white/80 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        {item.name}
+                      </motion.button>
+                    ))}
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-center space-x-4">
+                      {socialLinks.map((social) => (
+                        <motion.a
+                          key={social.label}
+                          href={social.href}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="text-white/70 hover:text-white p-3 rounded-xl bg-white/5"
+                        >
+                          <social.icon size={20} />
+                        </motion.a>
+                      ))}
+                    </div>
+                    <motion.button
+                      whileTap={{ scale: 0.96 }}
+                      onClick={() => openTeamForm('member')}
+                      className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-lg"
+                    >
+                      Join as Member
+                    </motion.button>
+                  </div>
                 </motion.div>
               </motion.div>
             )}

@@ -36,8 +36,10 @@ const Gallery = () => {
   const orderedImages = useMemo(() => galleryImages, []);
   const [active, setActive] = useState(0);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const lastScrollRef = useRef(0);
   const touchStartY = useRef<number | null>(null);
+  const mobileCarouselRef = useRef<HTMLDivElement | null>(null);
 
   // Tilt on hover for active card
   const tiltX = useMotionValue(0);
@@ -48,12 +50,20 @@ const Gallery = () => {
   // Idle auto-advance
   useEffect(() => {
     const id = window.setInterval(() => {
-      if (!isInteracting) {
+      if (!isInteracting && !isMobile) {
         setActive((prev) => (prev + 1) % orderedImages.length);
       }
     }, 5000);
     return () => window.clearInterval(id);
-  }, [isInteracting, orderedImages.length]);
+  }, [isInteracting, orderedImages.length, isMobile]);
+
+  // Screen size detection
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const clampIndex = (value: number) => {
     const len = orderedImages.length;
@@ -65,6 +75,7 @@ const Gallery = () => {
 
   // Wheel navigation (debounced)
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     const now = Date.now();
     if (now - lastScrollRef.current < 450) return;
     lastScrollRef.current = now;
@@ -76,9 +87,12 @@ const Gallery = () => {
 
   // Touch swipe for mobile
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartY.current = e.touches[0].clientY;
+    if (!isMobile) {
+      touchStartY.current = e.touches[0].clientY;
+    }
   };
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     if (touchStartY.current === null) return;
     const delta = e.changedTouches[0].clientY - touchStartY.current;
     if (Math.abs(delta) > 40) {
@@ -90,6 +104,7 @@ const Gallery = () => {
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -98,6 +113,7 @@ const Gallery = () => {
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     tiltX.set(0);
     tiltY.set(0);
   };
@@ -142,70 +158,111 @@ const Gallery = () => {
             </p>
           </div>
 
-          <div
-            className="relative h-[70vh] sm:h-[75vh] flex items-center justify-center"
-            style={{ perspective: `${perspective}px` }}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-          >
-            {orderedImages.map((image, index) => {
-              const offset = ((index - active) % orderedImages.length + orderedImages.length) % orderedImages.length;
-              const depth = offset === 0 ? 0 : Math.min(offset, 4);
-              const isActive = offset === 0;
-
-              const translateZ = isActive ? 180 : Math.max(60 - depth * 30, -120);
-              const translateY = isActive ? 0 : depth * 20;
-              const scale = isActive ? 1 : 1 - depth * 0.08;
-              const opacity = isActive ? 1 : Math.max(0.2, 0.85 - depth * 0.15);
-              const blur = isActive ? '0px' : `${depth * 2}px`;
-              const tilt = isActive ? 0 : depth * 1.2;
-
-              const glowColor =
-                image.src.includes('gal') || image.src.includes('main') ? 'rgba(236, 72, 153, 0.35)' : 'rgba(59,130,246,0.35)';
-
-              return (
-                <motion.div
-                  key={image.src}
-                  initial={{ opacity: 0, scale: 0.95, z: -150 }}
-                  animate={{
-                    opacity,
-                    scale,
-                    y: translateY,
-                    z: translateZ,
-                    rotateZ: isActive ? 0 : tilt * 0.6,
-                    filter: `blur(${blur})`,
-                  }}
-                  transition={{ type: 'spring', stiffness: 140, damping: 18 }}
-                  className="absolute w-full max-w-xl rounded-[28px] overflow-hidden shadow-2xl"
-                  style={{
-                    transformStyle: 'preserve-3d',
-                    rotateX: isActive ? tiltXSpring : tilt,
-                    rotateY: isActive ? tiltYSpring : tilt * 0.4,
-                    zIndex: orderedImages.length - depth,
-                    boxShadow: isActive
-                      ? `0 25px 60px -20px rgba(0,0,0,0.45), 0 0 45px 0 ${glowColor}`
-                      : '0 20px 50px -25px rgba(0,0,0,0.35)',
-                    backdropFilter: 'blur(8px)',
-                  }}
-                >
-                  <div className="relative w-full aspect-[4/5] bg-gradient-to-br from-white/10 to-white/5 rounded-[28px] overflow-hidden border border-white/10">
-                    <Image
-                      src={image.src}
-                      alt={image.caption}
-                      fill
-                      sizes="(min-width: 1024px) 480px, 90vw"
-                      priority={index < 2}
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <div className="text-white text-lg font-semibold drop-shadow-lg">{image.caption}</div>
+          {isMobile ? (
+            <div
+              ref={mobileCarouselRef}
+              className="relative h-[480px] flex overflow-x-auto snap-x snap-mandatory gap-4 px-1 py-4"
+              onScroll={() => {
+                if (!mobileCarouselRef.current) return;
+                const container = mobileCarouselRef.current;
+                const cardWidth = container.clientWidth * 0.9;
+                const nextIndex = Math.round(container.scrollLeft / cardWidth);
+                setActive(clampIndex(nextIndex));
+              }}
+            >
+              {orderedImages.map((image, index) => {
+                const isCurrent = index === active;
+                return (
+                  <motion.div
+                    key={image.src}
+                    className="snap-center shrink-0 basis-[90%] rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-white/5"
+                    animate={{ scale: isCurrent ? 1 : 0.94, opacity: isCurrent ? 1 : 0.7 }}
+                    transition={{ type: 'spring', stiffness: 180, damping: 20 }}
+                  >
+                    <div className="relative w-full aspect-[4/5]">
+                      <Image
+                        src={image.src}
+                        alt={image.caption}
+                        fill
+                        sizes="90vw"
+                        priority={index < 2}
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <div className="text-white text-base font-semibold drop-shadow">{image.caption}</div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          ) : (
+            <div
+              className="relative h-[70vh] sm:h-[75vh] flex items-center justify-center"
+              style={{ perspective: `${perspective}px` }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              {orderedImages.map((image, index) => {
+                const offset = ((index - active) % orderedImages.length + orderedImages.length) % orderedImages.length;
+                const depth = offset === 0 ? 0 : Math.min(offset, 4);
+                const isActive = offset === 0;
+
+                const translateZ = isActive ? 180 : Math.max(60 - depth * 30, -120);
+                const translateY = isActive ? 0 : depth * 20;
+                const scale = isActive ? 1 : 1 - depth * 0.08;
+                const opacity = isActive ? 1 : Math.max(0.2, 0.85 - depth * 0.15);
+                const blur = isActive ? '0px' : `${depth * 2}px`;
+                const tilt = isActive ? 0 : depth * 1.2;
+
+                const glowColor =
+                  image.src.includes('gal') || image.src.includes('main') ? 'rgba(236, 72, 153, 0.35)' : 'rgba(59,130,246,0.35)';
+
+                return (
+                  <motion.div
+                    key={image.src}
+                    initial={{ opacity: 0, scale: 0.95, z: -150 }}
+                    animate={{
+                      opacity,
+                      scale,
+                      y: translateY,
+                      z: translateZ,
+                      rotateZ: isActive ? 0 : tilt * 0.6,
+                      filter: `blur(${blur})`,
+                    }}
+                    transition={{ type: 'spring', stiffness: 140, damping: 18 }}
+                    className="absolute w-full max-w-xl rounded-[28px] overflow-hidden shadow-2xl"
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      rotateX: isActive ? tiltXSpring : tilt,
+                      rotateY: isActive ? tiltYSpring : tilt * 0.4,
+                      zIndex: orderedImages.length - depth,
+                      boxShadow: isActive
+                        ? `0 25px 60px -20px rgba(0,0,0,0.45), 0 0 45px 0 ${glowColor}`
+                        : '0 20px 50px -25px rgba(0,0,0,0.35)',
+                      backdropFilter: 'blur(8px)',
+                    }}
+                  >
+                    <div className="relative w-full aspect-[4/5] bg-gradient-to-br from-white/10 to-white/5 rounded-[28px] overflow-hidden border border-white/10">
+                      <Image
+                        src={image.src}
+                        alt={image.caption}
+                        fill
+                        sizes="(min-width: 1024px) 480px, 90vw"
+                        priority={index < 2}
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <div className="text-white text-lg font-semibold drop-shadow-lg">{image.caption}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
     </>
