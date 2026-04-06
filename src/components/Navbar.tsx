@@ -110,31 +110,29 @@ const Navbar = () => {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'glass shadow-lg backdrop-blur-xl'
-            : 'bg-transparent'
+            ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200'
+            : 'bg-white/70 backdrop-blur-md border-b border-gray-200'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+          <div className="flex items-center justify-between min-h-[60px] sm:h-20 py-3">
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-4"
+              className="flex items-center gap-2 sm:gap-3"
             >
-                <div className="w-12 h-12 overflow-hidden rounded-xl shadow-lg relative">
-                  <Image 
-                    src="/file_0000000067647206a22ff5daad754190.png" 
-                    alt="TechNeekX Logo" 
-                    fill
-                    sizes="48px"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              <h1 className="text-2xl font-bold text-gradient">
-                TechNeekX
-              </h1>
+              <div className="w-8 h-8 sm:w-12 sm:h-12 overflow-hidden rounded-xl shadow-lg relative">
+                <Image 
+                  src="/file_0000000067647206a22ff5daad754190.png" 
+                  alt="TechNeekX Logo" 
+                  fill
+                  sizes="48px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <h1 className="text-lg sm:text-2xl font-semibold text-slate-900">TechNeekX</h1>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -146,7 +144,7 @@ const Navbar = () => {
                     onClick={() => handleNavClick(item.href)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                className={`relative text-slate-700 hover:text-slate-900 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`relative text-slate-700 hover:text-slate-900 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                   isActiveLink(item.href) 
                     ? 'text-slate-900 bg-white/80' 
                     : 'hover:bg-white/60'
@@ -205,11 +203,11 @@ const Navbar = () => {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center justify-center">
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-white/80 hover:text-white transition-colors duration-300"
+                className="text-slate-800 hover:text-slate-900 transition-colors duration-300 w-10 h-10 flex items-center justify-center"
               >
                 <AnimatePresence mode="wait">
                   {isMobileMenuOpen ? (
@@ -220,7 +218,7 @@ const Navbar = () => {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <X size={24} />
+                      <X size={24} className="w-6 h-6" />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -230,7 +228,7 @@ const Navbar = () => {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Menu size={24} />
+                      <Menu size={24} className="w-6 h-6" />
                     </motion.div>
                   )}
                 </AnimatePresence>
