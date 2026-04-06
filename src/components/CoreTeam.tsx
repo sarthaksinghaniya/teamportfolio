@@ -276,12 +276,29 @@ const CoreTeam = () => {
                 <h3 className="text-base font-semibold text-slate-900">{member.name}</h3>
                 <p className="text-sm text-slate-500">{member.role}</p>
 
-                <div className="flex items-center gap-3 text-slate-500 text-xs mt-1">
-                  <a href={member.contact.linkedin} target="_blank" rel="noreferrer" className="hover:text-slate-700">LinkedIn</a>
-                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                  <a href={member.contact.github} target="_blank" rel="noreferrer" className="hover:text-slate-700">GitHub</a>
-                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                  <a href={`mailto:${member.contact.email}`} className="hover:text-slate-700">Email</a>
+                <div className="flex items-center justify-center gap-3 mt-1">
+                  <a
+                    href={member.contact.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-9 h-9 rounded-full bg-white/80 border border-white/60 flex items-center justify-center text-slate-600 hover:text-slate-800 shadow-sm transition"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={member.contact.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-9 h-9 rounded-full bg-white/80 border border-white/60 flex items-center justify-center text-slate-600 hover:text-slate-800 shadow-sm transition"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={`mailto:${member.contact.email}`}
+                    className="w-9 h-9 rounded-full bg-white/80 border border-white/60 flex items-center justify-center text-slate-600 hover:text-slate-800 shadow-sm transition"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
                 </div>
               </motion.div>
             ))}
