@@ -134,7 +134,7 @@ const EliteClub = () => {
                   <span className={`text-lg font-medium ${
                     item.included 
                       ? 'text-white' 
-                      : 'text-white/50 line-through'
+                      : 'text-red-500 line-through'
                   }`}>
                     {item.text}
                   </span>
