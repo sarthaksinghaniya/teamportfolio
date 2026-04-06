@@ -23,6 +23,7 @@ import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
 import LiveActivityFeed from '@/components/LiveActivityFeed';
 import useSectionAnimation from '@/hooks/useSectionAnimation';
+import StickyCTA from '@/components/StickyCTA';
 
 // Scroll Progress Component
 const ScrollProgress = () => {
@@ -56,6 +57,7 @@ export default function Home() {
       <ScrollProgress />
       <Loader />
       <Navbar />
+      <StickyCTA />
       <section id="hero" className="section-animate">
         <Hero />
       </section>

@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Rocket, ArrowRight, Sparkles } from 'lucide-react';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { Rocket, ArrowRight } from 'lucide-react';
+import { openTeamForm } from '@/config/teamForms';
 
 const FinalCTA = () => {
   const containerVariants = {
@@ -30,46 +30,8 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="py-20 relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0">
-        <motion.div 
-          className="gradient-blob w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        ></motion.div>
-        <motion.div 
-          className="gradient-blob w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 bottom-1/3 right-1/3"
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0]
-          }}
-          transition={{ 
-            duration: 25, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        ></motion.div>
-        <motion.div 
-          className="gradient-blob w-64 h-64 bg-gradient-to-r from-pink-500/20 to-blue-500/20 top-1/3 left-1/3"
-          animate={{ 
-            scale: [1, 1.5, 1],
-            rotate: [0, 270, 540]
-          }}
-          transition={{ 
-            duration: 30, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        ></motion.div>
-      </div>
+    <section className="py-16 md:py-24 relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,77,141,0.08),transparent_35%),radial-gradient(circle_at_70%_40%,rgba(124,58,237,0.08),transparent_35%)]" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -79,45 +41,27 @@ const FinalCTA = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          {/* Icon */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 mb-8 glow"
+            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-white/60 mb-6"
           >
-            <motion.div
-              animate={{ 
-                rotate: [0, 10, -10, 0],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-            >
-              <Rocket className="w-10 h-10 text-white" />
-            </motion.div>
+            <Rocket className="w-8 h-8 text-[var(--accent-primary)]" />
           </motion.div>
 
-          {/* Main Headline */}
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 heading-premium"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4 heading-premium"
           >
-            Join Before
-            <br />
-            <span className="text-gradient">Everyone Else Does</span>
+            Ready to build, learn, and grow?
           </motion.h2>
           
-          {/* Subheading */}
           <motion.p
             variants={itemVariants}
-            className="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed subheading-premium"
+            className="text-base sm:text-lg text-[var(--text-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Be part of the early builders shaping TechNeekX
+            Get the playbook, partners, and community to ship faster than ever. Join TechNeekX and move from idea to launch with a crew that’s building alongside you.
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
@@ -126,38 +70,37 @@ const FinalCTA = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => openTeamForm('member')}
-              className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
+              className="btn-primary btn-ripple w-full sm:w-auto px-7 py-3"
             >
-              Join as Member
+              Start with the community
             </motion.button>
             
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => openTeamForm('coreTeam')}
-              className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
+              className="btn-secondary btn-ripple w-full sm:w-auto px-7 py-3 flex items-center gap-2"
             >
-              Apply for Core Team
-              <ArrowRight size={20} />
+              Lead a build sprint
+              <ArrowRight size={18} />
             </motion.button>
           </motion.div>
 
-          {/* Trust indicators */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center items-center gap-8 text-white/60 mt-8"
+            className="flex flex-wrap justify-center items-center gap-6 text-[var(--text-secondary)] mt-8"
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-orange-400"></div>
+              <div className="w-2 h-2 rounded-full bg-[var(--accent-primary)]"></div>
               <span className="text-sm font-medium">Early mover advantage</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-purple-400"></div>
-              <span className="text-sm font-medium">Limited opportunity</span>
+              <div className="w-2 h-2 rounded-full bg-[var(--accent-secondary)]"></div>
+              <span className="text-sm font-medium">Limited cohort slots</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-              <span className="text-sm font-medium">First-mover benefits</span>
+              <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+              <span className="text-sm font-medium">Hands-on build partners</span>
             </div>
           </motion.div>
         </motion.div>

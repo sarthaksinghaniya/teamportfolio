@@ -78,163 +78,93 @@ const Hero = () => {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background Gradient */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y }}
-      >
-        {/* Main gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20"></div>
-        
-        {/* Floating gradient blobs with parallax */}
-        <motion.div 
-          className="gradient-blob w-96 h-96 bg-gradient-to-r from-blue-500 to-purple-500 top-1/4 left-1/4"
-          style={{ 
-            x: useSpring(mousePosition.x * 0.5),
-            y: useSpring(mousePosition.y * 0.5)
-          }}
-          animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="gradient-blob w-80 h-80 bg-gradient-to-r from-purple-500 to-pink-500 bottom-1/4 right-1/4"
-          style={{ 
-            x: useSpring(mousePosition.x * -0.3),
-            y: useSpring(mousePosition.y * -0.3)
-          }}
-          animate={{ 
-            scale: [1.1, 1, 1.1],
-            rotate: [360, 180, 0]
-          }}
-          transition={{ 
-            duration: 25, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        ></motion.div>
-        
-        <motion.div 
-          className="gradient-blob w-64 h-64 bg-gradient-to-r from-pink-500 to-blue-500 top-1/2 right-1/3"
-          style={{ 
-            x: useSpring(mousePosition.x * 0.4),
-            y: useSpring(mousePosition.y * 0.4)
-          }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, 270, 540]
-          }}
-          transition={{ 
-            duration: 30, 
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        ></motion.div>
+      {/* Minimal background with soft highlights */}
+      <motion.div className="absolute inset-0" style={{ y }}>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,77,141,0.08),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(124,58,237,0.1),transparent_32%),radial-gradient(circle_at_50%_70%,rgba(15,23,42,0.06),transparent_45%)]" />
       </motion.div>
 
       {/* Content */}
-      <motion.div 
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto stagger-children"
+      <motion.div
+        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto stagger-children"
         style={{ opacity }}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Brand name with icon */}
-        <motion.div 
-          className="flex items-center justify-center mb-6"
-          variants={itemVariants}
-        >
+        {/* Brand + micro headline */}
+        <motion.div className="flex items-center justify-center mb-4" variants={itemVariants}>
           <motion.div
-            animate={{ 
-              rotate: [0, 10, -10, 0],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity,
-              ease: [0.22, 1, 0.36, 1]
-            }}
+            animate={{ rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 4, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Sparkles className="w-8 h-8 text-yellow-400 mr-3" />
+            <Sparkles className="w-7 h-7 text-[var(--accent-primary)] mr-3" />
           </motion.div>
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold heading-premium">
-            <span className="text-gradient">
-              TechNeekX
-            </span>
-          </h1>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--text-secondary)]">
+            India’s Builder Operating System
+          </p>
         </motion.div>
-        
+
         {/* Main headline */}
         <motion.h2
           variants={itemVariants}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight heading-premium"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4 leading-tight heading-premium"
         >
-          India's Emerging AI
-          <br />
-          <span className="text-gradient">Builder Ecosystem</span>
+          Ship faster, win hackathons, and turn ideas into launch-ready products with TechNeekX.
         </motion.h2>
-        
+
         {/* Subheading */}
         <motion.p
           variants={itemVariants}
-          className="text-xl sm:text-2xl text-white/80 mb-8 max-w-4xl mx-auto leading-relaxed font-light subheading-premium"
+          className="text-base sm:text-lg text-[var(--text-secondary)] mb-8 max-w-3xl mx-auto leading-relaxed"
         >
-          We help developers, innovators, and creators build real-world tech, 
-          win hackathons, and launch impactful products.
+          We’re the student-led network that pairs hands-on build sprints, battle-tested playbooks, and a community of top operators so you can go from concept to shipped in weeks—not months.
         </motion.p>
-
-        {/* Trust indicators */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap justify-center items-center gap-8 mb-12 text-white/90"
-        >
-          {[
-            { icon: TrendingUp, text: <AnimatedCounter from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />, color: "text-green-400" },
-            { icon: Award, text: "Top National Rankings", color: "text-yellow-400" },
-            { icon: Sparkles, text: <AnimatedCounter from={0} to={stats.aiProductsNumber} suffix="+ AI Products" />, color: "text-purple-400" },
-            { icon: Globe, text: "International Recognition", color: "text-blue-400" }
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2"
-            >
-              <item.icon className={`w-5 h-5 ${item.color}`} />
-              <span className="font-semibold">{item.text}</span>
-            </motion.div>
-          ))}
-        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10"
         >
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => openTeamForm('coreTeam')}
-            className="btn-primary btn-ripple magnetic-button glow relative overflow-hidden"
+            onClick={() => openTeamForm('member')}
+            className="btn-primary w-full sm:w-auto px-7 py-3"
           >
-            Apply for Core Team
+            Start your TechNeekX journey
           </motion.button>
-          
+
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => openTeamForm('member')}
-            className="btn-secondary btn-ripple magnetic-button relative overflow-hidden"
+            onClick={() => document.getElementById('social-proof')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-secondary w-full sm:w-auto px-7 py-3 flex items-center gap-2"
           >
-            Join as Member
+            See how we win
+            <ChevronDown size={18} />
           </motion.button>
+        </motion.div>
+
+        {/* Trust indicators */}
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 justify-center items-center mb-4"
+        >
+          {[
+            { icon: TrendingUp, text: <AnimatedCounter from={0} to={stats.hackathonsNumber} suffix="+ hackathons conquered" /> },
+            { icon: Award, text: "Built by top student developers" },
+            { icon: Sparkles, text: <AnimatedCounter from={0} to={stats.aiProductsNumber} suffix="+ AI launches" /> },
+            { icon: Globe, text: "Teams across India" }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.03, y: -4 }}
+              className="glass rounded-2xl px-4 py-3 flex items-center gap-3 justify-center text-left shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
+            >
+              <item.icon className="w-5 h-5 text-[var(--accent-secondary)]" />
+              <span className="text-sm font-semibold text-[var(--text-primary)]">{item.text}</span>
+            </motion.div>
+          ))}
         </motion.div>
       </motion.div>
 
@@ -249,7 +179,7 @@ const Hero = () => {
           href="#social-proof"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-white/60 hover:text-white transition-colors duration-300"
+          className="flex flex-col items-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300"
         >
           <span className="text-sm mb-2 font-medium">Scroll to explore</span>
           <ChevronDown size={24} />
