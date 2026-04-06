@@ -1,10 +1,8 @@
 'use client';
 
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
-import { ChevronDown, Sparkles, TrendingUp, Award, Globe } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { stats } from '@/constants/stats';
-import AnimatedCounter from '@/components/AnimatedCounter';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const Hero = () => {
@@ -79,113 +77,48 @@ const Hero = () => {
   };
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Minimal background with soft highlights */}
+    <section ref={heroRef} className="relative overflow-hidden">
       <motion.div className="absolute inset-0" style={{ y }}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,77,141,0.08),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(124,58,237,0.1),transparent_32%),radial-gradient(circle_at_50%_70%,rgba(15,23,42,0.06),transparent_45%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,77,141,0.05),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(124,58,237,0.06),transparent_32%),radial-gradient(circle_at_50%_70%,rgba(15,23,42,0.04),transparent_45%)]" />
       </motion.div>
 
-      {/* Content */}
       <motion.div
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto stagger-children"
+        className="relative z-10 max-w-md mx-auto px-4 py-12 sm:py-16 flex flex-col items-center text-center"
         style={{ opacity }}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Brand + micro headline */}
-        <motion.div className="flex items-center justify-center mb-4" variants={itemVariants}>
-          <motion.div
-            animate={{ rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }}
-            transition={{ duration: 4, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Sparkles className="w-7 h-7 text-[var(--accent-primary)] mr-3" />
-          </motion.div>
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+        <motion.div className="flex items-center justify-center mb-3" variants={itemVariants}>
+          <Sparkles className="w-6 h-6 text-[var(--accent-primary)] mr-2" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
             India’s Builder Operating System
           </p>
         </motion.div>
 
-        {/* Main headline */}
         <motion.h2
           variants={itemVariants}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight heading-premium"
+          className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 leading-tight"
         >
-          Ship faster, win hackathons, and turn ideas into launch-ready products with TechNeekX.
+          Ship faster, win hackathons, and launch with TechNeekX.
         </motion.h2>
 
-        {/* Subheading */}
         <motion.p
           variants={itemVariants}
-          className="text-base sm:text-lg text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed"
+          className="mt-3 text-sm text-slate-600 leading-relaxed"
         >
-          We’re the student-led network that pairs hands-on build sprints, battle-tested playbooks, and a community of top operators so you can go from concept to shipped in weeks—not months.
+          A student-led network giving you the playbook, partners, and community to turn ideas into launch-ready products in weeks—not months.
         </motion.p>
 
-        {/* CTA Buttons */}
-        <motion.div
+        <motion.button
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => openTeamForm('member')}
+          className="w-full mt-5 py-3 rounded-xl bg-[var(--accent-primary)] text-white font-semibold shadow-[0_12px_28px_rgba(255,77,141,0.28)]"
         >
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => openTeamForm('member')}
-            className="btn-primary w-full sm:w-auto px-7 py-3"
-          >
-            Start your TechNeekX journey
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => document.getElementById('social-proof')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-secondary w-full sm:w-auto px-7 py-3 flex items-center gap-2"
-          >
-            See how we win
-            <ChevronDown size={18} />
-          </motion.button>
-        </motion.div>
-
-        {/* Trust indicators */}
-        <motion.div
-          variants={itemVariants}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 justify-center items-center mb-4"
-        >
-          {[
-            { icon: TrendingUp, text: <AnimatedCounter from={0} to={stats.hackathonsNumber} suffix="+ hackathons conquered" /> },
-            { icon: Award, text: "Built by top student developers" },
-            { icon: Sparkles, text: <AnimatedCounter from={0} to={stats.aiProductsNumber} suffix="+ AI launches" /> },
-            { icon: Globe, text: "Teams across India" }
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.03, y: -4 }}
-              className="glass rounded-2xl px-4 py-3 flex items-center gap-3 justify-center text-left shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
-            >
-              <item.icon className="w-5 h-5 text-[var(--accent-secondary)]" />
-              <span className="text-sm font-semibold text-slate-900">{item.text}</span>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.a
-          href="#social-proof"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-slate-500 hover:text-slate-700 transition-colors duration-300"
-        >
-          <span className="text-sm mb-2 font-medium">Scroll to explore</span>
-          <ChevronDown size={24} />
-        </motion.a>
+          Start your TechNeekX journey
+        </motion.button>
       </motion.div>
     </section>
   );
