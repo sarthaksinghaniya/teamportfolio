@@ -26,7 +26,6 @@ import LiveActivityFeed from '@/components/LiveActivityFeed';
 import useSectionAnimation from '@/hooks/useSectionAnimation';
 import StickyCTA from '@/components/StickyCTA';
 import SuggestedForYou from '@/components/SuggestedForYou';
-import OnboardingPrompt from '@/components/OnboardingPrompt';
 import CommandPalette from '@/components/CommandPalette';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -71,7 +70,6 @@ export default function Home() {
         <Loader />
         <Navbar />
         <StickyCTA />
-        <OnboardingPrompt />
         <CommandPalette />
         <section id="hero" className="section-animate">
           <Hero />
