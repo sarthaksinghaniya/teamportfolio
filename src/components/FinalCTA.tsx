@@ -50,14 +50,14 @@ const FinalCTA = () => {
 
           <motion.h2 
             variants={itemVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4 heading-premium"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 heading-premium"
           >
             Ready to build, learn, and grow?
           </motion.h2>
           
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg text-[var(--text-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             Get the playbook, partners, and community to ship faster than ever. Join TechNeekX and move from idea to launch with a crew that’s building alongside you.
           </motion.p>
@@ -88,7 +88,7 @@ const FinalCTA = () => {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center items-center gap-6 text-[var(--text-secondary)] mt-8"
+            className="flex flex-wrap justify-center items-center gap-6 text-slate-500 mt-8"
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-[var(--accent-primary)]"></div>

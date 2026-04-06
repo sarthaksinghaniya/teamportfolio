@@ -146,12 +146,12 @@ const Navbar = () => {
                     onClick={() => handleNavClick(item.href)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`relative text-white/70 hover:text-white px-5 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                      isActiveLink(item.href) 
-                        ? 'text-white bg-white/10 backdrop-blur-sm' 
-                        : 'hover:bg-white/5'
-                    }`}
-                  >
+                className={`relative text-slate-700 hover:text-slate-900 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                  isActiveLink(item.href) 
+                    ? 'text-slate-900 bg-white/80' 
+                    : 'hover:bg-white/60'
+                }`}
+              >
                     {item.name}
                     {/* Animated underline */}
                     <motion.div

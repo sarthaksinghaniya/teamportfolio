@@ -101,7 +101,7 @@ const Hero = () => {
           >
             <Sparkles className="w-7 h-7 text-[var(--accent-primary)] mr-3" />
           </motion.div>
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--text-secondary)]">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
             India’s Builder Operating System
           </p>
         </motion.div>
@@ -109,7 +109,7 @@ const Hero = () => {
         {/* Main headline */}
         <motion.h2
           variants={itemVariants}
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4 leading-tight heading-premium"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight heading-premium"
         >
           Ship faster, win hackathons, and turn ideas into launch-ready products with TechNeekX.
         </motion.h2>
@@ -117,7 +117,7 @@ const Hero = () => {
         {/* Subheading */}
         <motion.p
           variants={itemVariants}
-          className="text-base sm:text-lg text-[var(--text-secondary)] mb-8 max-w-3xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed"
         >
           We’re the student-led network that pairs hands-on build sprints, battle-tested playbooks, and a community of top operators so you can go from concept to shipped in weeks—not months.
         </motion.p>
@@ -164,7 +164,7 @@ const Hero = () => {
               className="glass rounded-2xl px-4 py-3 flex items-center gap-3 justify-center text-left shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
             >
               <item.icon className="w-5 h-5 text-[var(--accent-secondary)]" />
-              <span className="text-sm font-semibold text-[var(--text-primary)]">{item.text}</span>
+              <span className="text-sm font-semibold text-slate-900">{item.text}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -181,7 +181,7 @@ const Hero = () => {
           href="#social-proof"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-300"
+          className="flex flex-col items-center text-slate-500 hover:text-slate-700 transition-colors duration-300"
         >
           <span className="text-sm mb-2 font-medium">Scroll to explore</span>
           <ChevronDown size={24} />
