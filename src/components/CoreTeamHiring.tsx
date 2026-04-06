@@ -160,7 +160,7 @@ const CoreTeamHiring = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"
         >
           {roles.map((role, index) => (
             <motion.div
@@ -173,8 +173,8 @@ const CoreTeamHiring = () => {
               }}
               onHoverStart={() => setHoveredRole(index)}
               onHoverEnd={() => setHoveredRole(null)}
-              className={`card-hover card-tilt rounded-2xl p-6 group relative ${
-                role.highlighted ? 'border-2 border-orange-500/30' : ''
+              className={`w-full p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-md flex flex-col space-y-3 relative ${
+                role.highlighted ? 'border border-orange-200' : 'border border-white/40'
               }`}
             >
               {/* Badge for highlighted roles */}
@@ -195,41 +195,28 @@ const CoreTeamHiring = () => {
               
               {/* Icon */}
               <motion.div
-                whileHover={{ 
-                  rotate: 360,
-                  scale: 1.1,
-                  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-                }}
-                className={`w-14 h-14 rounded-xl bg-gradient-to-r ${role.gradient} flex items-center justify-center mb-4 glow relative z-10`}
+                className={`w-10 h-10 rounded-xl bg-gradient-to-r ${role.gradient} flex items-center justify-center relative z-10`}
               >
-                <role.icon className="w-7 h-7 text-white" />
+                <role.icon className="w-6 h-6 text-white" />
               </motion.div>
               
               {/* Title */}
               <motion.h3 
-                className="text-xl font-bold text-white mb-2 group-hover:text-gradient transition-all duration-300 relative z-10"
-                animate={{ 
-                  scale: hoveredRole === index ? 1.05 : 1 
-                }}
-                transition={{ duration: 0.3 }}
+                className="text-base font-semibold text-slate-900 relative z-10"
               >
                 {role.title}
               </motion.h3>
               
               {/* Subtitle */}
               <motion.p 
-                className="text-white/60 text-sm font-medium mb-3 relative z-10"
-                animate={{ 
-                  y: hoveredRole === index ? -2 : 0 
-                }}
-                transition={{ duration: 0.3 }}
+                className="text-xs font-medium text-slate-600 relative z-10"
               >
                 {role.subtitle}
               </motion.p>
               
               {/* Description */}
               <motion.p 
-                className="text-white/70 text-sm leading-relaxed mb-4 relative z-10"
+                className="text-sm text-slate-600 leading-relaxed relative z-10"
               >
                 {role.description}
               </motion.p>
@@ -240,14 +227,9 @@ const CoreTeamHiring = () => {
                   <motion.div
                     key={reqIndex}
                     className="flex items-start gap-2"
-                    animate={{ 
-                      x: hoveredRole === index ? 2 : 0,
-                      transition: { delay: reqIndex * 0.05 }
-                    }}
-                    transition={{ duration: 0.3 }}
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 mt-1.5 flex-shrink-0"></div>
-                    <span className="text-white/60 text-xs">{req}</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 mt-1.5 flex-shrink-0"></div>
+                    <span className="text-xs text-slate-600">{req}</span>
                   </motion.div>
                 ))}
               </div>
@@ -257,20 +239,11 @@ const CoreTeamHiring = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={role.action.onClick}
-                  className="relative z-10 w-full btn-primary text-sm"
+                  className="relative z-10 w-full mt-3 py-2.5 rounded-xl bg-[var(--accent-primary)] text-white text-sm font-semibold shadow-md"
                 >
                   {role.action.label}
                 </motion.button>
               )}
-
-              {/* Hover effect decoration */}
-              <motion.div 
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${role.gradient} opacity-0`}
-                animate={{ 
-                  opacity: hoveredRole === index ? 0.2 : 0 
-                }}
-                transition={{ duration: 0.3 }}
-              ></motion.div>
             </motion.div>
           ))}
         </motion.div>

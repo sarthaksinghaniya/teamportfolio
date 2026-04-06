@@ -251,79 +251,27 @@ const CoreTeam = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-6"
           >
-            {teamMembers.map((member, index) => (
+            {teamMembers.map((member) => (
               <motion.div
                 key={member.name}
                 variants={itemVariants}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="glass rounded-2xl p-6 text-center card-hover relative"
+                whileHover={{ y: -6, scale: member.role.includes('Chief') ? 1.05 : 1.02 }}
+                className={`w-full p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-md flex flex-col items-center text-center space-y-2 border ${
+                  member.role.includes('Chief') ? 'border-pink-200' : 'border-white/60'
+                }`}
               >
-                <div className="absolute top-3 right-3 px-2 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full border border-purple-500/30">
-                  {member.badge}
+                <div className="relative w-20 h-20 mb-3">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover rounded-full"
+                  />
                 </div>
-                
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full h-full rounded-2xl overflow-hidden glow"
-                  >
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-white mb-2">{member.name}</h3>
-                <p className="text-white/60 text-sm mb-3">{member.role}</p>
-                <p className="text-white/70 text-sm leading-relaxed mb-4">
-                  {member.description}
-                </p>
-                
-                {/* Contact Information */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center gap-2">
-                    <a
-                      href={`mailto:${member.contact.email}`}
-                      className="text-white/60 hover:text-white text-xs flex items-center gap-1 transition-colors"
-                    >
-                      <Mail className="w-3 h-3" />
-                      {member.contact.email}
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <a
-                      href={`tel:${member.contact.phone}`}
-                      className="text-white/60 hover:text-white text-xs flex items-center gap-1 transition-colors"
-                    >
-                      <Phone className="w-3 h-3" />
-                      {member.contact.phone}
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-center gap-3">
-                    <a
-                      href={member.contact.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white/60 hover:text-white transition-colors"
-                    >
-                      <Linkedin className="w-3 h-3" />
-                    </a>
-                    <a
-                      href={member.contact.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white/60 hover:text-white transition-colors"
-                    >
-                      <Github className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
+                <h3 className="text-base font-semibold text-slate-900">{member.name}</h3>
+                <p className="text-sm text-slate-500">{member.role}</p>
               </motion.div>
             ))}
 
@@ -331,46 +279,23 @@ const CoreTeam = () => {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="glass rounded-2xl p-6 text-center card-hover relative border-2 border-orange-500/30"
+              className="w-full p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-md flex flex-col items-center text-center space-y-2 border border-pink-200"
             >
-              <div className="absolute top-3 right-3 px-2 py-1 bg-orange-500/20 text-orange-400 text-xs font-semibold rounded-full border border-orange-500/30">
-                Limited Spot
+              <div className="relative w-20 h-20 mb-3 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center text-white">
+                <UserPlus className="w-10 h-10" />
               </div>
-              
-              <div className="relative w-24 h-24 mx-auto mb-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full h-full rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center glow"
-                >
-                  <UserPlus className="w-12 h-12 text-white" />
-                </motion.div>
-              </div>
-              
-              <h3 className="text-xl font-bold text-white mb-2">You?</h3>
-              <p className="text-white/60 text-sm mb-3">Core Team Position</p>
-              <p className="text-white/70 text-sm leading-relaxed mb-6">
-                We're looking for one more high-impact builder ready to take ownership and execute.
-              </p>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => openTeamForm('coreTeam')}
-                className="btn-primary w-full"
-              >
-                Apply for Core Team
-              </motion.button>
+              <h3 className="text-base font-semibold text-slate-900">You?</h3>
+              <p className="text-sm text-slate-500">Core Team Position</p>
             </motion.div>
           </motion.div>
 
           {/* Final CTA */}
           <motion.div
-            variants={itemVariants}
+          variants={itemVariants}
             className="text-center mt-12"
           >
-            <h3 className="text-3xl font-bold text-white mb-4">Join the Core Team</h3>
-            <p className="text-white/70 mb-8">Limited positions • High ownership • Real impact</p>
+            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Join the Core Team</h3>
+            <p className="text-sm text-slate-600 mb-6">Limited positions • High ownership • Real impact</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
