@@ -44,7 +44,8 @@ const CoreTeam = () => {
         email: "seemayadav97950@gmail.com",
         phone: "7524884044",
         linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        github: "https://github.com/nikhil09790"
+        github: "https://github.com/nikhil09790",
+        portfolio: "#"
       }
     },
     {
@@ -57,8 +58,9 @@ const CoreTeam = () => {
       contact: {
         email: "anshuman70k@gmail.com",
         phone: "7007659042",
-        linkedin: "https://www.linkedin.com/in/hardik-talwar-66b362335?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        github: "https://github.com/hardik112006"
+        linkedin: "https://www.linkedin.com/in/anshuman-soni-60277b268/",
+        github: "https://github.com/Anshuman70k",
+        portfolio: "#"
       }
     },
     {
@@ -71,8 +73,9 @@ const CoreTeam = () => {
       contact: {
         email: "hardiktalwar2006@gmail.com",
         phone: "7706859594",
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
-        github: "https://github.com/sarthaksinghaniya"
+        linkedin: "https://www.linkedin.com/in/hardiktalwar2006/",
+        github: "https://github.com/hardiktalwar2006",
+        portfolio: "#"
       }
     }
   ];
@@ -272,6 +275,14 @@ const CoreTeam = () => {
                 </div>
                 <h3 className="text-base font-semibold text-slate-900">{member.name}</h3>
                 <p className="text-sm text-slate-500">{member.role}</p>
+
+                <div className="flex items-center gap-3 text-slate-500 text-xs mt-1">
+                  <a href={member.contact.linkedin} target="_blank" rel="noreferrer" className="hover:text-slate-700">LinkedIn</a>
+                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                  <a href={member.contact.github} target="_blank" rel="noreferrer" className="hover:text-slate-700">GitHub</a>
+                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                  <a href={`mailto:${member.contact.email}`} className="hover:text-slate-700">Email</a>
+                </div>
               </motion.div>
             ))}
 
