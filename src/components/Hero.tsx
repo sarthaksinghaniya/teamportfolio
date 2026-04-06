@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 import { ChevronDown, Sparkles, TrendingUp, Award, Globe } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { stats } from '@/constants/stats';
@@ -11,15 +11,17 @@ const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
+  const reduceMotion = useReducedMotion();
   
   // Parallax effects
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 50]));
-  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.5], [1, 0]));
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 50]));
+  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.5], [1, reduceMotion ? 1 : 0]));
   
   // Cursor parallax
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!heroRef.current) return;
+      if (reduceMotion) return;
       
       const rect = heroRef.current.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;

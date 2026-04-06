@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X, UserPlus } from 'lucide-react';
@@ -121,13 +122,16 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
               className="flex items-center space-x-4"
             >
-              <div className="w-12 h-12 overflow-hidden rounded-xl shadow-lg">
-                <img 
-                  src="/file_0000000067647206a22ff5daad754190.png" 
-                  alt="TechNeekX Logo" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
+                <div className="w-12 h-12 overflow-hidden rounded-xl shadow-lg relative">
+                  <Image 
+                    src="/file_0000000067647206a22ff5daad754190.png" 
+                    alt="TechNeekX Logo" 
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               <h1 className="text-2xl font-bold text-gradient">
                 TechNeekX
               </h1>
@@ -262,11 +266,14 @@ const Navbar = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 overflow-hidden rounded-lg">
-                        <img
+                      <div className="w-10 h-10 overflow-hidden rounded-lg relative">
+                        <Image
                           src="/file_0000000067647206a22ff5daad754190.png"
                           alt="TechNeekX Logo"
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="40px"
+                          className="object-cover"
+                          priority
                         />
                       </div>
                       <span className="text-lg font-semibold text-white">TechNeekX</span>

@@ -6,24 +6,27 @@ import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
-import ProjectsShowcase from '@/components/ProjectsShowcase';
-import EventsOrganized from '@/components/EventsOrganized';
-import Gallery from '@/components/Gallery';
-import CoreTeam from '@/components/CoreTeam';
-import CoreTeamHiring from '@/components/CoreTeamHiring';
-import Partnership from '@/components/Partnership';
-import EliteClub from '@/components/EliteClub';
-import ViralLoop from '@/components/ViralLoop';
-import CommunityPartnersWall from '@/components/CommunityPartnersWall';
-import RealJourney from '@/components/RealJourney';
-import TrustElements from '@/components/TrustElements';
-import Community from '@/components/Community';
+import dynamic from 'next/dynamic';
+const ProjectsShowcase = dynamic(() => import('@/components/ProjectsShowcase'), { ssr: false });
+const EventsOrganized = dynamic(() => import('@/components/EventsOrganized'), { ssr: false });
+const Gallery = dynamic(() => import('@/components/Gallery'), { ssr: false });
+const CoreTeam = dynamic(() => import('@/components/CoreTeam'), { ssr: false });
+const CoreTeamHiring = dynamic(() => import('@/components/CoreTeamHiring'), { ssr: false });
+const Partnership = dynamic(() => import('@/components/Partnership'), { ssr: false });
+const EliteClub = dynamic(() => import('@/components/EliteClub'), { ssr: false });
+const ViralLoop = dynamic(() => import('@/components/ViralLoop'), { ssr: false });
+const CommunityPartnersWall = dynamic(() => import('@/components/CommunityPartnersWall'), { ssr: false });
+const RealJourney = dynamic(() => import('@/components/RealJourney'), { ssr: false });
+const TrustElements = dynamic(() => import('@/components/TrustElements'), { ssr: false });
+const Community = dynamic(() => import('@/components/Community'), { ssr: false });
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
 import LiveActivityFeed from '@/components/LiveActivityFeed';
 import useSectionAnimation from '@/hooks/useSectionAnimation';
 import StickyCTA from '@/components/StickyCTA';
+import SuggestedForYou from '@/components/SuggestedForYou';
+import OnboardingPrompt from '@/components/OnboardingPrompt';
 
 // Scroll Progress Component
 const ScrollProgress = () => {
@@ -58,6 +61,7 @@ export default function Home() {
       <Loader />
       <Navbar />
       <StickyCTA />
+      <OnboardingPrompt />
       <section id="hero" className="section-animate">
         <Hero />
       </section>
@@ -103,6 +107,9 @@ export default function Home() {
       </section>
       <section id="trust" className="section-animate">
         <TrustElements />
+      </section>
+      <section id="suggested" className="section-animate">
+        <SuggestedForYou />
       </section>
       <section id="contact" className="section-animate">
         <FinalCTA />

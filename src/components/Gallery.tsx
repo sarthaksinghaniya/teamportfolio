@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import type React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 import { Camera } from 'lucide-react';
 
 type GalleryImage = {
@@ -46,16 +46,17 @@ const Gallery = () => {
   const tiltY = useMotionValue(0);
   const tiltXSpring = useSpring(tiltX, { stiffness: 120, damping: 12 });
   const tiltYSpring = useSpring(tiltY, { stiffness: 120, damping: 12 });
+  const prefersReducedMotion = useReducedMotion();
 
   // Idle auto-advance
   useEffect(() => {
     const id = window.setInterval(() => {
-      if (!isInteracting && !isMobile) {
+      if (!isInteracting && !isMobile && !prefersReducedMotion) {
         setActive((prev) => (prev + 1) % orderedImages.length);
       }
     }, 5000);
     return () => window.clearInterval(id);
-  }, [isInteracting, orderedImages.length, isMobile]);
+  }, [isInteracting, orderedImages.length, isMobile, prefersReducedMotion]);
 
   // Screen size detection
   useEffect(() => {
@@ -87,12 +88,12 @@ const Gallery = () => {
 
   // Touch swipe for mobile
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!isMobile) {
+    if (!isMobile && !prefersReducedMotion) {
       touchStartY.current = e.touches[0].clientY;
     }
   };
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (isMobile) return;
+    if (isMobile || prefersReducedMotion) return;
     if (touchStartY.current === null) return;
     const delta = e.changedTouches[0].clientY - touchStartY.current;
     if (Math.abs(delta) > 40) {
@@ -104,7 +105,7 @@ const Gallery = () => {
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile) return;
+    if (isMobile || prefersReducedMotion) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
