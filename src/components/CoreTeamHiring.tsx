@@ -174,7 +174,7 @@ const CoreTeamHiring = () => {
               onHoverStart={() => setHoveredRole(index)}
               onHoverEnd={() => setHoveredRole(null)}
               className={`w-full p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-md flex flex-col space-y-3 relative ${
-                role.highlighted ? 'border border-orange-200' : 'border border-white/40'
+                hoveredRole === index ? 'border border-orange-200' : 'border border-white/40'
               }`}
             >
               {/* Badge for highlighted roles */}
