@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TrendingUp, Palette, Cpu, ArrowRight, Crown, Users, Rocket } from 'lucide-react';
+import { TrendingUp, Cpu, ArrowRight, Crown } from 'lucide-react';
 import { useState } from 'react';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
@@ -10,49 +10,6 @@ const CoreTeamHiring = () => {
 
   
   const roles = [
-    {
-      icon: Crown,
-      title: "Co-Founder & CEO",
-      subtitle: "Vision & Execution",
-      description: "Scale TechNeekX into India's premier AI builder ecosystem. Lead strategy, drive growth, and build the future of tech talent.",
-      requirements: [
-        "5+ years in tech/startup leadership",
-        "Proven track record scaling products",
-        "Deep understanding of AI/tech landscape",
-        "Strong network in VC/investor ecosystem",
-        "Previous founder or senior leadership experience"
-      ],
-      gradient: "from-orange-500 to-red-500",
-      delay: 0.1,
-      badge: "CO-FOUNDER OPPORTUNITY",
-      highlighted: true
-    },
-    {
-      icon: TrendingUp,
-      title: "Chief Marketing Officer",
-      subtitle: "Growth & Reach",
-      description: "Lead our growth strategy, build brand presence, and scale our builder ecosystem across India.",
-      requirements: [
-        "Experience in growth marketing",
-        "Strong network in tech/startup ecosystem",
-        "Understanding of developer communities"
-      ],
-      gradient: "from-blue-500 to-purple-500",
-      delay: 0.1
-    },
-    {
-      icon: Palette,
-      title: "Chief Design Officer",
-      subtitle: "UI/UX & Brand",
-      description: "Shape our visual identity, create exceptional user experiences, and build a world-class design system.",
-      requirements: [
-        "Strong portfolio in product design",
-        "Experience with design systems",
-        "Understanding of developer tools"
-      ],
-      gradient: "from-purple-500 to-pink-500",
-      delay: 0.2
-    },
     {
       icon: Cpu,
       title: "Chief Technology Officer",
@@ -65,6 +22,37 @@ const CoreTeamHiring = () => {
       ],
       gradient: "from-green-500 to-teal-500",
       delay: 0.3
+    },
+    {
+      icon: TrendingUp,
+      title: "Chief Operating Officer",
+      subtitle: "Operations & Scale",
+      description: "Operationalize our roadmap, streamline execution, and keep teams unblocked as we scale.",
+      requirements: [
+        "Track record running ops in a fast-growing org",
+        "Systems thinking with bias for process-light execution",
+        "Comfort working cross-functionally with product and community"
+      ],
+      gradient: "from-blue-500 to-indigo-500",
+      delay: 0.4
+    },
+    {
+      icon: Crown,
+      title: "Open Position",
+      subtitle: "We're Hiring",
+      description: "Help us build the next chapter of TechNeekX. Tell us how you can make the biggest impact.",
+      requirements: [
+        "Builder mindset and ownership",
+        "Experience shipping in ambiguous environments",
+        "Ability to collaborate across product, community, and ops"
+      ],
+      gradient: "from-purple-500 to-pink-500",
+      delay: 0.5,
+      badge: "We're Hiring",
+      action: {
+        label: "Apply Now",
+        onClick: () => openTeamForm('coreTeam')
+      }
     }
   ];
 
@@ -263,6 +251,17 @@ const CoreTeamHiring = () => {
                   </motion.div>
                 ))}
               </div>
+
+              {role.action && (
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={role.action.onClick}
+                  className="relative z-10 w-full btn-primary text-sm"
+                >
+                  {role.action.label}
+                </motion.button>
+              )}
 
               {/* Hover effect decoration */}
               <motion.div 

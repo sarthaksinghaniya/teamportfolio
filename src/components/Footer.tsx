@@ -8,7 +8,7 @@ const Footer = () => {
     { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://twitter.com/techneekx', label: 'Twitter' },
-    { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx.netlify.app', label: 'Email' },
+    { icon: Mail, href: 'mailto:teamtechneekx@gmail.com', label: 'Email' },
   ];
 
   const footerLinks = [
@@ -24,7 +24,7 @@ const Footer = () => {
     {
       title: "Contact",
       links: [
-        { name: "Email: teamtechneekx.netlify.app", href: "mailto:teamtechneekx.netlify.app" },
+        { name: "Email: teamtechneekx@gmail.com", href: "mailto:teamtechneekx@gmail.com" },
         { name: "Phone: 6387860126", href: "tel:6387860126" },
         { name: "LinkedIn", href: "https://www.linkedin.com/company/techneekx/" },
       ]
@@ -142,7 +142,7 @@ const Footer = () => {
         >
           {/* Copyright */}
           <div className="text-white/60 text-sm mb-4 md:mb-0 flex items-center">
-            © 2024 TechNeekX. Made with 
+            © 2025 TechNeekX. Made with 
             <Heart className="w-4 h-4 mx-1 text-red-400" fill="currentColor" />
             by our community.
           </div>
