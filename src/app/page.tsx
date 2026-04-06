@@ -27,6 +27,8 @@ import useSectionAnimation from '@/hooks/useSectionAnimation';
 import StickyCTA from '@/components/StickyCTA';
 import SuggestedForYou from '@/components/SuggestedForYou';
 import OnboardingPrompt from '@/components/OnboardingPrompt';
+import CommandPalette from '@/components/CommandPalette';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Scroll Progress Component
 const ScrollProgress = () => {
@@ -56,66 +58,76 @@ export default function Home() {
   useSectionAnimation(); // Initialize section animations
   
   return (
-    <main className="min-h-screen">
-      <ScrollProgress />
-      <Loader />
-      <Navbar />
-      <StickyCTA />
-      <OnboardingPrompt />
-      <section id="hero" className="section-animate">
-        <Hero />
-      </section>
-      <section id="social-proof" className="section-animate">
-        <SocialProof />
-      </section>
-      <section id="about" className="section-animate">
-        <MovementPositioning />
-      </section>
-      <section id="fomo" className="section-animate">
-        <FOMOLayer />
-      </section>
-      <section id="projects-showcase" className="section-animate">
-        <ProjectsShowcase />
-      </section>
-      <section id="events" className="section-animate">
-        <EventsOrganized />
-      </section>
-      <section id="gallery" className="section-animate">
-        <Gallery />
-      </section>
-      <section id="core-team" className="section-animate">
-        <CoreTeam />
-      </section>
-      <section id="hiring" className="section-animate">
-        <CoreTeamHiring />
-      </section>
-      <section id="partners" className="section-animate">
-        <Partnership />
-      </section>
-      <section id="elite" className="section-animate">
-        <EliteClub />
-      </section>
-      <section id="invite" className="section-animate">
-        <ViralLoop />
-      </section>
-      <section id="community" className="section-animate">
-        <CommunityPartnersWall />
-        <Community />
-      </section>
-      <section id="journey" className="section-animate">
-        <RealJourney />
-      </section>
-      <section id="trust" className="section-animate">
-        <TrustElements />
-      </section>
-      <section id="suggested" className="section-animate">
-        <SuggestedForYou />
-      </section>
-      <section id="contact" className="section-animate">
-        <FinalCTA />
-      </section>
-      <Footer />
-      <LiveActivityFeed />
-    </main>
+    <AnimatePresence mode="wait">
+      <motion.main
+        key="page"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
+        className="min-h-screen"
+      >
+        <ScrollProgress />
+        <Loader />
+        <Navbar />
+        <StickyCTA />
+        <OnboardingPrompt />
+        <CommandPalette />
+        <section id="hero" className="section-animate">
+          <Hero />
+        </section>
+        <section id="social-proof" className="section-animate">
+          <SocialProof />
+        </section>
+        <section id="about" className="section-animate">
+          <MovementPositioning />
+        </section>
+        <section id="fomo" className="section-animate">
+          <FOMOLayer />
+        </section>
+        <section id="projects-showcase" className="section-animate">
+          <ProjectsShowcase />
+        </section>
+        <section id="events" className="section-animate">
+          <EventsOrganized />
+        </section>
+        <section id="gallery" className="section-animate">
+          <Gallery />
+        </section>
+        <section id="core-team" className="section-animate">
+          <CoreTeam />
+        </section>
+        <section id="hiring" className="section-animate">
+          <CoreTeamHiring />
+        </section>
+        <section id="partners" className="section-animate">
+          <Partnership />
+        </section>
+        <section id="elite" className="section-animate">
+          <EliteClub />
+        </section>
+        <section id="invite" className="section-animate">
+          <ViralLoop />
+        </section>
+        <section id="community" className="section-animate">
+          <CommunityPartnersWall />
+          <Community />
+        </section>
+        <section id="journey" className="section-animate">
+          <RealJourney />
+        </section>
+        <section id="trust" className="section-animate">
+          <TrustElements />
+        </section>
+        <section id="suggested" className="section-animate">
+          <SuggestedForYou />
+        </section>
+        <section id="contact" className="section-animate">
+          <FinalCTA />
+        </section>
+        <Footer />
+        <LiveActivityFeed />
+      </motion.main>
+    </AnimatePresence>
   );
 }
