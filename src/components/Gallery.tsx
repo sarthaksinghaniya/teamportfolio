@@ -17,12 +17,19 @@ const galleryImages: GalleryImage[] = [
   { src: '/gallery/IMG_0150.JPG.jpeg', caption: 'Late-night building energy', featured: true },
   { src: '/gallery/IMG_0143.JPG.jpeg', caption: 'First hackathon smiles' },
   { src: '/gallery/IMG_0144.JPG.jpeg', caption: 'Live debugging on stage' },
-  { src: '/gallery/IMG_20260404_17034516.jpeg', caption: 'Hands-on workshops in flow', featured: true },
-  { src: '/gallery/IMG_20260404_17045021.jpeg', caption: 'Team sync before demo' },
   { src: '/gallery/image1.png', caption: 'Community deep-dives' },
   { src: '/gallery/image2.png', caption: 'Product design sketches' },
   { src: '/gallery/gal5.jpeg', caption: 'Brainstorm wall' },
   { src: '/gallery/IMG-2.jpg.jpeg', caption: 'Celebrating the ship', featured: true },
+  { src: '/gallery/judge.jpeg', caption: 'Judging the finalist demos' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 3.43.28 PM.jpeg', caption: 'Core team sync before stage' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 3.43.29 PM.jpeg', caption: 'Backstage checklist' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.51 PM.jpeg', caption: 'Crowd settling in' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.52 PM.jpeg', caption: 'Session kick-off energy' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM (1).jpeg', caption: 'Mentors on the floor' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM.jpeg', caption: 'Builders presenting' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM (1).jpeg', caption: 'Live feedback moments' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM.jpeg', caption: 'Evening wrap-up applause' },
 ];
 
 const Gallery = () => {
