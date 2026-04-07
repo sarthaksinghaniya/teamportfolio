@@ -92,6 +92,28 @@ export default function TeamSection() {
     },
   };
 
+  const groups: Array<{
+    title: string;
+    subtitle: string;
+    members: TeamMember[];
+  }> = [
+    {
+      title: 'Core Team',
+      subtitle: 'Leadership and operations.',
+      members: TEAM.filter((m) => m.name === 'Sarthak Singhaniya' || m.name === 'Hardik Talwar'),
+    },
+    {
+      title: 'Design Team',
+      subtitle: 'Product design and UI/UX.',
+      members: TEAM.filter((m) => m.name === 'Nikhil Yadav'),
+    },
+    {
+      title: 'Growth Team',
+      subtitle: 'Marketing, media, and outreach.',
+      members: TEAM.filter((m) => m.name === 'Anshuman Soni' || m.name === 'Tanishq Shukla'),
+    },
+  ];
+
   return (
     <section
       id="team"
@@ -112,36 +134,51 @@ export default function TeamSection() {
           </p>
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-        >
-          {TEAM.map((member, index) => {
-            const isWide = index % 4 === 2;
+        <div className="mt-10 space-y-12">
+          {groups.map((group) => (
+            <div key={group.title} className="space-y-6">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-semibold text-slate-900">
+                  {group.title}
+                </h3>
+                <p className="mt-1 text-sm sm:text-base text-slate-600">
+                  {group.subtitle}
+                </p>
+              </div>
 
-            return (
               <motion.div
-              key={member.name}
-              variants={cardVariants}
-              className={[
-                'w-full mx-auto',
-                isWide ? 'max-w-2xl sm:col-span-2' : 'max-w-sm',
-              ].join(' ')}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={containerVariants}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
               >
-                <TeamCard
-                  name={member.name}
-                  role={member.role}
-                  imageSrc={member.imageSrc}
-                  tagline={member.tagline}
-                  links={member.links}
-                />
+                {group.members.map((member, index) => {
+                  const isWide = index % 4 === 2;
+
+                  return (
+                    <motion.div
+                      key={member.name}
+                      variants={cardVariants}
+                      className={[
+                        'w-full mx-auto',
+                        isWide ? 'max-w-2xl sm:col-span-2' : 'max-w-sm',
+                      ].join(' ')}
+                    >
+                      <TeamCard
+                        name={member.name}
+                        role={member.role}
+                        imageSrc={member.imageSrc}
+                        tagline={member.tagline}
+                        links={member.links}
+                      />
+                    </motion.div>
+                  );
+                })}
               </motion.div>
-            );
-          })}
-        </motion.div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
