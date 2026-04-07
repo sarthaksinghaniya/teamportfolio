@@ -120,8 +120,8 @@ export default function TeamSection() {
       className="relative overflow-hidden bg-white py-16 sm:py-20"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full blur-3xl opacity-90 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08),transparent_65%)]" />
-        <div className="absolute -bottom-28 -right-28 h-96 w-96 rounded-full blur-3xl opacity-90 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.07),transparent_65%)]" />
+        <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full blur-3xl opacity-90 bg-[radial-gradient(circle_at_center,rgba(100,116,139,0.08),transparent_65%)]" />
+        <div className="absolute -bottom-28 -right-28 h-96 w-96 rounded-full blur-3xl opacity-90 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06),transparent_65%)]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4">
