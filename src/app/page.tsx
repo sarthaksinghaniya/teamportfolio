@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 const ProjectsShowcase = dynamic(() => import('@/components/ProjectsShowcase'), { ssr: false });
 const EventsOrganized = dynamic(() => import('@/components/EventsOrganized'), { ssr: false });
 const Gallery = dynamic(() => import('@/components/Gallery'), { ssr: false });
-const CoreTeam = dynamic(() => import('@/components/CoreTeam'), { ssr: false });
+import TeamSection from '@/components/TeamSection';
 const CoreTeamHiring = dynamic(() => import('@/components/CoreTeamHiring'), { ssr: false });
 const Partnership = dynamic(() => import('@/components/Partnership'), { ssr: false });
 const EliteClub = dynamic(() => import('@/components/EliteClub'), { ssr: false });
@@ -92,9 +92,7 @@ export default function Home() {
         <section id="gallery" className="section-animate">
           <Gallery />
         </section>
-        <section id="core-team" className="section-animate">
-          <CoreTeam />
-        </section>
+        <TeamSection />
         <section id="hiring" className="section-animate">
           <CoreTeamHiring />
         </section>
