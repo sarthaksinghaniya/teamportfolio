@@ -53,7 +53,7 @@ const EventsOrganized = () => {
       gradient: 'from-blue-500 to-cyan-500',
       featured: true,
       cta: {
-        text: 'View Projects',
+        text: 'View Participant Projects',
         link: 'https://github.com/topics/innvedxhackathon'
       }
     },
