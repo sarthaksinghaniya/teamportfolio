@@ -6,14 +6,14 @@ import { useState } from 'react';
 
 const PROJECT_CATEGORIES = {
   all: { id: 'all', name: 'All Projects', icon: Globe },
-  advanced_ai: { id: 'advanced_ai', name: 'Advanced AI System', icon: Brain },
-  healthcare_ai: { id: 'healthcare_ai', name: 'Healthcare AI', icon: Heart },
-  fintech_ai: { id: 'fintech_ai', name: 'FinTech AI', icon: DollarSign },
-  music_platform: { id: 'music_platform', name: 'Music Platform', icon: Music },
+  advanced_ai: { id: 'advanced', name: 'Advanced AI System', icon: Brain },
+  healthcare_ai: { id: 'healthcare', name: 'Healthcare AI', icon: Heart },
+  fintech_ai: { id: 'fintech', name: 'FinTech AI', icon: DollarSign },
+  music_platform: { id: 'music', name: 'Music Platform', icon: Music },
   sustainability: { id: 'sustainability', name: 'Sustainability', icon: Recycle },
   productivity: { id: 'productivity', name: 'Productivity', icon: Calendar },
   edtech: { id: 'edtech', name: 'EdTech', icon: BookOpen },
-  ai_assistant: { id: 'ai_assistant', name: 'AI Assistant', icon: Bot },
+  ai_assistant: { id: 'assistant', name: 'AI Assistant', icon: Bot },
 } as const;
 
 type ProjectCategoryId = (typeof PROJECT_CATEGORIES)[keyof typeof PROJECT_CATEGORIES]['id'];
@@ -24,7 +24,7 @@ type Project = {
   title: string;
   status: string;
   category: string;
-  categoryId: ProjectCategoryDataId;
+  categories: ReadonlyArray<string>;
   icon: any;
   color: string;
   description: string;
@@ -41,7 +41,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'FLOWX',
     status: 'In Progress',
     category: 'Advanced AI System',
-    categoryId: PROJECT_CATEGORIES.advanced_ai.id,
+    categories: ['advanced', 'ai', 'platform'],
     icon: Brain,
     color: 'from-purple-500 to-pink-500',
     description: 'Building a next-gen intelligent system focused on scalable AI workflows and automation',
@@ -60,7 +60,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'FRACTURE VISION AI',
     status: 'Live',
     category: 'Healthcare AI',
-    categoryId: PROJECT_CATEGORIES.healthcare_ai.id,
+    categories: ['healthcare', 'ai'],
     icon: Heart,
     color: 'from-red-500 to-pink-500',
     description: 'AI-powered fracture detection system using medical imaging',
@@ -79,7 +79,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'HOSPITAL PULSE AI',
     status: 'Live',
     category: 'Healthcare AI',
-    categoryId: PROJECT_CATEGORIES.healthcare_ai.id,
+    categories: ['healthcare', 'ai'],
     icon: TrendingUp,
     color: 'from-blue-500 to-cyan-500',
     description: 'Predicts emergency department surges, ICU demand, and patient load',
@@ -98,7 +98,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'INVESTMENT AI COPILOT',
     status: 'In Development',
     category: 'FinTech AI',
-    categoryId: PROJECT_CATEGORIES.fintech_ai.id,
+    categories: ['fintech', 'ai'],
     icon: DollarSign,
     color: 'from-green-500 to-emerald-500',
     description: 'AI-driven financial assistant for investment analysis and decision support',
@@ -117,7 +117,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'REVIBER',
     status: 'Live',
     category: 'Music Platform',
-    categoryId: PROJECT_CATEGORIES.music_platform.id,
+    categories: ['music', 'platform'],
     icon: Music,
     color: 'from-purple-500 to-indigo-500',
     description: 'Interactive platform for music-based engagement and user experience',
@@ -136,7 +136,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'REVIVE LAB',
     status: 'Live',
     category: 'Sustainability',
-    categoryId: PROJECT_CATEGORIES.sustainability.id,
+    categories: ['sustainability', 'ai'],
     icon: Recycle,
     color: 'from-green-500 to-teal-500',
     description: 'AI-powered platform for e-waste innovation and repurposing ideas',
@@ -155,7 +155,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'HANU PLANNER',
     status: 'Live',
     category: 'Productivity',
-    categoryId: PROJECT_CATEGORIES.productivity.id,
+    categories: ['productivity', 'ai'],
     icon: Calendar,
     color: 'from-orange-500 to-red-500',
     description: 'AI-based timetable generator for students and institutions',
@@ -174,7 +174,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'HANU YOUTH',
     status: 'Live',
     category: 'EdTech',
-    categoryId: PROJECT_CATEGORIES.edtech.id,
+    categories: ['edtech', 'community'],
     icon: BookOpen,
     color: 'from-blue-500 to-purple-500',
     description: 'Gamified learning platform for hackathons, AI/ML, and coding',
@@ -193,7 +193,7 @@ const PROJECTS: ReadonlyArray<Project> = [
     title: 'HANI BAI',
     status: 'In Progress',
     category: 'AI Assistant',
-    categoryId: PROJECT_CATEGORIES.ai_assistant.id,
+    categories: ['assistant', 'ai'],
     icon: Bot,
     color: 'from-cyan-500 to-blue-500',
     description: 'Personal AI assistant focused on automation and interaction',
@@ -216,28 +216,31 @@ const ProjectsShowcase = () => {
 
   const categories = Object.values(PROJECT_CATEGORIES);
 
-  const debugLog = (message: string, data: Record<string, unknown>) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.debug(message, data);
-    }
-  };
-
   const handleFilter = (categoryId: ProjectCategoryId) => {
+    const normalizedCategory = categoryId.toLowerCase();
+
+    console.log('Selected:', normalizedCategory);
+    console.log('All:', allProjects);
+
     setActiveCategory(categoryId);
 
     const nextProjects =
-      categoryId === PROJECT_CATEGORIES.all.id
+      normalizedCategory === PROJECT_CATEGORIES.all.id
         ? [...allProjects]
-        : allProjects.filter((project) => project.categoryId === categoryId);
+        : allProjects.filter((project) => {
+            const categories = Array.isArray(project.categories) ? project.categories : [];
+            if (categories.map((c) => c.toLowerCase()).includes(normalizedCategory)) {
+              return true;
+            }
 
-    setFilteredProjects(nextProjects);
+            return project.category.toLowerCase().includes(normalizedCategory);
+          });
 
-    debugLog('[ProjectsShowcase] filter applied', {
-      categoryId,
-      totalProjects: allProjects.length,
-      filteredCount: nextProjects.length,
-      filteredIds: nextProjects.map((p) => p.id),
-    });
+    const stableProjects = nextProjects.length > 0 ? [...nextProjects] : [...allProjects];
+
+    console.log('Filtered:', stableProjects);
+
+    setFilteredProjects(stableProjects);
   };
 
   const containerVariants = {
