@@ -61,15 +61,6 @@ const TEAM: TeamMember[] = [
       email: 'anshuman70k@gmail.com',
     },
   },
-  {
-    name: 'Tanishq Shukla',
-    role: 'Finance · Strategy',
-    tagline: 'Builds the financial spine for sustainable growth.',
-    imageSrc: '/tanisq.jpg',
-    links: {
-      email: 'tanishqshukla835@gmail.com',
-    },
-  },
 ];
 
 export default function TeamSection() {
@@ -110,7 +101,7 @@ export default function TeamSection() {
     {
       title: 'Growth Team',
       subtitle: 'Marketing, media, and outreach.',
-      members: TEAM.filter((m) => m.name === 'Anshuman Soni' || m.name === 'Tanishq Shukla'),
+      members: TEAM.filter((m) => m.name === 'Anshuman Soni'),
     },
   ];
 

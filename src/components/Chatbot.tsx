@@ -48,7 +48,7 @@ const TECHNEEKX_KNOWLEDGE = {
     "⚡ Whether you need a startup MVP, enterprise solution, or AI integration, we provide scalable, secure, and innovative technology solutions tailored to your specific needs."
   ],
   team: [
-    "👥 Meet our exceptional team of 3 tech innovators:\n\n1. Sarthak Singhaniya - CO-FOUNDER, CIO, System Architect, AI/ML Engineer\n2. Nikhil Yadav - CCO, Design Lead, UI/UX Specialist\n3. Tanishq Shukla - Chief Finance Officer, Visionary\n\nEach member brings unique expertise and passion! 🚀",
+    "👥 Meet our core team:\n\n1. Sarthak Singhaniya - Founder, System Architect, AI/ML Engineer\n2. Nikhil Yadav - Design Lead, UI/UX Specialist\n3. Hardik Talwar - Business & Frontend\n4. Anshuman Soni - Marketing & Media\n\nEach member brings unique expertise and passion! 🚀",
     "🌟 Our compact but powerful team combines technical excellence with creative innovation, ensuring we deliver solutions that are both cutting-edge and user-centric.",
     "💻 The TechNeekX team is committed to continuous learning, innovation, and delivering exceptional results that exceed client expectations."
   ],
@@ -75,12 +75,18 @@ const TECHNEEKX_KNOWLEDGE = {
       bio: '🎨 Creative genius connecting frontend and backend with clean, maintainable code and exceptional problem-solving mindset.',
       funFact: '✨ Expert in creating stunning UI designs that users love and remember.'
     },
-    'tanishq': {
-      name: 'Tanishq Shukla',
-      role: 'Chief Finance Officer, Visionary',
-      bio: '💰 Strategic financial architect and visionary leader driving sustainable growth and innovation.',
-      funFact: '📈 Combines financial expertise with tech innovation to drive business success.'
-    }
+    'hardik': {
+      name: 'Hardik Talwar',
+      role: 'Business & Frontend',
+      bio: '🤝 Bridges business strategy with frontend execution to ship fast, polished experiences.',
+      funFact: '⚡ Loves turning ideas into smooth, production-ready UI.'
+    },
+    'anshuman': {
+      name: 'Anshuman Soni',
+      role: 'Marketing & Media',
+      bio: '📣 Drives growth, brand storytelling, and community reach to scale impact.',
+      funFact: '🎯 Enjoys building distribution that compounds.'
+    },
   },
   default: [
     "🤔 I'm not sure I understand. Could you rephrase that?",
@@ -262,7 +268,7 @@ const Chatbot = () => {
       responses[Math.floor(Math.random() * responses.length)];
     
     // Check for team member queries
-    const teamMemberMatch = input.match(/(sarthak|nikhil|tanishq)/i);
+    const teamMemberMatch = input.match(/(sarthak|nikhil|hardik|anshuman)/i);
     if (teamMemberMatch) {
       const memberKey = teamMemberMatch[0].toLowerCase();
       const member = TECHNEEKX_KNOWLEDGE.teamMembers[memberKey as keyof typeof TECHNEEKX_KNOWLEDGE.teamMembers];

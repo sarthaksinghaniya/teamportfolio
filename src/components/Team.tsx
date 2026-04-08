@@ -35,20 +35,6 @@ const Team = () => {
       gradient: "from-purple-500 to-indigo-500"
     },
     {
-      name: "Tanishq Shukla",
-      role: "Chief Finance Officer, Visionary",
-      bio: "Strategic financial architect and visionary leader driving sustainable growth.",
-      strengths: ["Marketing Ideas", "Visionary Thinking", " Finance Management"],
-      image: "/tanisq.jpg",
-      links: { 
-        github: "https://github.com/sarthaksinghaniya", 
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
-        email: "tanishqshukla835@gmail.com", 
-        portfolio: "#" 
-      },
-      gradient: "from-orange-500 to-red-500"
-    },
-    {
       name: "Anshuman Soni",
       role: "Chief Marketing Officer, Media Lead",
       bio: "Strategic marketing visionary driving brand growth and media partnerships.",
