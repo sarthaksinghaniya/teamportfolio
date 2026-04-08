@@ -79,7 +79,11 @@ const EventsOrganized = () => {
       tagline: 'Code. Compete. Conquer.',
       icon: Trophy,
       gradient: 'from-orange-500 to-red-500',
-      featured: false
+      featured: false,
+      cta: {
+        text: 'View Participant Projects',
+        link: 'https://github.com/topics/kalpathonhackathon'
+      }
     }
   ];
 
@@ -174,7 +178,7 @@ const EventsOrganized = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-4 py-2 bg-black text-white text-sm font-medium rounded-lg text-center w-full sm:w-auto"
+                  className={`px-4 py-2 bg-gradient-to-r ${event.gradient} text-white text-sm font-medium rounded-lg text-center w-full sm:w-auto shadow-sm hover:shadow-md transition-shadow`}
                 >
                   {event.cta.text}
                 </motion.a>
