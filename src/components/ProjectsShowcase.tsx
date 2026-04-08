@@ -4,189 +4,241 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star, TrendingUp, Users, Award, Zap, Heart, Brain, DollarSign, Calendar, Music, Recycle, BookOpen, Bot, Globe } from 'lucide-react';
 import { useState } from 'react';
 
+const PROJECT_CATEGORIES = {
+  all: { id: 'all', name: 'All Projects', icon: Globe },
+  advanced_ai: { id: 'advanced_ai', name: 'Advanced AI System', icon: Brain },
+  healthcare_ai: { id: 'healthcare_ai', name: 'Healthcare AI', icon: Heart },
+  fintech_ai: { id: 'fintech_ai', name: 'FinTech AI', icon: DollarSign },
+  music_platform: { id: 'music_platform', name: 'Music Platform', icon: Music },
+  sustainability: { id: 'sustainability', name: 'Sustainability', icon: Recycle },
+  productivity: { id: 'productivity', name: 'Productivity', icon: Calendar },
+  edtech: { id: 'edtech', name: 'EdTech', icon: BookOpen },
+  ai_assistant: { id: 'ai_assistant', name: 'AI Assistant', icon: Bot },
+} as const;
+
+type ProjectCategoryId = (typeof PROJECT_CATEGORIES)[keyof typeof PROJECT_CATEGORIES]['id'];
+type ProjectCategoryDataId = Exclude<ProjectCategoryId, 'all'>;
+
+type Project = {
+  id: string;
+  title: string;
+  status: string;
+  category: string;
+  categoryId: ProjectCategoryDataId;
+  icon: any;
+  color: string;
+  description: string;
+  features: string[];
+  techStack: string[];
+  link: string | null;
+  github: string;
+  impact: string;
+};
+
+const PROJECTS: ReadonlyArray<Project> = [
+  {
+    id: 'flowx',
+    title: 'FLOWX',
+    status: 'In Progress',
+    category: 'Advanced AI System',
+    categoryId: PROJECT_CATEGORIES.advanced_ai.id,
+    icon: Brain,
+    color: 'from-purple-500 to-pink-500',
+    description: 'Building a next-gen intelligent system focused on scalable AI workflows and automation',
+    features: [
+      'Modular architecture for extensibility',
+      'Real-time processing capabilities',
+      'Production-grade deployment'
+    ],
+    techStack: ['Python', 'FastAPI', 'Node.js', 'AI/ML', 'System Design'],
+    link: null,
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Platform Engineering'
+  },
+  {
+    id: 'fracture-vision',
+    title: 'FRACTURE VISION AI',
+    status: 'Live',
+    category: 'Healthcare AI',
+    categoryId: PROJECT_CATEGORIES.healthcare_ai.id,
+    icon: Heart,
+    color: 'from-red-500 to-pink-500',
+    description: 'AI-powered fracture detection system using medical imaging',
+    features: [
+      'Assists doctors in identifying bone fractures',
+      'High accuracy detection',
+      'Reduces diagnosis time and improves clinical decision-making'
+    ],
+    techStack: ['Python', 'OpenCV', 'Deep Learning', 'Streamlit'],
+    link: 'https://fracturevision-ai.streamlit.app/',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Healthcare Innovation'
+  },
+  {
+    id: 'hospital-pulse',
+    title: 'HOSPITAL PULSE AI',
+    status: 'Live',
+    category: 'Healthcare AI',
+    categoryId: PROJECT_CATEGORIES.healthcare_ai.id,
+    icon: TrendingUp,
+    color: 'from-blue-500 to-cyan-500',
+    description: 'Predicts emergency department surges, ICU demand, and patient load',
+    features: [
+      'Enables proactive hospital resource allocation',
+      'Focused on interpretable AI for real-world adoption',
+      'Predictive analytics for healthcare'
+    ],
+    techStack: ['Python', 'ML Models', 'React', 'Data Analytics'],
+    link: 'https://hopx.netlify.app',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Healthcare Analytics'
+  },
+  {
+    id: 'investment-copilot',
+    title: 'INVESTMENT AI COPILOT',
+    status: 'In Development',
+    category: 'FinTech AI',
+    categoryId: PROJECT_CATEGORIES.fintech_ai.id,
+    icon: DollarSign,
+    color: 'from-green-500 to-emerald-500',
+    description: 'AI-driven financial assistant for investment analysis and decision support',
+    features: [
+      'Provides insights and recommendations',
+      'Risk evaluation capabilities',
+      'Designed as a co-pilot for smarter investing'
+    ],
+    techStack: ['Python', 'AI/ML', 'APIs', 'Data Visualization'],
+    link: null,
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Financial Technology'
+  },
+  {
+    id: 'reviber',
+    title: 'REVIBER',
+    status: 'Live',
+    category: 'Music Platform',
+    categoryId: PROJECT_CATEGORIES.music_platform.id,
+    icon: Music,
+    color: 'from-purple-500 to-indigo-500',
+    description: 'Interactive platform for music-based engagement and user experience',
+    features: [
+      'Modern UI/UX with immersive interaction',
+      'Music engagement platform',
+      'User experience focused design'
+    ],
+    techStack: ['React', 'JavaScript', 'UI/UX Design'],
+    link: 'https://reviber.netlify.app',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Digital Experience'
+  },
+  {
+    id: 'revive-lab',
+    title: 'REVIVE LAB',
+    status: 'Live',
+    category: 'Sustainability',
+    categoryId: PROJECT_CATEGORIES.sustainability.id,
+    icon: Recycle,
+    color: 'from-green-500 to-teal-500',
+    description: 'AI-powered platform for e-waste innovation and repurposing ideas',
+    features: [
+      'Provides guided learning and practical solutions',
+      'Encourages sustainable tech practices',
+      'E-waste innovation platform'
+    ],
+    techStack: ['Python', 'AI', 'Web Development'],
+    link: 'https://revibe-lab.netlify.app',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Sustainability'
+  },
+  {
+    id: 'hanu-planner',
+    title: 'HANU PLANNER',
+    status: 'Live',
+    category: 'Productivity',
+    categoryId: PROJECT_CATEGORIES.productivity.id,
+    icon: Calendar,
+    color: 'from-orange-500 to-red-500',
+    description: 'AI-based timetable generator for students and institutions',
+    features: [
+      'Generates optimized schedules dynamically',
+      'Designed to solve real academic planning problems',
+      'Student-focused productivity tool'
+    ],
+    techStack: ['JavaScript', 'AI Logic', 'Web App'],
+    link: 'https://hanuplanner.netlify.app',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Education Technology'
+  },
+  {
+    id: 'hanu-youth',
+    title: 'HANU YOUTH',
+    status: 'Live',
+    category: 'EdTech',
+    categoryId: PROJECT_CATEGORIES.edtech.id,
+    icon: BookOpen,
+    color: 'from-blue-500 to-purple-500',
+    description: 'Gamified learning platform for hackathons, AI/ML, and coding',
+    features: [
+      'Provides updates, engagement, and skill-building ecosystem',
+      'Gamified learning experience',
+      'Hackathon and coding focus'
+    ],
+    techStack: ['React', 'Node.js', 'Gamification Logic'],
+    link: 'https://hanuyouthapp.netlify.app/',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'Community Education'
+  },
+  {
+    id: 'hani-bai',
+    title: 'HANI BAI',
+    status: 'In Progress',
+    category: 'AI Assistant',
+    categoryId: PROJECT_CATEGORIES.ai_assistant.id,
+    icon: Bot,
+    color: 'from-cyan-500 to-blue-500',
+    description: 'Personal AI assistant focused on automation and interaction',
+    features: [
+      'Designed to integrate multiple workflows',
+      'Single intelligent system',
+      'Automation and interaction focus'
+    ],
+    techStack: ['NLP', 'Python', 'AI Systems'],
+    link: null,
+    github: 'https://github.com/teamtechneekx',
+    impact: 'AI Innovation'
+  },
+] as const;
+
 const ProjectsShowcase = () => {
-  const [filter, setFilter] = useState('all');
+  const [allProjects] = useState<Project[]>(() => [...PROJECTS]);
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>(() => [...PROJECTS]);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategoryId>(PROJECT_CATEGORIES.all.id);
 
-  // Projects data from project.md
-  const projects = [
-    {
-      id: 'flowx',
-      title: 'FLOWX',
-      status: 'In Progress',
-      category: 'Advanced AI System',
-      icon: Brain,
-      color: 'from-purple-500 to-pink-500',
-      description: 'Building a next-gen intelligent system focused on scalable AI workflows and automation',
-      features: [
-        'Modular architecture for extensibility',
-        'Real-time processing capabilities',
-        'Production-grade deployment'
-      ],
-      techStack: ['Python', 'FastAPI', 'Node.js', 'AI/ML', 'System Design'],
-      link: null,
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Platform Engineering'
-    },
-    {
-      id: 'fracture-vision',
-      title: 'FRACTURE VISION AI',
-      status: 'Live',
-      category: 'Healthcare AI',
-      icon: Heart,
-      color: 'from-red-500 to-pink-500',
-      description: 'AI-powered fracture detection system using medical imaging',
-      features: [
-        'Assists doctors in identifying bone fractures',
-        'High accuracy detection',
-        'Reduces diagnosis time and improves clinical decision-making'
-      ],
-      techStack: ['Python', 'OpenCV', 'Deep Learning', 'Streamlit'],
-      link: 'https://fracturevision-ai.streamlit.app/',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Healthcare Innovation'
-    },
-    {
-      id: 'hospital-pulse',
-      title: 'HOSPITAL PULSE AI',
-      status: 'Live',
-      category: 'Healthcare AI',
-      icon: TrendingUp,
-      color: 'from-blue-500 to-cyan-500',
-      description: 'Predicts emergency department surges, ICU demand, and patient load',
-      features: [
-        'Enables proactive hospital resource allocation',
-        'Focused on interpretable AI for real-world adoption',
-        'Predictive analytics for healthcare'
-      ],
-      techStack: ['Python', 'ML Models', 'React', 'Data Analytics'],
-      link: 'https://hopx.netlify.app',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Healthcare Analytics'
-    },
-    {
-      id: 'investment-copilot',
-      title: 'INVESTMENT AI COPILOT',
-      status: 'In Development',
-      category: 'FinTech AI',
-      icon: DollarSign,
-      color: 'from-green-500 to-emerald-500',
-      description: 'AI-driven financial assistant for investment analysis and decision support',
-      features: [
-        'Provides insights and recommendations',
-        'Risk evaluation capabilities',
-        'Designed as a co-pilot for smarter investing'
-      ],
-      techStack: ['Python', 'AI/ML', 'APIs', 'Data Visualization'],
-      link: null,
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Financial Technology'
-    },
-    {
-      id: 'reviber',
-      title: 'REVIBER',
-      status: 'Live',
-      category: 'Music Platform',
-      icon: Music,
-      color: 'from-purple-500 to-indigo-500',
-      description: 'Interactive platform for music-based engagement and user experience',
-      features: [
-        'Modern UI/UX with immersive interaction',
-        'Music engagement platform',
-        'User experience focused design'
-      ],
-      techStack: ['React', 'JavaScript', 'UI/UX Design'],
-      link: 'https://reviber.netlify.app',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Digital Experience'
-    },
-    {
-      id: 'revive-lab',
-      title: 'REVIVE LAB',
-      status: 'Live',
-      category: 'Sustainability',
-      icon: Recycle,
-      color: 'from-green-500 to-teal-500',
-      description: 'AI-powered platform for e-waste innovation and repurposing ideas',
-      features: [
-        'Provides guided learning and practical solutions',
-        'Encourages sustainable tech practices',
-        'E-waste innovation platform'
-      ],
-      techStack: ['Python', 'AI', 'Web Development'],
-      link: 'https://revibe-lab.netlify.app',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Sustainability'
-    },
-    {
-      id: 'hanu-planner',
-      title: 'HANU PLANNER',
-      status: 'Live',
-      category: 'Productivity',
-      icon: Calendar,
-      color: 'from-orange-500 to-red-500',
-      description: 'AI-based timetable generator for students and institutions',
-      features: [
-        'Generates optimized schedules dynamically',
-        'Designed to solve real academic planning problems',
-        'Student-focused productivity tool'
-      ],
-      techStack: ['JavaScript', 'AI Logic', 'Web App'],
-      link: 'https://hanuplanner.netlify.app',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Education Technology'
-    },
-    {
-      id: 'hanu-youth',
-      title: 'HANU YOUTH',
-      status: 'Live',
-      category: 'EdTech',
-      icon: BookOpen,
-      color: 'from-blue-500 to-purple-500',
-      description: 'Gamified learning platform for hackathons, AI/ML, and coding',
-      features: [
-        'Provides updates, engagement, and skill-building ecosystem',
-        'Gamified learning experience',
-        'Hackathon and coding focus'
-      ],
-      techStack: ['React', 'Node.js', 'Gamification Logic'],
-      link: 'https://hanuyouthapp.netlify.app/',
-      github: 'https://github.com/teamtechneekx',
-      impact: 'Community Education'
-    },
-    {
-      id: 'hani-bai',
-      title: 'HANI BAI',
-      status: 'In Progress',
-      category: 'AI Assistant',
-      icon: Bot,
-      color: 'from-cyan-500 to-blue-500',
-      description: 'Personal AI assistant focused on automation and interaction',
-      features: [
-        'Designed to integrate multiple workflows',
-        'Single intelligent system',
-        'Automation and interaction focus'
-      ],
-      techStack: ['NLP', 'Python', 'AI Systems'],
-      link: null,
-      github: 'https://github.com/teamtechneekx',
-      impact: 'AI Innovation'
-    },
-  ];
+  const categories = Object.values(PROJECT_CATEGORIES);
 
-  const categories = [
-    { id: 'all', name: 'All Projects', icon: Globe },
-    { id: 'healthcare', name: 'Healthcare AI', icon: Heart },
-    { id: 'fintech', name: 'FinTech', icon: DollarSign },
-    { id: 'edtech', name: 'EdTech', icon: BookOpen },
-    { id: 'platform', name: 'Platform', icon: Zap },
-    { id: 'sustainability', name: 'Sustainability', icon: Recycle }
-  ];
+  const debugLog = (message: string, data: Record<string, unknown>) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(message, data);
+    }
+  };
 
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => 
-        project.category.toLowerCase().includes(filter.toLowerCase())
-      );
+  const handleFilter = (categoryId: ProjectCategoryId) => {
+    setActiveCategory(categoryId);
+
+    const nextProjects =
+      categoryId === PROJECT_CATEGORIES.all.id
+        ? [...allProjects]
+        : allProjects.filter((project) => project.categoryId === categoryId);
+
+    setFilteredProjects(nextProjects);
+
+    debugLog('[ProjectsShowcase] filter applied', {
+      categoryId,
+      totalProjects: allProjects.length,
+      filteredCount: nextProjects.length,
+      filteredIds: nextProjects.map((p) => p.id),
+    });
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -303,9 +355,9 @@ const ProjectsShowcase = () => {
                 key={category.id}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setFilter(category.id)}
+                onClick={() => handleFilter(category.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                  filter === category.id
+                  activeCategory === category.id
                     ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
                     : 'glass text-white/70 hover:text-white hover:border-white/30'
                 }`}
