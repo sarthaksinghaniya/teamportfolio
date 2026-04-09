@@ -1,13 +1,32 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, ArrowRight, Sparkles, Scale, Cpu } from 'lucide-react';
 import { useState } from 'react';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
-  const projects = [
+  type Project = {
+    title: string;
+    oneLiner: string;
+    problem: string;
+    solution: string;
+    impact: string;
+    image: string;
+    tags: string[];
+    gradient: string;
+    links: {
+      demo: string;
+      github: string;
+    };
+    status: string;
+    category: string;
+    aiPowered?: boolean;
+    icon?: 'scale' | 'cpu';
+  };
+
+  const projects: Project[] = [
     {
       title: "ReviveLab",
       oneLiner: "AI-powered E-waste management solution",
@@ -103,6 +122,24 @@ const Projects = () => {
       },
       status: "Development",
       category: "Community Platform"
+    },
+    {
+      title: "LXNode – AI Legal Assistant",
+      oneLiner: "AI-powered legal assistant for document analysis & query resolution",
+      problem: "Legal documents are dense and time-consuming to interpret, and non-legal users often struggle to extract key obligations, risks, and actionable insights.",
+      solution: "Built an AI legal assistant that analyzes and summarizes legal documents, answers natural-language legal queries, surfaces smart insights, and provides context-aware suggestions through a user-friendly interface.",
+      impact: "Speeds up understanding of complex legal language, improves clarity in decision-making, and makes legal insights accessible to non-legal users.",
+      image: "https://images.unsplash.com/photo-1589216532372-1c2a367900d9?w=600&h=400&fit=crop",
+      tags: ["AI", "LegalTech", "NLP", "SaaS"],
+      gradient: "from-violet-500 to-fuchsia-500",
+      links: {
+        demo: "https://lxnode.netlify.app/",
+        github: "https://github.com/sarthaksinghaniya/lxnode-AI"
+      },
+      status: "Live",
+      category: "AI Tool",
+      aiPowered: true,
+      icon: "scale"
     }
   ];
 
@@ -227,7 +264,11 @@ const Projects = () => {
               }}
               onHoverStart={() => setHoveredProject(index)}
               onHoverEnd={() => setHoveredProject(null)}
-              className="card-hover card-tilt rounded-2xl overflow-hidden group relative project-card"
+              className={`card-hover card-tilt rounded-2xl overflow-hidden group relative project-card ${
+                project.aiPowered
+                  ? 'ring-1 ring-violet-500/20 hover:ring-violet-400/40 hover:shadow-[0_20px_70px_-30px_rgba(167,139,250,0.45)]'
+                  : ''
+              }`}
             >
               {/* Animated gradient border */}
               <motion.div 
@@ -292,6 +333,22 @@ const Projects = () => {
                   }}
                   transition={{ duration: 0.3 }}
                 ></motion.div>
+
+                {/* AI Powered Badge */}
+                {project.aiPowered ? (
+                  <motion.div 
+                    className="absolute top-3 left-3 px-3 py-1 rounded-full text-white text-xs font-semibold bg-gradient-to-r from-violet-600/90 to-fuchsia-600/90 backdrop-blur-sm border border-white/10 shadow-[0_10px_30px_-15px_rgba(167,139,250,0.6)]"
+                    animate={{ 
+                      scale: hoveredProject === index ? 1.05 : 1 
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <span className="inline-flex items-center gap-1.5">
+                      {project.icon === 'scale' ? <Scale className="w-3.5 h-3.5" /> : <Cpu className="w-3.5 h-3.5" />}
+                      AI Powered
+                    </span>
+                  </motion.div>
+                ) : null}
                 
                 {/* Status Badge */}
                 <motion.div 
