@@ -30,6 +30,15 @@ const galleryImages: GalleryImage[] = [
   { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM.jpeg', caption: 'Builders presenting' },
   { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM (1).jpeg', caption: 'Live feedback moments' },
   { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM.jpeg', caption: 'Evening wrap-up applause' },
+  { src: '/gallery/IMG_0683.JPG.jpeg', caption: 'Team collaboration moment' },
+  { src: '/gallery/IMG_0697.JPG.jpeg', caption: 'Award ceremony highlights', featured: true },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 8.37.27 PM.jpeg', caption: 'Evening setup preparation' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.19.57 PM.jpeg', caption: 'Community gathering' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.jpeg', caption: 'Team celebration' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.07 PM.jpeg', caption: 'Presentation in progress' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.09 PM.jpeg', caption: 'Audience engagement' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.43.18 PM.jpeg', caption: 'Networking session' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.43.50 PM.jpeg', caption: 'Event wrap-up moments' },
 ];
 
 const Gallery = () => {
