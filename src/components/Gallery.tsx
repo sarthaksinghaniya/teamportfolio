@@ -63,7 +63,7 @@ const Gallery = () => {
       if (!isInteracting && !isMobile && !prefersReducedMotion) {
         setActive((prev) => (prev + 1) % orderedImages.length);
       }
-    }, 5000);
+    }, 2500);
     return () => window.clearInterval(id);
   }, [isInteracting, orderedImages.length, isMobile, prefersReducedMotion]);
 
@@ -92,7 +92,7 @@ const Gallery = () => {
     setIsInteracting(true);
     if (e.deltaY > 0) goNext();
     else goPrev();
-    setTimeout(() => setIsInteracting(false), 600);
+    setTimeout(() => setIsInteracting(false), 300);
   };
 
   // Touch swipe for mobile
@@ -108,7 +108,7 @@ const Gallery = () => {
     if (Math.abs(delta) > 40) {
       setIsInteracting(true);
       delta > 0 ? goPrev() : goNext();
-      setTimeout(() => setIsInteracting(false), 600);
+      setTimeout(() => setIsInteracting(false), 300);
     }
     touchStartY.current = null;
   };
@@ -187,7 +187,7 @@ const Gallery = () => {
                     key={image.src}
                     className="snap-center shrink-0 basis-[90%] rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-white/5"
                     animate={{ scale: isCurrent ? 1 : 0.94, opacity: isCurrent ? 1 : 0.7 }}
-                    transition={{ type: 'spring', stiffness: 180, damping: 20 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 15 }}
                   >
                     <div className="relative w-full aspect-[4/5]">
                       <Image
@@ -241,7 +241,7 @@ const Gallery = () => {
                       rotateZ: isActive ? 0 : tilt * 0.6,
                       filter: `blur(${blur})`,
                     }}
-                    transition={{ type: 'spring', stiffness: 140, damping: 18 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 12 }}
                     className="absolute w-full max-w-xl rounded-[28px] overflow-hidden shadow-2xl"
                     style={{
                       transformStyle: 'preserve-3d',
