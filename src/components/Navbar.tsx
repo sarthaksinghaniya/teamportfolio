@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, Menu, X, UserPlus } from 'lucide-react';
+import { Github, Instagram, Linkedin, Mail, Menu, X, UserPlus } from 'lucide-react';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const Navbar = () => {
@@ -49,6 +49,7 @@ const Navbar = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==', label: 'Instagram' },
     { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx.netlify.app', label: 'Email' },
   ];
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, Send, Github, Instagram, Linkedin } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const Contact = () => {
@@ -69,6 +69,12 @@ const Contact = () => {
       name: "LinkedIn",
       link: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323",
       gradient: "from-blue-600 to-blue-800"
+    },
+    {
+      icon: Instagram,
+      name: "Instagram",
+      link: "https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==",
+      gradient: "from-pink-500 to-orange-500"
     }
   ];
 

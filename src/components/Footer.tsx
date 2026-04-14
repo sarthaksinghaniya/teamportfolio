@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter, ArrowUp, Heart } from 'lucide-react';
+import { Github, Instagram, Linkedin, Mail, Twitter, ArrowUp, Heart } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==', label: 'Instagram' },
     { icon: Twitter, href: 'https://twitter.com/techneekx', label: 'Twitter' },
     { icon: Mail, href: 'mailto:teamtechneekx@gmail.com', label: 'Email' },
   ];
@@ -27,6 +28,7 @@ const Footer = () => {
         { name: "Email: teamtechneekx@gmail.com", href: "mailto:teamtechneekx@gmail.com" },
         { name: "Phone: 6387860126", href: "tel:6387860126" },
         { name: "LinkedIn", href: "https://www.linkedin.com/company/techneekx/" },
+        { name: "Instagram", href: "https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==" },
       ]
     },
     {
