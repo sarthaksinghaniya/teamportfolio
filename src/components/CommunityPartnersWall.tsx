@@ -216,7 +216,7 @@ const CommunityPartnersWall = () => {
                 </motion.p>
 
                 {!partner.isCTA && partner.badge ? (
-                  <div className="inline-flex items-center px-3 py-1 mb-3 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500/25 to-purple-500/25 text-blue-200 border border-blue-400/25">
+                  <div className="inline-flex items-center px-3 py-1 mb-3 rounded-full text-xs font-semibold bg-gradient-to-r from-sky-200 to-violet-200 text-slate-800 border border-sky-300/80 shadow-sm">
                     {partner.badge}
                   </div>
                 ) : null}
