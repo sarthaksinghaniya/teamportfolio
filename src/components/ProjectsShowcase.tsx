@@ -24,6 +24,7 @@ type Project = {
   title: string;
   status: string;
   category: string;
+  tagline?: string;
   categories: ReadonlyArray<string>;
   icon: any;
   color: string;
@@ -31,12 +32,37 @@ type Project = {
   features: string[];
   techStack: string[];
   link: string | null;
+  linkLabel?: string;
   github: string;
   impact: string;
   aiPowered?: boolean;
 };
 
 const PROJECTS: ReadonlyArray<Project> = [
+  {
+    id: 'revibe-hub',
+    title: 'REVIBE HUB',
+    status: 'Live',
+    category: 'Advanced AI System',
+    tagline: 'Real-World AI Innovation',
+    categories: ['advanced', 'ai', 'platform'],
+    icon: Cpu,
+    color: 'from-indigo-500 to-purple-500',
+    description:
+      'Revibe Hub is an AI-powered platform focused on real-world innovation, helping users transform ideas into practical, impactful solutions. It provides guided workflows, smart suggestions, and resources to build projects efficiently.',
+    features: [
+      'AI-guided project building',
+      'Step-by-step execution system',
+      'Resource and learning integration',
+      'Real-world problem solving focus'
+    ],
+    techStack: ['Next.js', 'TypeScript', 'Framer Motion', 'AI Workflows'],
+    link: 'https://revibe-hub.netlify.app',
+    linkLabel: 'Visit Project',
+    github: 'https://github.com/teamtechneekx',
+    impact: 'AI Innovation',
+    aiPowered: true
+  },
   {
     id: 'flowx',
     title: 'FLOWX',
@@ -413,7 +439,7 @@ const ProjectsShowcase = () => {
             >
               {/* Project Card */}
               <div
-                className={`glass rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 h-full flex flex-col ${
+                className={`glass rounded-3xl p-8 border border-white/10 hover:border-white/20 hover:shadow-[0_20px_70px_-30px_rgba(139,92,246,0.45)] transition-all duration-300 h-full flex flex-col ${
                   project.aiPowered
                     ? 'ring-1 ring-violet-500/20 hover:ring-violet-400/40 hover:shadow-[0_20px_70px_-30px_rgba(167,139,250,0.45)]'
                     : ''
@@ -459,6 +485,11 @@ const ProjectsShowcase = () => {
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
                   <p className="text-white/60 text-sm mb-4">{project.category}</p>
+                  {project.tagline ? (
+                    <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-500/25 via-violet-500/25 to-fuchsia-500/25 text-indigo-200 border border-indigo-400/30 mb-4">
+                      {project.tagline}
+                    </div>
+                  ) : null}
                   <p className="text-white/80 text-sm leading-relaxed mb-6">{project.description}</p>
                   
                   {/* Features */}
@@ -501,7 +532,7 @@ const ProjectsShowcase = () => {
                       className="flex-1 btn-primary flex items-center justify-center gap-2 text-sm"
                     >
                       <ExternalLink className="w-4 h-4" />
-                      Live Demo
+                      {project.linkLabel ?? 'Live Demo'}
                     </motion.a>
                   )}
                   <motion.a

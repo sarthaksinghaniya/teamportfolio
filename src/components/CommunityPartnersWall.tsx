@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Star, TrendingUp, Award, Code, Rocket, Plus } from 'lucide-react';
+import { ExternalLink, Plus } from 'lucide-react';
 import { useState } from 'react';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
@@ -32,11 +32,35 @@ const CommunityPartnersWall = () => {
     }
   };
 
-  const partners = [
+  type Partner = {
+    name: string;
+    role: string;
+    avatar: string | null;
+    expertise: string[];
+    gradient: string;
+    isCTA?: boolean;
+    description?: string;
+    badge?: string;
+    link?: string;
+  };
+
+  const partners: Partner[] = [
+    {
+      name: "Innosphere",
+      role: "Community Partner",
+      avatar: "/innosphere.jpg",
+      description: "Empowering students through collaboration, tech events, and skill-building initiatives.",
+      badge: "Collaboration Partner",
+      expertise: ["Student Collaboration", "Tech Events", "Skill Development"],
+      gradient: "from-indigo-500 to-cyan-500",
+      link: "https://www.linkedin.com/company/innosphere-student-forum/posts/?feedView=all"
+    },
     {
       name: "ByteQuest",
       role: "Hackathon Organiser",
       avatar: "/byte quest hack.png",
+      description: "Powering high-impact hackathons that turn ideas into real-world solutions.",
+      badge: "Collaboration Partner",
       expertise: ["Hospital AI", "National Hackathon", "Innovation"],
       gradient: "from-yellow-500 to-orange-500"
     },
@@ -190,6 +214,18 @@ const CommunityPartnersWall = () => {
                 >
                   {partner.role}
                 </motion.p>
+
+                {!partner.isCTA && partner.badge ? (
+                  <div className="inline-flex items-center px-3 py-1 mb-3 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500/25 to-purple-500/25 text-blue-200 border border-blue-400/25">
+                    {partner.badge}
+                  </div>
+                ) : null}
+
+                {!partner.isCTA && partner.description ? (
+                  <p className="text-white/75 text-sm leading-relaxed mb-4">
+                    {partner.description}
+                  </p>
+                ) : null}
                 
                 {/* Expertise Tags */}
                 {!partner.isCTA && (
@@ -209,6 +245,20 @@ const CommunityPartnersWall = () => {
                     ))}
                   </div>
                 )}
+
+                {!partner.isCTA && partner.link ? (
+                  <motion.a
+                    href={partner.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-sm transition-all duration-300"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    LinkedIn
+                  </motion.a>
+                ) : null}
               </div>
               
               {/* CTA Button for Join Card */}
