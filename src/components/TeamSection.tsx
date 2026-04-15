@@ -18,7 +18,7 @@ type TeamMember = {
 const TEAM: TeamMember[] = [
   {
     name: 'Sarthak Singhaniya',
-    role: 'Co‑Founder · System Architect · AI/ML',
+    role: 'Founder · System Architect · AI/ML',
     tagline: 'Owns system design and technical direction.',
     imageSrc: '/sarthak.jpeg',
     links: {
