@@ -42,6 +42,17 @@ const EventsOrganized = () => {
       featured: false
     },
     {
+      id: 'pitch-night-edition',
+      name: 'PITCH NIGHT EDITION',
+      type: 'Mini Event • Online',
+      description: 'Prompt engineering-focused online pitch night for 30 participants to showcase AI-driven ideas.',
+      participants: '30',
+      tagline: 'Prompt. Pitch. Propel.',
+      icon: Zap,
+      gradient: 'from-indigo-500 to-blue-500',
+      featured: false
+    },
+    {
       id: 'innvedx-hackathon',
       name: 'InnVedX Code Hackathon',
       type: 'Hackathon',

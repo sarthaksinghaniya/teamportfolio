@@ -65,6 +65,15 @@ const CommunityPartnersWall = () => {
       gradient: "from-yellow-500 to-orange-500"
     },
     {
+      name: "Gemini",
+      role: "AI Innovation Partner",
+      avatar: "/download.png",
+      description: "Leveraging cutting-edge AI technology to drive innovation and intelligent solutions.",
+      badge: "Technology Partner",
+      expertise: ["AI Innovation", "Generative AI", "Smart Solutions"],
+      gradient: "from-blue-500 to-cyan-400"
+    },
+    {
       name: "Join as Partner",
       role: "Become Part of Ecosystem",
       avatar: null,
