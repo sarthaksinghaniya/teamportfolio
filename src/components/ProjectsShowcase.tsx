@@ -3,263 +3,11 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Star, TrendingUp, Users, Award, Zap, Heart, Brain, DollarSign, Calendar, Music, Recycle, BookOpen, Bot, Globe, Scale, Cpu } from 'lucide-react';
 import { useState } from 'react';
-
-const PROJECT_CATEGORIES = {
-  all: { id: 'all', name: 'All Projects', icon: Globe },
-  advanced_ai: { id: 'advanced', name: 'Advanced AI System', icon: Brain },
-  healthcare_ai: { id: 'healthcare', name: 'Healthcare AI', icon: Heart },
-  fintech_ai: { id: 'fintech', name: 'FinTech AI', icon: DollarSign },
-  music_platform: { id: 'music', name: 'Music Platform', icon: Music },
-  sustainability: { id: 'sustainability', name: 'Sustainability', icon: Recycle },
-  productivity: { id: 'productivity', name: 'Productivity', icon: Calendar },
-  edtech: { id: 'edtech', name: 'EdTech', icon: BookOpen },
-  ai_assistant: { id: 'assistant', name: 'AI Assistant', icon: Bot },
-} as const;
-
-type ProjectCategoryId = (typeof PROJECT_CATEGORIES)[keyof typeof PROJECT_CATEGORIES]['id'];
-type ProjectCategoryDataId = Exclude<ProjectCategoryId, 'all'>;
-
-type Project = {
-  id: string;
-  title: string;
-  status: string;
-  category: string;
-  tagline?: string;
-  categories: ReadonlyArray<string>;
-  icon: any;
-  color: string;
-  description: string;
-  features: string[];
-  techStack: string[];
-  link: string | null;
-  linkLabel?: string;
-  github: string;
-  impact: string;
-  aiPowered?: boolean;
-};
-
-const PROJECTS: ReadonlyArray<Project> = [
-  {
-    id: 'revibe-hub',
-    title: 'REVIBE HUB',
-    status: 'Live',
-    category: 'Advanced AI System',
-    tagline: 'Real-World AI Innovation',
-    categories: ['advanced', 'ai', 'platform'],
-    icon: Cpu,
-    color: 'from-indigo-500 to-purple-500',
-    description:
-      'Revibe Hub is an AI-powered platform focused on real-world innovation, helping users transform ideas into practical, impactful solutions. It provides guided workflows, smart suggestions, and resources to build projects efficiently.',
-    features: [
-      'AI-guided project building',
-      'Step-by-step execution system',
-      'Resource and learning integration',
-      'Real-world problem solving focus'
-    ],
-    techStack: ['Next.js', 'TypeScript', 'Framer Motion', 'AI Workflows'],
-    link: 'https://revibe-hub.netlify.app',
-    linkLabel: 'Visit Project',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'AI Innovation',
-    aiPowered: true
-  },
-  {
-    id: 'flowx',
-    title: 'FLOWX',
-    status: 'In Progress',
-    category: 'Advanced AI System',
-    categories: ['advanced', 'ai', 'platform'],
-    icon: Brain,
-    color: 'from-purple-500 to-pink-500',
-    description: 'Building a next-gen intelligent system focused on scalable AI workflows and automation',
-    features: [
-      'Modular architecture for extensibility',
-      'Real-time processing capabilities',
-      'Production-grade deployment'
-    ],
-    techStack: ['Python', 'FastAPI', 'Node.js', 'AI/ML', 'System Design'],
-    link: null,
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Platform Engineering'
-  },
-  {
-    id: 'fracture-vision',
-    title: 'FRACTURE VISION AI',
-    status: 'Live',
-    category: 'Healthcare AI',
-    categories: ['healthcare', 'ai'],
-    icon: Heart,
-    color: 'from-red-500 to-pink-500',
-    description: 'AI-powered fracture detection system using medical imaging',
-    features: [
-      'Assists doctors in identifying bone fractures',
-      'High accuracy detection',
-      'Reduces diagnosis time and improves clinical decision-making'
-    ],
-    techStack: ['Python', 'OpenCV', 'Deep Learning', 'Streamlit'],
-    link: 'https://fracturevision-ai.streamlit.app/',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Healthcare Innovation'
-  },
-  {
-    id: 'hospital-pulse',
-    title: 'HOSPITAL PULSE AI',
-    status: 'Live',
-    category: 'Healthcare AI',
-    categories: ['healthcare', 'ai'],
-    icon: TrendingUp,
-    color: 'from-blue-500 to-cyan-500',
-    description: 'Predicts emergency department surges, ICU demand, and patient load',
-    features: [
-      'Enables proactive hospital resource allocation',
-      'Focused on interpretable AI for real-world adoption',
-      'Predictive analytics for healthcare'
-    ],
-    techStack: ['Python', 'ML Models', 'React', 'Data Analytics'],
-    link: 'https://hopx.netlify.app',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Healthcare Analytics'
-  },
-  {
-    id: 'investment-copilot',
-    title: 'INVESTMENT AI COPILOT',
-    status: 'In Development',
-    category: 'FinTech AI',
-    categories: ['fintech', 'ai'],
-    icon: DollarSign,
-    color: 'from-green-500 to-emerald-500',
-    description: 'AI-driven financial assistant for investment analysis and decision support',
-    features: [
-      'Provides insights and recommendations',
-      'Risk evaluation capabilities',
-      'Designed as a co-pilot for smarter investing'
-    ],
-    techStack: ['Python', 'AI/ML', 'APIs', 'Data Visualization'],
-    link: null,
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Financial Technology'
-  },
-  {
-    id: 'reviber',
-    title: 'REVIBER',
-    status: 'Live',
-    category: 'Music Platform',
-    categories: ['music', 'platform'],
-    icon: Music,
-    color: 'from-purple-500 to-indigo-500',
-    description: 'Interactive platform for music-based engagement and user experience',
-    features: [
-      'Modern UI/UX with immersive interaction',
-      'Music engagement platform',
-      'User experience focused design'
-    ],
-    techStack: ['React', 'JavaScript', 'UI/UX Design'],
-    link: 'https://reviber.netlify.app',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Digital Experience'
-  },
-  {
-    id: 'revive-lab',
-    title: 'REVIVE LAB',
-    status: 'Live',
-    category: 'Sustainability',
-    categories: ['sustainability', 'ai'],
-    icon: Recycle,
-    color: 'from-green-500 to-teal-500',
-    description: 'AI-powered platform for e-waste innovation and repurposing ideas',
-    features: [
-      'Provides guided learning and practical solutions',
-      'Encourages sustainable tech practices',
-      'E-waste innovation platform'
-    ],
-    techStack: ['Python', 'AI', 'Web Development'],
-    link: 'https://revibe-lab.netlify.app',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Sustainability'
-  },
-  {
-    id: 'hanu-planner',
-    title: 'HANU PLANNER',
-    status: 'Live',
-    category: 'Productivity',
-    categories: ['productivity', 'ai'],
-    icon: Calendar,
-    color: 'from-orange-500 to-red-500',
-    description: 'AI-based timetable generator for students and institutions',
-    features: [
-      'Generates optimized schedules dynamically',
-      'Designed to solve real academic planning problems',
-      'Student-focused productivity tool'
-    ],
-    techStack: ['JavaScript', 'AI Logic', 'Web App'],
-    link: 'https://hanuplanner.netlify.app',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Education Technology'
-  },
-  {
-    id: 'hanu-youth',
-    title: 'HANU YOUTH',
-    status: 'Live',
-    category: 'EdTech',
-    categories: ['edtech', 'community'],
-    icon: BookOpen,
-    color: 'from-blue-500 to-purple-500',
-    description: 'Gamified learning platform for hackathons, AI/ML, and coding',
-    features: [
-      'Provides updates, engagement, and skill-building ecosystem',
-      'Gamified learning experience',
-      'Hackathon and coding focus'
-    ],
-    techStack: ['React', 'Node.js', 'Gamification Logic'],
-    link: 'https://hanuyouthapp.netlify.app/',
-    github: 'https://github.com/teamtechneekx',
-    impact: 'Community Education'
-  },
-  {
-    id: 'hanu-bai',
-    title: 'HANU BAI',
-    status: 'In Progress',
-    category: 'AI Assistant',
-    categories: ['assistant', 'ai'],
-    icon: Bot,
-    color: 'from-cyan-500 to-blue-500',
-    description: 'Personal AI assistant focused on automation and interaction',
-    features: [
-      'Designed to integrate multiple workflows',
-      'Single intelligent system',
-      'Automation and interaction focus'
-    ],
-    techStack: ['NLP', 'Python', 'AI Systems'],
-    link: null,
-    github: 'https://github.com/teamtechneekx',
-    impact: 'AI Innovation'
-  },
-  {
-    id: 'lxnode-ai-legal-assistant',
-    title: 'LXNode – AI Legal Assistant',
-    status: 'Live',
-    category: 'AI Assistant',
-    categories: ['assistant', 'ai', 'platform'],
-    icon: Scale,
-    color: 'from-violet-500 to-fuchsia-500',
-    description:
-      'AI-powered legal assistant that simplifies legal processes with intelligent document analysis, legal query resolution, and automated insights.',
-    features: [
-      'AI-based legal document analysis & summarization',
-      'Natural language legal query answering',
-      'Smart contract/document insights',
-      'Context-aware legal suggestions',
-      'User-friendly interface for non-legal users'
-    ],
-    techStack: ['Next.js', 'React', 'Node.js', 'AI APIs (NLP/LLM)', 'Tailwind CSS', 'Netlify'],
-    link: 'https://lxnode.netlify.app/',
-    github: 'https://github.com/sarthaksinghaniya/lxnode-AI',
-    impact: 'LegalTech Automation',
-    aiPowered: true
-  }
-] as const;
+import { useRouter } from 'next/navigation';
+import { PROJECTS, PROJECT_CATEGORIES, Project, ProjectCategoryId } from '@/constants/projects';
 
 const ProjectsShowcase = () => {
+  const router = useRouter();
   const [allProjects] = useState<Project[]>(() => [...PROJECTS]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(() => [...PROJECTS]);
   const [activeCategory, setActiveCategory] = useState<ProjectCategoryId>(PROJECT_CATEGORIES.all.id);
@@ -365,7 +113,7 @@ const ProjectsShowcase = () => {
 
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 heading-premium"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 heading-premium"
           >
             Real-World
             <br />
@@ -374,7 +122,7 @@ const ProjectsShowcase = () => {
           
           <motion.p
             variants={itemVariants}
-            className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed subheading-premium mb-8"
+            className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed subheading-premium mb-8"
           >
             Building production-ready AI systems and full-stack applications that solve real problems across healthcare, finance, education, and community development.
           </motion.p>
@@ -385,16 +133,16 @@ const ProjectsShowcase = () => {
             className="flex flex-wrap justify-center items-center gap-8 mb-12"
           >
             <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 text-yellow-400" />
-              <span className="text-white font-semibold">10+ Projects</span>
+              <Star className="w-5 h-5 text-yellow-500" />
+              <span className="text-slate-800 font-semibold">10+ Projects</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-blue-400" />
-              <span className="text-white font-semibold">5+ Industries</span>
+              <Users className="w-5 h-5 text-blue-500" />
+              <span className="text-slate-800 font-semibold">5+ Industries</span>
             </div>
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-green-400" />
-              <span className="text-white font-semibold">Production-Ready</span>
+              <TrendingUp className="w-5 h-5 text-green-500" />
+              <span className="text-slate-800 font-semibold">Production-Ready</span>
             </div>
           </motion.div>
 
@@ -411,12 +159,14 @@ const ProjectsShowcase = () => {
                 onClick={() => handleFilter(category.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
                   activeCategory === category.id
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                    : 'glass text-white/70 hover:text-white hover:border-white/30'
+                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 shadow-md text-white'
+                    : 'glass text-slate-700 hover:text-slate-900 border border-slate-200/50 hover:bg-slate-50'
                 }`}
               >
-                <category.icon className="w-4 h-4" />
-                {category.name}
+                <span className={activeCategory === category.id ? "dark flex items-center gap-2" : "flex items-center gap-2"}>
+                  <category.icon className="w-4 h-4 text-white" />
+                  <span className="text-white">{category.name}</span>
+                </span>
               </motion.button>
             ))}
           </motion.div>
@@ -439,9 +189,9 @@ const ProjectsShowcase = () => {
             >
               {/* Project Card */}
               <div
-                className={`glass rounded-3xl p-8 border border-white/10 hover:border-white/20 hover:shadow-[0_20px_70px_-30px_rgba(139,92,246,0.45)] transition-all duration-300 h-full flex flex-col ${
+                className={`glass bg-white rounded-3xl p-8 border border-slate-200/60 hover:border-slate-300 hover:shadow-xl transition-all duration-300 h-full flex flex-col ${
                   project.aiPowered
-                    ? 'ring-1 ring-violet-500/20 hover:ring-violet-400/40 hover:shadow-[0_20px_70px_-30px_rgba(167,139,250,0.45)]'
+                    ? 'ring-1 ring-violet-500/10 hover:ring-violet-400/30'
                     : ''
                 }`}
               >
@@ -451,52 +201,54 @@ const ProjectsShowcase = () => {
                     <div
                       className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${
                         project.status === 'Live'
-                          ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                          ? 'bg-green-500/10 text-green-600 border border-green-500/20'
                           : project.status === 'In Progress'
-                          ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
-                          : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                          ? 'bg-yellow-500/10 text-yellow-600 border border-yellow-500/20'
+                          : 'bg-blue-500/10 text-blue-600 border border-blue-500/20'
                       }`}
                     >
                       <div
                         className={`w-2 h-2 rounded-full ${
                           project.status === 'Live'
-                            ? 'bg-green-400'
+                            ? 'bg-green-500'
                             : project.status === 'In Progress'
-                            ? 'bg-yellow-400'
-                            : 'bg-blue-400'
+                            ? 'bg-yellow-500'
+                            : 'bg-blue-500'
                         }`}
                       ></div>
                       {project.status}
                     </div>
 
                     {project.aiPowered ? (
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-violet-600/25 to-fuchsia-600/25 text-white/90 border border-white/10 backdrop-blur-sm">
-                        <Cpu className="w-3.5 h-3.5 text-violet-300" />
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-violet-600/10 to-fuchsia-600/10 text-violet-700 border border-violet-200/40 backdrop-blur-sm">
+                        <Cpu className="w-3.5 h-3.5 text-violet-600" />
                         AI Powered
                       </div>
                     ) : null}
                   </div>
-                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r ${project.color}`}>
-                    <project.icon className="w-5 h-5 text-white" />
+                  <div className="dark">
+                    <div className={`inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r ${project.color}`}>
+                      <project.icon className="w-5 h-5 text-white" />
+                    </div>
                   </div>
                 </div>
 
                 {/* Project Info */}
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-white/60 text-sm mb-4">{project.category}</p>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{project.title}</h3>
+                  <p className="text-slate-500 text-sm mb-4">{project.category}</p>
                   {project.tagline ? (
-                    <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-500/25 via-violet-500/25 to-fuchsia-500/25 text-indigo-200 border border-indigo-400/30 mb-4">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-500/10 via-violet-500/10 to-fuchsia-500/10 text-indigo-700 border border-indigo-200/50 mb-4">
                       {project.tagline}
                     </div>
                   ) : null}
-                  <p className="text-white/80 text-sm leading-relaxed mb-6">{project.description}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">{project.description}</p>
                   
                   {/* Features */}
                   <ul className="space-y-2 mb-6">
                     {project.features.slice(0, 2).map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-white/70 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 flex-shrink-0"></div>
+                      <li key={idx} className="flex items-start gap-2 text-slate-600 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0"></div>
                         {feature}
                       </li>
                     ))}
@@ -505,7 +257,7 @@ const ProjectsShowcase = () => {
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.techStack.slice(0, 4).map((tech, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-white/10 rounded-lg text-xs text-white/70">
+                      <span key={idx} className="px-2 py-1 bg-slate-100 border border-slate-200/50 rounded-lg text-xs text-slate-600">
                         {tech}
                       </span>
                     ))}
@@ -514,26 +266,28 @@ const ProjectsShowcase = () => {
 
                 {/* Impact Badge */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30">
-                    <Zap className="w-3 h-3 text-purple-400" />
-                    <span className="text-xs text-purple-300 font-medium">{project.impact}</span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600">
+                    <Zap className="w-3 h-3 text-purple-600" />
+                    <span className="text-xs text-purple-600 font-medium">{project.impact}</span>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
                   {project.link && (
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="flex-1 btn-primary flex items-center justify-center gap-2 text-sm"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      {project.linkLabel ?? 'Live Demo'}
-                    </motion.a>
+                    <div className="flex-1 dark">
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="w-full btn-primary flex items-center justify-center gap-2 text-sm"
+                      >
+                        <ExternalLink className="w-4 h-4" style={{ color: '#ffffff' }} />
+                        {project.linkLabel ?? 'Live Demo'}
+                      </motion.a>
+                    </div>
                   )}
                   <motion.a
                     href={project.github}
@@ -541,7 +295,7 @@ const ProjectsShowcase = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className={`flex-1 btn-secondary flex items-center justify-center gap-2 text-sm ${
+                    className={`flex-1 btn-secondary flex items-center justify-center gap-2 text-sm text-slate-700 border-slate-200 hover:bg-slate-50 ${
                       !project.link ? 'w-full' : ''
                     }`}
                   >
@@ -564,37 +318,37 @@ const ProjectsShowcase = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="glass rounded-3xl p-12 max-w-4xl mx-auto border border-white/10"
+            className="glass bg-white rounded-3xl p-12 max-w-4xl mx-auto border border-slate-200/50 shadow-md"
           >
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="text-3xl font-bold text-slate-900 mb-6">
               Ready to Build Together?
             </h2>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
               Join our ecosystem of builders, innovators, and problem-solvers. Let's create impactful solutions together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="https://github.com/teamtechneekx"
-                target="_blank"
-                rel="noopener noreferrer"
+              <div className="dark">
+                <motion.a
+                  href="https://github.com/teamtechneekx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="btn-primary flex items-center gap-2"
+                >
+                  <Github className="w-5 h-5" style={{ color: '#ffffff' }} />
+                  Explore All Projects
+                </motion.a>
+              </div>
+              <motion.button
+                onClick={() => router.push('/join')}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="btn-primary flex items-center gap-2"
-              >
-                <Github className="w-5 h-5" />
-                Explore All Projects
-              </motion.a>
-              <motion.a
-                href="https://forms.gle/B58bPKQufVLQ71zJ6"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="btn-secondary flex items-center gap-2"
+                className="btn-secondary flex items-center gap-2 text-slate-700 border-slate-200 hover:bg-slate-50"
               >
                 <Users className="w-5 h-5" />
                 Join as Member
-              </motion.a>
+              </motion.button>
             </div>
           </motion.div>
         </motion.div>

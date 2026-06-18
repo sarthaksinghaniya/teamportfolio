@@ -7,7 +7,7 @@ import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
 import dynamic from 'next/dynamic';
-const ProjectsShowcase = dynamic(() => import('@/components/ProjectsShowcase'), { ssr: false });
+import ProjectsSummary from '@/components/ProjectsSummary';
 const EventsOrganized = dynamic(() => import('@/components/EventsOrganized'), { ssr: false });
 const Gallery = dynamic(() => import('@/components/Gallery'), { ssr: false });
 import TeamSection from '@/components/TeamSection';
@@ -16,7 +16,7 @@ const Partnership = dynamic(() => import('@/components/Partnership'), { ssr: fal
 const EliteClub = dynamic(() => import('@/components/EliteClub'), { ssr: false });
 const ViralLoop = dynamic(() => import('@/components/ViralLoop'), { ssr: false });
 const CommunityPartnersWall = dynamic(() => import('@/components/CommunityPartnersWall'), { ssr: false });
-const RealJourney = dynamic(() => import('@/components/RealJourney'), { ssr: false });
+import JourneySummary from '@/components/JourneySummary';
 const TrustElements = dynamic(() => import('@/components/TrustElements'), { ssr: false });
 const Community = dynamic(() => import('@/components/Community'), { ssr: false });
 import FinalCTA from '@/components/FinalCTA';
@@ -84,7 +84,7 @@ export default function Home() {
           <FOMOLayer />
         </section>
         <section id="projects-showcase" className="section-animate">
-          <ProjectsShowcase />
+          <ProjectsSummary />
         </section>
         <section id="events" className="section-animate">
           <EventsOrganized />
@@ -110,7 +110,7 @@ export default function Home() {
           <Community />
         </section>
         <section id="journey" className="section-animate">
-          <RealJourney />
+          <JourneySummary />
         </section>
         <section id="trust" className="section-animate">
           <TrustElements />

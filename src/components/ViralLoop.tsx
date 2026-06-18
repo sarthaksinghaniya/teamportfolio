@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { Users, Share2, Copy } from 'lucide-react';
 import { useState } from 'react';
 import { openTeamForm, FORM_CONFIG, TEAM_FORMS } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 const ViralLoop = () => {
+  const router = useRouter();
   const [showCopySuccess, setShowCopySuccess] = useState(false);
 
   // Copy invite link
@@ -153,10 +155,10 @@ const ViralLoop = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => openTeamForm('member')}
+              onClick={() => router.push('/join')}
               className="btn-primary flex items-center gap-2"
             >
-              <Users className="w-5 h-5" />
+              <Users className="w-5 h-5" style={{ color: '#ffffff' }} />
               Join as Member
             </motion.button>
             

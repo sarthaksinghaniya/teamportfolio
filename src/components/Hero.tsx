@@ -3,13 +3,15 @@
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { FORM_CONFIG } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const reduceMotion = useReducedMotion();
+  const router = useRouter();
   
   // Parallax effects
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 50]));
@@ -114,7 +116,7 @@ const Hero = () => {
           variants={itemVariants}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => openTeamForm('member')}
+          onClick={() => router.push('/join')}
           className="w-full mt-5 py-3 rounded-xl bg-[var(--accent-primary)] text-white font-semibold shadow-[0_12px_28px_rgba(255,77,141,0.28)]"
         >
           Start your TechNeekX journey

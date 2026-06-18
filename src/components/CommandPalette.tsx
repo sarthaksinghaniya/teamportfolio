@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Search, ArrowRight, Sparkles, Compass } from 'lucide-react';
 import { openTeamForm } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 type Command = {
   label: string;
@@ -23,10 +24,11 @@ const CommandPalette = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
   const baseCommands: Command[] = useMemo(
     () => [
-      { label: 'Join the community', hint: 'Open member form', action: () => openTeamForm('member') },
+      { label: 'Join the community', hint: 'Open member form', action: () => router.push('/join') },
       { label: 'Lead a build sprint', hint: 'Apply core team', action: () => openTeamForm('coreTeam') },
       ...sections.map((s) => ({
         label: s.label,

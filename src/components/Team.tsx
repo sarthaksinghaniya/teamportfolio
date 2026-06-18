@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { FORM_CONFIG } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 const Team = () => {
+  const router = useRouter();
   const teamMembers = [
    {
       name: "Sarthak Singhaniya",
@@ -202,7 +204,7 @@ const Team = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => openTeamForm('member')}
+              onClick={() => router.push('/join')}
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
             >
               Join as Member

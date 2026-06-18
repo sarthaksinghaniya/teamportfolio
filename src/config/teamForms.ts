@@ -9,7 +9,7 @@ export const TEAM_FORMS = {
   member: "https://forms.gle/B58bPKQufVLQ71zJ6",
   
   // Community Partners / Sponsors
-  partner: "https://forms.gle/AzoD5g1nUe9mNRDs9"
+  partner: "https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform"
 } as const;
 
 // Form configurations with metadata

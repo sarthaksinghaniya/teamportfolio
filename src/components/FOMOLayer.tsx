@@ -3,10 +3,12 @@
 import { motion } from 'framer-motion';
 import { Users, Activity, TrendingUp, Clock, ArrowRight, Lock } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { FORM_CONFIG } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 const FOMOLayer = () => {
   const [activeTicker, setActiveTicker] = useState(0);
+  const router = useRouter();
 
   const activityMessages = [
     "🚀 3 new builders joined this week",
@@ -219,7 +221,7 @@ const FOMOLayer = () => {
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => openTeamForm('member')}
+              onClick={() => router.push('/join')}
               className="btn-primary flex items-center gap-2 mx-auto"
             >
               Join as Member

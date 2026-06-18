@@ -5,12 +5,15 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Instagram, Linkedin, Mail, Menu, X, UserPlus } from 'lucide-react';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +40,18 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects-showcase' },
@@ -55,6 +70,13 @@ const Navbar = () => {
 
   // Smooth scroll handler
   const handleNavClick = (href: string) => {
+    if (pathname !== '/') {
+      router.push('/' + href);
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+      return;
+    }
     const targetId = href.replace('#', '');
     const targetElement = document.getElementById(targetId);
     
@@ -109,10 +131,8 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200'
-            : 'bg-white/70 backdrop-blur-md border-b border-gray-200'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white border-b border-gray-200 ${
+          isScrolled ? 'shadow-sm' : ''
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
@@ -180,7 +200,7 @@ const Navbar = () => {
                       transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
                     }}
                     whileTap={{ scale: 0.9 }}
-                    className="text-white/60 hover:text-white transition-colors duration-300 p-2 rounded-lg hover:bg-white/10"
+                    className="text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors duration-300 p-2 rounded-lg"
                     aria-label={social.label}
                   >
                     <social.icon size={20} />
@@ -195,7 +215,7 @@ const Navbar = () => {
                   transition: { duration: 0.2, ease: [0.22, 1, 0.36, 1] }
                 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => openTeamForm('member')}
+                onClick={() => router.push('/join')}
                 className="btn-primary btn-ripple magnetic-button flex items-center gap-2 px-8 py-3 text-sm font-medium shadow-lg"
               >
                 <UserPlus size={16} />
@@ -241,18 +261,19 @@ const Navbar = () => {
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
-                className="fixed inset-0 z-40 md:hidden"
+                className="dark fixed inset-0 z-[9999] md:hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
                 <motion.div
-                  className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                  className="absolute inset-0 backdrop-blur-sm"
                   onClick={() => setIsMobileMenuOpen(false)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ backgroundColor: 'rgba(15, 23, 42, 0.75)' }}
                 />
 
                 <motion.div
@@ -260,12 +281,13 @@ const Navbar = () => {
                   initial={{ x: '100%' }}
                   animate={{ x: 0 }}
                   exit={{ x: '100%' }}
-                  transition={{ type: 'spring', stiffness: 220, damping: 28 }}
-                  className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-gradient-to-b from-gray-900/95 to-gray-900/80 border-l border-white/10 shadow-2xl px-6 py-8 flex flex-col space-y-6"
+                  transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+                  className="absolute right-0 top-0 bottom-0 w-full max-w-[300px] border-l border-white/10 shadow-2xl px-6 py-8 flex flex-col space-y-6"
+                  style={{ backgroundColor: '#0f172a' }}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between pb-4 border-b border-white/10">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 overflow-hidden rounded-lg relative">
+                      <div className="w-10 h-10 overflow-hidden rounded-xl relative shadow-md">
                         <Image
                           src="/file_0000000067647206a22ff5daad754190.png"
                           alt="TechNeekX Logo"
@@ -275,18 +297,18 @@ const Navbar = () => {
                           priority
                         />
                       </div>
-                      <span className="text-lg font-semibold text-white">TechNeekX</span>
+                      <span className="text-lg font-bold text-white">TechNeekX</span>
                     </div>
                     <motion.button
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-white/70 hover:text-white"
+                      className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10"
                     >
                       <X size={24} />
                     </motion.button>
                   </div>
 
-                  <div className="flex-1 flex flex-col justify-center space-y-3">
+                  <div className="flex-1 flex flex-col justify-start pt-6 space-y-2">
                     {navItems.map((item, index) => (
                       <motion.button
                         key={item.name}
@@ -294,10 +316,10 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.25, delay: index * 0.05 }}
-                        className={`w-full text-left px-4 py-3 rounded-2xl text-base font-semibold ${
+                        className={`w-full text-left px-4 py-3.5 rounded-xl text-base font-semibold transition-colors ${
                           isActiveLink(item.href)
-                            ? 'bg-white/10 text-white'
-                            : 'text-white/80 hover:text-white hover:bg-white/5'
+                            ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 text-white'
+                            : 'text-slate-300 hover:text-white hover:bg-white/5'
                         }`}
                       >
                         {item.name}
@@ -305,7 +327,7 @@ const Navbar = () => {
                     ))}
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-6 pt-4 border-t border-white/10">
                     <div className="flex items-center justify-center space-x-4">
                       {socialLinks.map((social) => (
                         <motion.a
@@ -313,7 +335,7 @@ const Navbar = () => {
                           href={social.href}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="text-white/70 hover:text-white p-3 rounded-xl bg-white/5"
+                          className="text-white/70 hover:text-white p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
                         >
                           <social.icon size={20} />
                         </motion.a>
@@ -321,8 +343,11 @@ const Navbar = () => {
                     </div>
                     <motion.button
                       whileTap={{ scale: 0.96 }}
-                      onClick={() => openTeamForm('member')}
-                      className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold shadow-lg"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        router.push('/join');
+                      }}
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold shadow-lg hover:brightness-110 transition-all text-sm"
                     >
                       Join as Member
                     </motion.button>

@@ -285,13 +285,20 @@ const SocialProof = () => {
 
               {/* Subtle border glow */}
               <motion.div 
-                className={`absolute inset-0 rounded-2xl border-2 border-transparent`}
+                className="absolute inset-0 rounded-2xl border-2"
+                style={{
+                  borderColor: `rgba(${stat.color.includes('yellow') ? '250,204,21' : 
+                                       stat.color.includes('purple') ? '168,85,247' : 
+                                       stat.color.includes('blue') ? '59,130,246' : '34,197,94'}, 0)`
+                }}
                 animate={{ 
                   borderColor: hoveredCard === index ? 
                     `rgba(${stat.color.includes('yellow') ? '250,204,21' : 
                            stat.color.includes('purple') ? '168,85,247' : 
                            stat.color.includes('blue') ? '59,130,246' : '34,197,94'}, 0.5)` : 
-                    'transparent'
+                    `rgba(${stat.color.includes('yellow') ? '250,204,21' : 
+                           stat.color.includes('purple') ? '168,85,247' : 
+                           stat.color.includes('blue') ? '59,130,246' : '34,197,94'}, 0)`
                 }}
                 transition={{ duration: 0.3 }}
               ></motion.div>

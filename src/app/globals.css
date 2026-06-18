@@ -221,6 +221,45 @@ a {
   color: #475569 !important;
 }
 
+/* Reset to true white text in dark sections (using .dark wrapper class) */
+.dark .text-white,
+.dark .text-white\/90 {
+  color: #ffffff !important;
+}
+.dark .text-white\/80 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.dark .text-white\/70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.dark .text-white\/60 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.dark .text-white\/40 {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+.dark .text-gray-200,
+.dark .text-gray-300,
+.dark .text-slate-200,
+.dark .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+.dark .heading-premium {
+  color: #ffffff !important;
+}
+.dark .subheading-premium {
+  color: #94a3b8 !important;
+}
+.dark .card-hover h3,
+.dark .card-hover h4,
+.dark .card-hover h5 {
+  color: #ffffff !important;
+}
+.dark .card-hover p,
+.dark .dark .card-hover span {
+  color: #94a3b8 !important;
+}
+
 /* Premium typography */
 .heading-premium {
   letter-spacing: -0.03em;

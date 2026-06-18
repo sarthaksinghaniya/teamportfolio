@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Rocket, Users, Lightbulb, Target, ArrowRight } from 'lucide-react';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { FORM_CONFIG } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 const Community = () => {
+  const router = useRouter();
   const values = [
     {
       icon: Lightbulb,
@@ -134,7 +136,7 @@ const Community = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => openTeamForm('member')}
+            onClick={() => router.push('/join')}
             className="btn-primary flex items-center gap-2 mx-auto text-lg px-8 py-4"
           >
             Join as Member

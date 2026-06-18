@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Clock, Users, Trophy, Brain, Handshake } from 'lucide-react';
+import { Activity, Clock, Users, Trophy, Brain, Handshake, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const LiveActivityFeed = () => {
   const [currentActivity, setCurrentActivity] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   const activities = [
     {
@@ -102,6 +103,8 @@ const LiveActivityFeed = () => {
     }
   };
 
+  if (isDismissed) return null;
+
   return (
     <motion.div
       variants={containerVariants}
@@ -120,7 +123,13 @@ const LiveActivityFeed = () => {
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
             <span className="text-green-400 font-semibold text-xs">LIVE ACTIVITY</span>
           </div>
-          <Clock className="w-4 h-4 text-white/60" />
+          <button 
+            onClick={() => setIsDismissed(true)} 
+            className="text-white/60 hover:text-white transition-colors duration-200 focus:outline-none"
+            aria-label="Dismiss activity feed"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
         {/* Activity Content */}

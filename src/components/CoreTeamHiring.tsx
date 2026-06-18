@@ -254,7 +254,7 @@ const CoreTeamHiring = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center mt-16 sm:mt-24"
         >
           <motion.div
             variants={itemVariants}

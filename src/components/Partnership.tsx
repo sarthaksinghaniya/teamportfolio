@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Handshake, Trophy, Users, Target, ArrowRight, Mail } from 'lucide-react';
 import { useState } from 'react';
+import { openTeamForm } from '@/config/teamForms';
 
 const Partnership = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -269,6 +270,7 @@ const Partnership = () => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => openTeamForm('partner')}
                 className="btn-primary flex items-center gap-2"
               >
                 <Mail size={20} />
@@ -277,6 +279,7 @@ const Partnership = () => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => openTeamForm('partner')}
                 className="btn-secondary flex items-center gap-2"
               >
                 <ArrowRight size={20} />

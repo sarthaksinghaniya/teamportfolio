@@ -2,9 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { Rocket } from 'lucide-react';
-import { openTeamForm } from '@/config/teamForms';
+import { useRouter } from 'next/navigation';
 
 const FinalCTA = () => {
+  const router = useRouter();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -66,7 +67,7 @@ const FinalCTA = () => {
             variants={itemVariants}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => openTeamForm('member')}
+            onClick={() => router.push('/join')}
             className="w-full mt-5 py-3 rounded-xl bg-[var(--accent-primary)] text-white font-semibold shadow-md"
           >
             Start your TechNeekX journey

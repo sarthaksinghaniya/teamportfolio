@@ -1,10 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import type React from 'react';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
-import { Camera } from 'lucide-react';
+import { useEffect, useMemo, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Camera, ArrowLeft, ArrowRight, Play, Pause } from 'lucide-react';
 
 type GalleryImage = {
   src: string;
@@ -44,28 +43,9 @@ const galleryImages: GalleryImage[] = [
 const Gallery = () => {
   const orderedImages = useMemo(() => galleryImages, []);
   const [active, setActive] = useState(0);
-  const [isInteracting, setIsInteracting] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const lastScrollRef = useRef(0);
-  const touchStartY = useRef<number | null>(null);
-  const mobileCarouselRef = useRef<HTMLDivElement | null>(null);
-
-  // Tilt on hover for active card
-  const tiltX = useMotionValue(0);
-  const tiltY = useMotionValue(0);
-  const tiltXSpring = useSpring(tiltX, { stiffness: 120, damping: 12 });
-  const tiltYSpring = useSpring(tiltY, { stiffness: 120, damping: 12 });
-  const prefersReducedMotion = useReducedMotion();
-
-  // Idle auto-advance
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      if (!isInteracting && !isMobile && !prefersReducedMotion) {
-        setActive((prev) => (prev + 1) % orderedImages.length);
-      }
-    }, 2500);
-    return () => window.clearInterval(id);
-  }, [isInteracting, orderedImages.length, isMobile, prefersReducedMotion]);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   // Screen size detection
   useEffect(() => {
@@ -75,207 +55,155 @@ const Gallery = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const clampIndex = (value: number) => {
-    const len = orderedImages.length;
-    return (value + len) % len;
+  // Auto-slide effect
+  useEffect(() => {
+    if (!isPlaying) return;
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % orderedImages.length);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [isPlaying, orderedImages.length]);
+
+  const goNext = () => {
+    setActive((prev) => (prev + 1) % orderedImages.length);
   };
 
-  const goNext = () => setActive((prev) => clampIndex(prev + 1));
-  const goPrev = () => setActive((prev) => clampIndex(prev - 1));
-
-  // Wheel navigation (debounced)
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (isMobile) return;
-    const now = Date.now();
-    if (now - lastScrollRef.current < 450) return;
-    lastScrollRef.current = now;
-    setIsInteracting(true);
-    if (e.deltaY > 0) goNext();
-    else goPrev();
-    setTimeout(() => setIsInteracting(false), 300);
+  const goPrev = () => {
+    setActive((prev) => (prev - 1 + orderedImages.length) % orderedImages.length);
   };
 
-  // Touch swipe for mobile
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!isMobile && !prefersReducedMotion) {
-      touchStartY.current = e.touches[0].clientY;
-    }
-  };
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (isMobile || prefersReducedMotion) return;
-    if (touchStartY.current === null) return;
-    const delta = e.changedTouches[0].clientY - touchStartY.current;
-    if (Math.abs(delta) > 40) {
-      setIsInteracting(true);
-      delta > 0 ? goPrev() : goNext();
-      setTimeout(() => setIsInteracting(false), 300);
-    }
-    touchStartY.current = null;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile || prefersReducedMotion) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    tiltX.set(y * -10);
-    tiltY.set(x * 10);
-  };
-
-  const handleMouseLeave = () => {
-    if (isMobile) return;
-    tiltX.set(0);
-    tiltY.set(0);
-  };
-
-  const perspective = 1000;
+  // Card dimensions: 300px width + 24px gap = 324px step
+  const cardStep = isMobile ? 290 : 324;
 
   return (
-    <>
-      <section
-        className="py-20 relative overflow-hidden"
-        onWheel={handleWheel}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className="absolute inset-0">
-          <motion.div
-            className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 top-10 right-10"
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.div
-            className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 bottom-10 left-10"
-            animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-          />
-          <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')]" />
-        </div>
+    <section className="py-20 relative overflow-hidden bg-[#f9fafb] border-t border-slate-100">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <motion.div
+          className="gradient-blob w-[400px] h-[400px] bg-gradient-to-r from-purple-500/10 to-pink-500/10 top-10 right-10"
+          animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+        />
+        <motion.div
+          className="gradient-blob w-[350px] h-[350px] bg-gradient-to-r from-blue-500/10 to-cyan-500/10 bottom-10 left-10"
+          animate={{ scale: [1.1, 1, 1.1], rotate: [360, 180, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+        />
+      </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-5 gap-12 items-center">
+          {/* Left Column: Heading and Info (2/5 size) */}
+          <div className="lg:col-span-2 space-y-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-r from-purple-600 to-pink-600 mb-6 glow"
+              viewport={{ once: true }}
+              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
             >
-              <Camera className="w-10 h-10 text-white" />
+              <Camera className="w-8 h-8 text-white" />
             </motion.div>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4 heading-premium">📸 Inside TechNeekX</h1>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed subheading-premium">
-              Immersive, solitaire-style gallery — scroll or swipe to bring each moment forward.
-            </p>
+            
+            <div className="space-y-4">
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight heading-premium">
+                📸 Inside <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">TechNeekX</span>
+              </h2>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-md">
+                A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
+              </p>
+            </div>
+
+            {/* Slider Controls */}
+            <div className="flex items-center gap-6 pt-4">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={goPrev}
+                  className="w-12 h-12 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all hover:bg-slate-50"
+                  aria-label="Previous Slide"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={goNext}
+                  className="w-12 h-12 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all hover:bg-slate-50"
+                  aria-label="Next Slide"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setIsPlaying(!isPlaying)}
+                  className="w-12 h-12 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all hover:bg-slate-50"
+                  aria-label={isPlaying ? "Pause Autoplay" : "Start Autoplay"}
+                >
+                  {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+                </button>
+              </div>
+
+              {/* Progress Tracker */}
+              <div className="text-sm font-semibold tracking-wider text-slate-500">
+                <span className="text-purple-600 font-bold text-lg">{String(active + 1).padStart(2, '0')}</span>
+                <span className="mx-1">/</span>
+                <span>{String(orderedImages.length).padStart(2, '0')}</span>
+              </div>
+            </div>
           </div>
 
-          {isMobile ? (
-            <div
-              ref={mobileCarouselRef}
-              className="relative h-[480px] flex overflow-x-auto snap-x snap-mandatory gap-4 px-1 py-4"
-              onScroll={() => {
-                if (!mobileCarouselRef.current) return;
-                const container = mobileCarouselRef.current;
-                const cardWidth = container.clientWidth * 0.9;
-                const nextIndex = Math.round(container.scrollLeft / cardWidth);
-                setActive(clampIndex(nextIndex));
-              }}
-            >
-              {orderedImages.map((image, index) => {
-                const isCurrent = index === active;
-                return (
-                  <motion.div
-                    key={image.src}
-                    className="snap-center shrink-0 basis-[90%] rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-white/5"
-                    animate={{ scale: isCurrent ? 1 : 0.94, opacity: isCurrent ? 1 : 0.7 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-                  >
-                    <div className="relative w-full aspect-[4/5]">
+          {/* Right Column: Sliding Grid of Images (3/5 size) */}
+          <div className="lg:col-span-3 overflow-hidden relative">
+            <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-[#f9fafb] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-[#f9fafb] to-transparent z-10 pointer-events-none" />
+
+            <div className="w-full py-4 overflow-hidden" ref={sliderRef}>
+              <motion.div
+                className="flex gap-6"
+                animate={{ x: -active * cardStep }}
+                transition={{ type: 'spring', stiffness: 80, damping: 15 }}
+                style={{ width: `${orderedImages.length * cardStep}px` }}
+              >
+                {orderedImages.map((image, index) => {
+                  const isActive = index === active;
+                  return (
+                    <div
+                      key={image.src + index}
+                      className={`relative shrink-0 rounded-3xl overflow-hidden border transition-all duration-500 select-none bg-white ${
+                        isActive
+                          ? 'border-purple-500/40 shadow-[0_15px_40px_rgba(168,85,247,0.15)] scale-[1.02]'
+                          : 'border-slate-200/60 opacity-60 scale-95 hover:opacity-80'
+                      }`}
+                      style={{
+                        width: `${isMobile ? 266 : 300}px`,
+                        height: `${isMobile ? 332 : 375}px`
+                      }}
+                    >
+                      {/* Image */}
                       <Image
                         src={image.src}
                         alt={image.caption}
                         fill
-                        sizes="90vw"
-                        priority={index < 2}
-                        className="object-cover"
+                        sizes="300px"
+                        className="object-cover pointer-events-none"
+                        priority={index === 0}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-5">
-                        <div className="text-white text-base font-semibold drop-shadow">{image.caption}</div>
+                      
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent z-10 pointer-events-none" />
+                      
+                      {/* Caption wrapped in .dark so text remains white */}
+                      <div className="dark absolute bottom-0 left-0 right-0 p-5 z-20">
+                        <p className="text-white text-sm sm:text-base font-bold leading-snug drop-shadow-md">
+                          {image.caption}
+                        </p>
                       </div>
                     </div>
-                  </motion.div>
-                );
-              })}
+                  );
+                })}
+              </motion.div>
             </div>
-          ) : (
-            <div
-              className="relative h-[70vh] sm:h-[75vh] flex items-center justify-center"
-              style={{ perspective: `${perspective}px` }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-            >
-              {orderedImages.map((image, index) => {
-                const offset = ((index - active) % orderedImages.length + orderedImages.length) % orderedImages.length;
-                const depth = offset === 0 ? 0 : Math.min(offset, 4);
-                const isActive = offset === 0;
-
-                const translateZ = isActive ? 180 : Math.max(60 - depth * 30, -120);
-                const translateY = isActive ? 0 : depth * 20;
-                const scale = isActive ? 1 : 1 - depth * 0.08;
-                const opacity = isActive ? 1 : Math.max(0.2, 0.85 - depth * 0.15);
-                const blur = isActive ? '0px' : `${depth * 2}px`;
-                const tilt = isActive ? 0 : depth * 1.2;
-
-                const glowColor =
-                  image.src.includes('gal') || image.src.includes('main') ? 'rgba(236, 72, 153, 0.35)' : 'rgba(59,130,246,0.35)';
-
-                return (
-                  <motion.div
-                    key={image.src}
-                    initial={{ opacity: 0, scale: 0.95, z: -150 }}
-                    animate={{
-                      opacity,
-                      scale,
-                      y: translateY,
-                      z: translateZ,
-                      rotateZ: isActive ? 0 : tilt * 0.6,
-                      filter: `blur(${blur})`,
-                    }}
-                    transition={{ type: 'spring', stiffness: 220, damping: 12 }}
-                    className="absolute w-full max-w-xl rounded-[28px] overflow-hidden shadow-2xl"
-                    style={{
-                      transformStyle: 'preserve-3d',
-                      rotateX: isActive ? tiltXSpring : tilt,
-                      rotateY: isActive ? tiltYSpring : tilt * 0.4,
-                      zIndex: orderedImages.length - depth,
-                      boxShadow: isActive
-                        ? `0 25px 60px -20px rgba(0,0,0,0.45), 0 0 45px 0 ${glowColor}`
-                        : '0 20px 50px -25px rgba(0,0,0,0.35)',
-                      backdropFilter: 'blur(8px)',
-                    }}
-                  >
-                    <div className="relative w-full aspect-[4/5] bg-gradient-to-br from-white/10 to-white/5 rounded-[28px] overflow-hidden border border-white/10">
-                      <Image
-                        src={image.src}
-                        alt={image.caption}
-                        fill
-                        sizes="(min-width: 1024px) 480px, 90vw"
-                        priority={index < 2}
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <div className="text-white text-lg font-semibold drop-shadow-lg">{image.caption}</div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

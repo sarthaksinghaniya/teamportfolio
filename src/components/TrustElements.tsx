@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { Award, Users, Code, Star, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const TrustElements = () => {
+  const router = useRouter();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const trustPoints = [
@@ -18,7 +20,15 @@ const TrustElements = () => {
     {
       icon: Users,
       title: "Expert Leadership",
-      description: "Founded by passionate engineers with real experience in hackathons and AI development.",
+      description: (
+        <>
+          Founded by{" "}
+          <a href="#team" className="text-purple-400 hover:text-purple-300 font-semibold underline decoration-dotted transition-colors">
+            passionate engineers
+          </a>{" "}
+          with real experience in hackathons and AI development.
+        </>
+      ),
       gradient: "from-purple-500 to-pink-500",
       delay: 0.2
     },
@@ -245,7 +255,10 @@ const TrustElements = () => {
             className="glass rounded-2xl p-6 max-w-3xl mx-auto"
           >
             <h3 className="text-xl font-bold text-white mb-3">
-              Built by Passionate Engineers
+              Built by{" "}
+              <a href="#team" className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity underline decoration-dotted">
+                Passionate Engineers
+              </a>
             </h3>
             <p className="text-white/70">
               Backed by real experience in hackathons, AI development, and product building.
@@ -257,6 +270,7 @@ const TrustElements = () => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => router.push('/join')}
                 className="btn-primary flex items-center gap-2"
               >
                 Join Our Mission
@@ -265,15 +279,7 @@ const TrustElements = () => {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => {
-                  const founderSection = document.getElementById('founder-details');
-                  if (founderSection) {
-                    founderSection.scrollIntoView({ 
-                      behavior: 'smooth', 
-                      block: 'center' 
-                    });
-                  }
-                }}
+                onClick={() => window.open('https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/', '_blank', 'noopener,noreferrer')}
                 className="btn-secondary flex items-center gap-2"
               >
                 Connect with Founder
